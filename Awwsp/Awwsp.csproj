@@ -169,7 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AgeGropuController.cs" />
-    <Compile Include="Controllers\ChildrenController.cs" />
+    <Compile Include="Controllers\ChildController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -286,11 +286,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Children\Create.cshtml" />
-    <Content Include="Views\Children\Delete.cshtml" />
-    <Content Include="Views\Children\Details.cshtml" />
-    <Content Include="Views\Children\Edit.cshtml" />
-    <Content Include="Views\Children\Index.cshtml" />
+    <Content Include="Views\Child\Create.cshtml" />
+    <Content Include="Views\Child\Delete.cshtml" />
+    <Content Include="Views\Child\Details.cshtml" />
+    <Content Include="Views\Child\Edit.cshtml" />
+    <Content Include="Views\Child\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Edit.cshtml" />
@@ -303,7 +303,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Child\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

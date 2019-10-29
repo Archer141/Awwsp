@@ -159,7 +159,7 @@ namespace Awwsp.Controllers
             {
                 roleList.Add(new SelectListItem { Text = item.Name, Value = item.Name });
             }
-
+            
             ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name");
             return View();
         }
@@ -173,31 +173,65 @@ namespace Awwsp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { 
-                    UserName = model.Email, 
-                    Email = model.Email,
-                    FirstName=model.FirstName,
-                    LastName=model.LastName ,
-                    
-                    
-                };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name",model.RoleName);
-                result = await UserManager.AddToRoleAsync(user.Id, model.RoleName);
-
-                if (result.Succeeded)
+               
+                if (User.IsInRole("Admin"))
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    var user = new ApplicationUser
+                    {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
 
-                    return RedirectToAction("Index", "Home");
+
+                    };
+                    await UserManager.CreateAsync(user, model.Password);
+                    ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name", model.RoleName);
+                    await UserManager.AddToRoleAsync(user.Id, model.RoleName);
                 }
-                AddErrors(result);
+                else if (User.IsInRole("HeadCoach"))
+                {
+                    var user = new ApplicationUser
+                    {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+
+
+                    };
+                    await UserManager.CreateAsync(user, model.Password);
+                    await UserManager.AddToRoleAsync(user.Id, "Coach");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    var user = new ApplicationUser
+                    {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+
+                    };
+                   var result = await UserManager.CreateAsync(user, model.Password);
+                   var result2 = await UserManager.AddToRoleAsync(user.Id, "Parent");
+
+                    if (result.Succeeded&&result2.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    AddErrors(result);
+                    AddErrors(result2);
+                }
             }
 
             // If we got this far, something failed, redisplay form
@@ -455,6 +489,8 @@ namespace Awwsp.Controllers
         }
 
         #region Helpers
+
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 

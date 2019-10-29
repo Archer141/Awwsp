@@ -20,6 +20,7 @@ namespace Awwsp.Data
         Photo GetPhotoById(int id);
         Trophy GetTrophyById(int id);
         AgeGroup GetAgeGroup(int id);
+
         void AddChild(Child child);
         void AddNews(News news);
         void AddPhoto(Photo photo);

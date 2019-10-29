@@ -11,7 +11,7 @@ using Awwsp.Models;
 
 namespace Awwsp.Controllers
 {
-    public class ChildrenController : Controller
+    public class ChildController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 

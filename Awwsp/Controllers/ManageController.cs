@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Awwsp.Models;
 
+
 namespace Awwsp.Controllers
 {
     [Authorize]
@@ -64,14 +65,18 @@ namespace Awwsp.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+
+          
+           
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                Roles = await UserManager.GetRolesAsync(userId)
+        };
             return View(model);
         }
 

@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Awwsp.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 
 namespace Awwsp.Data
 {
@@ -20,7 +24,7 @@ namespace Awwsp.Data
             }
             
         }
-
+      
         public void AddChild(Child child)
         {
             throw new NotImplementedException();
@@ -103,6 +107,8 @@ namespace Awwsp.Data
         {
             throw new NotImplementedException();
         }
+
+        
 
         public IList<ApplicationUser> GetUsers()
         {
