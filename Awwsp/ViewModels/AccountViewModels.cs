@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Awwsp.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Awwsp.Models
+namespace Awwsp.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

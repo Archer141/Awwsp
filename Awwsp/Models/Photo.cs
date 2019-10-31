@@ -10,7 +10,7 @@ namespace Awwsp.Models
         public int PhotoID { get; set; }
         public string Name { get; set; }
         public string Localization { get; set; }
-
+        public byte[] Image { get; set; }
         public virtual ICollection<News> News { get; set; }
     }
 }

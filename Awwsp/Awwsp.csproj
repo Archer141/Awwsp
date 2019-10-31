@@ -172,6 +172,7 @@
     <Compile Include="Controllers\ChildController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Data\AcademyRepository.cs" />
     <Compile Include="Data\IAcademyRepository.cs" />
@@ -218,12 +219,16 @@
     <Compile Include="Migrations\201910271946551_role7.Designer.cs">
       <DependentUpon>201910271946551_role7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910301628577_folderchanges.cs" />
+    <Compile Include="Migrations\201910301628577_folderchanges.Designer.cs">
+      <DependentUpon>201910301628577_folderchanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\AgeGroup.cs" />
     <Compile Include="Models\Child.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Trophy.cs" />
@@ -303,6 +308,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Photo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -347,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910271946551_role7.resx">
       <DependentUpon>201910271946551_role7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910301628577_folderchanges.resx">
+      <DependentUpon>201910301628577_folderchanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

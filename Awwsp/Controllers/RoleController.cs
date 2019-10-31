@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using Awwsp.Data;
 using Awwsp.Models;
+using Awwsp.ViewModels;
 
 namespace Awwsp.Controllers
 {
@@ -32,7 +33,6 @@ namespace Awwsp.Controllers
         // GET: Role
         public ActionResult Index() 
         {
-
             //var list = _repo.GetApplicationRoles();
             //var list2 = RoleManager.Roles;
             List<AcadamyRole> roles = new List<AcadamyRole>();
@@ -93,7 +93,5 @@ namespace Awwsp.Controllers
 
             return RedirectToAction("Index");
         }
-
-
     }
 }
