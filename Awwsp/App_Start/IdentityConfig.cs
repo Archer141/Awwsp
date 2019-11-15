@@ -11,15 +11,24 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Awwsp.Models;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace Awwsp
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            string key = "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";
+            var client = new SendGridClient(key);
+            var from = new EmailAddress("ezio.141.96@gmail.com","Adrian Piascik");
+            var subject = message.Subject;
+            var to = new EmailAddress(message.Destination, "New user");
+            var htmlContent = message.Body;
+            var plainText = message.Body;
+            var email = MailHelper.CreateSingleEmail(from, to, subject, plainText, htmlContent);
+            await client.SendEmailAsync(email);
         }
     }
 
