@@ -216,55 +216,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910251523043_InitialCreate.cs" />
-    <Compile Include="Migrations\201910251523043_InitialCreate.Designer.cs">
-      <DependentUpon>201910251523043_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910251523498_init.cs" />
-    <Compile Include="Migrations\201910251523498_init.Designer.cs">
-      <DependentUpon>201910251523498_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910251538475_init2.cs" />
-    <Compile Include="Migrations\201910251538475_init2.Designer.cs">
-      <DependentUpon>201910251538475_init2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910251625183_newModels.cs" />
-    <Compile Include="Migrations\201910251625183_newModels.Designer.cs">
-      <DependentUpon>201910251625183_newModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910251641478_newModels2.cs" />
-    <Compile Include="Migrations\201910251641478_newModels2.Designer.cs">
-      <DependentUpon>201910251641478_newModels2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910271250079_roles.cs" />
-    <Compile Include="Migrations\201910271250079_roles.Designer.cs">
-      <DependentUpon>201910271250079_roles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910271510316_role2.cs" />
-    <Compile Include="Migrations\201910271510316_role2.Designer.cs">
-      <DependentUpon>201910271510316_role2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910271717327_role4.cs" />
-    <Compile Include="Migrations\201910271717327_role4.Designer.cs">
-      <DependentUpon>201910271717327_role4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910271719380_role5.cs" />
-    <Compile Include="Migrations\201910271719380_role5.Designer.cs">
-      <DependentUpon>201910271719380_role5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910271946551_role7.cs" />
-    <Compile Include="Migrations\201910271946551_role7.Designer.cs">
-      <DependentUpon>201910271946551_role7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910301628577_folderchanges.cs" />
-    <Compile Include="Migrations\201910301628577_folderchanges.Designer.cs">
-      <DependentUpon>201910301628577_folderchanges.cs</DependentUpon>
+    <Compile Include="Migrations\201911251000076_init.cs" />
+    <Compile Include="Migrations\201911251000076_init.Designer.cs">
+      <DependentUpon>201911251000076_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\AgeGroup.cs" />
     <Compile Include="Models\Child.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="ViewModels\ChildViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Photo.cs" />
@@ -342,10 +303,11 @@
     <Content Include="Views\AgeGropu\Create.cshtml" />
     <Content Include="Views\AgeGropu\Edit.cshtml" />
     <Content Include="Views\AgeGropu\Delete.cshtml" />
+    <Content Include="Views\Photo\Create.cshtml" />
+    <Content Include="Views\Photo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Photo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -361,38 +323,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910251523043_InitialCreate.resx">
-      <DependentUpon>201910251523043_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910251523498_init.resx">
-      <DependentUpon>201910251523498_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910251538475_init2.resx">
-      <DependentUpon>201910251538475_init2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910251625183_newModels.resx">
-      <DependentUpon>201910251625183_newModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910251641478_newModels2.resx">
-      <DependentUpon>201910251641478_newModels2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910271250079_roles.resx">
-      <DependentUpon>201910271250079_roles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910271510316_role2.resx">
-      <DependentUpon>201910271510316_role2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910271717327_role4.resx">
-      <DependentUpon>201910271717327_role4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910271719380_role5.resx">
-      <DependentUpon>201910271719380_role5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910271946551_role7.resx">
-      <DependentUpon>201910271946551_role7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910301628577_folderchanges.resx">
-      <DependentUpon>201910301628577_folderchanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911251000076_init.resx">
+      <DependentUpon>201911251000076_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

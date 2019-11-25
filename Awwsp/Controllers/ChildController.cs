@@ -8,18 +8,26 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Awwsp.Models;
+using Awwsp.Data;
+using Awwsp.ViewModels;
+using System.Security.Claims;
 
 namespace Awwsp.Controllers
 {
+    [Authorize]
     public class ChildController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private static AcademyRepository repository;
 
-        // GET: Children
-        public async Task<ActionResult> Index()
+        public ChildController()
         {
-            var children = db.Children.Include(c => c.AgeGroup);
-            return View(await children.ToListAsync());
+            repository = new AcademyRepository(db);
+        }
+        // GET: Children
+        public  ActionResult Index()
+        {
+            return View(repository.GetChildren());
         }
 
         // GET: Children/Details/5
@@ -45,16 +53,26 @@ namespace Awwsp.Controllers
         }
 
         // POST: Children/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ChildID,ChildFirstName,ChildLastName,DateOfBirth,PasswordHash,IsActive,UserID,AgeGroupID")] Child child)
+        public ActionResult Create([Bind(Include = "ChildID,ChildFirstName,ChildLastName,DateOfBirth,PasswordHash,AgeGroupID")] ChildViewModel child)
         {
+            string userIdValue="";
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            if (claimsIdentity!=null)
+            {
+                var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+                if (userIdClaim!=null)
+                {
+                     userIdValue = userIdClaim.Value;
+                }
+            }
+
             if (ModelState.IsValid)
             {
-                db.Children.Add(child);
-                await db.SaveChangesAsync();
+                
+
+                repository.AddChild(new Child { ChildID = child.ChildID ,ChildFirstName=child.ChildFirstName,ChildLastName=child.ChildLastName,DateOfBirth=child.DateOfBirth,PasswordHash=child.PasswordHash,AgeGroupID=child.AgeGroupID,UserID= userIdValue });
                 return RedirectToAction("Index");
             }
 

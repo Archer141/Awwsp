@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Awwsp.Data;
+using Awwsp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +10,16 @@ namespace Awwsp.Controllers
 {
     public class PhotoController : Controller
     {
+        AcademyRepository repository;
+        ApplicationDbContext dbContext = new ApplicationDbContext();
+        public PhotoController()
+        {
+            repository = new AcademyRepository(dbContext);
+        }
         // GET: Photo
         public ActionResult Index()
         {
-
-            return View();
+            return View(repository.GetPhotos());
         }
 
         // GET: Photo/Details/5
@@ -30,37 +37,37 @@ namespace Awwsp.Controllers
 
         // POST: Photo/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Photo photo, HttpPostedFileBase image1)
         {
-            try
-            {
-                // TODO: Add insert logic here
 
+            if (ModelState.IsValid && image1 != null)
+            {
+                repository.AddPhoto(photo,image1);
                 return RedirectToAction("Index");
             }
-            catch
+            else
             {
                 return View();
             }
+
         }
 
         // GET: Photo/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(repository.GetPhotoById(id));
         }
 
         // POST: Photo/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Photo photo,HttpPostedFileBase image1)
         {
-            try
+            if (ModelState.IsValid && image1 != null)
             {
-                // TODO: Add update logic here
-
+                repository.UpdatePhoto(photo, image1);
                 return RedirectToAction("Index");
             }
-            catch
+            else
             {
                 return View();
             }

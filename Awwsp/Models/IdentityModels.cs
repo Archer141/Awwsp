@@ -53,15 +53,5 @@ namespace Awwsp.Models
 
     }
 
-    //public class AcademyDbContext : DbContext
-    //{
-    //    AcademyDbContext() : base("DefaultConnection") { }
-
-    //    public DbSet<Child> Children { get; set; }
-    //    public DbSet<AgeGroup> AgeGroups { get; set; }
-    //    public DbSet<News> News { get; set; }
-    //    public DbSet<Photo> Photos { get; set; }
-    //    public DbSet<Trophy> Trophies { get; set; }
-    //}
 
 }

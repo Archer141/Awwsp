@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using Awwsp.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
@@ -14,161 +13,206 @@ namespace Awwsp.Data
 {
     public class AcademyRepository : IAcademyRepository
     {
-        private ApplicationDbContext dbContext = new ApplicationDbContext();
+        private ApplicationDbContext dbContext;
+        public AcademyRepository(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
         public void AddAgeGroup(AgeGroup ageGroup)
         {
-            if (ageGroup!=null)
+            if (ageGroup != null)
             {
                 dbContext.AgeGroups.Add(new AgeGroup { MaxAge = ageGroup.MaxAge, MinAge = ageGroup.MinAge, Name = ageGroup.Name });
                 dbContext.SaveChangesAsync();
             }
-            
         }
-      
+
         public void AddChild(Child child)
         {
-            throw new NotImplementedException();
+            dbContext.Children.Add(child);
+            dbContext.SaveChangesAsync();
         }
 
         public void AddNews(News news)
         {
-            throw new NotImplementedException();
+            dbContext.News.Add(news);
+            dbContext.SaveChangesAsync();
         }
 
-        public void AddPhoto(Photo photo)
+        public void AddPhoto(Photo photo,HttpPostedFileBase image)
         {
-            throw new NotImplementedException();
+            photo.Image = new byte[image.ContentLength];
+            image.InputStream.Read(photo.Image, 0, image.ContentLength);
+
+            dbContext.Photos.Add(photo);
+            dbContext.SaveChangesAsync();
         }
 
         public void AddTrophy(Trophy trophy)
         {
-            throw new NotImplementedException();
+            dbContext.Trophies.Add(trophy);
+            dbContext.SaveChangesAsync();
         }
 
-        public void DeleteAgeGroup(int id)
-        {
-            dbContext.AgeGroups.Remove(GetAgeGroup(id));
-            dbContext.SaveChanges();
-        }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
 
-        public AgeGroup GetAgeGroup(int id)
-        {
-           return dbContext.AgeGroups.Find(id);
 
+
+
+        public AgeGroup GetAgeGropuById(int id)
+        {
+            return dbContext.AgeGroups.Find(id);
         }
 
         public IList<AgeGroup> GetAgeGroups()
         {
-            return dbContext.AgeGroups.ToList();
+            return dbContext.AgeGroups.ToListAsync().Result;
         }
 
         public Child GetChildById(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Children.FindAsync(id).Result;
         }
 
         public IList<Child> GetChildren()
         {
-            throw new NotImplementedException();
+            return dbContext.Children.ToListAsync().Result;
         }
 
         public IList<News> GetNews()
         {
-            throw new NotImplementedException();
+            return dbContext.News.ToListAsync().Result;
         }
 
         public News GetNewsByID(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.News.FindAsync(id).Result;
         }
 
         public Photo GetPhotoById(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Photos.FindAsync(id).Result;
         }
 
         public IList<Photo> GetPhotos()
         {
-            throw new NotImplementedException();
+            return dbContext.Photos.ToListAsync().Result;
         }
 
 
         public IList<Trophy> GetTrophies()
         {
-            throw new NotImplementedException();
+            return dbContext.Trophies.ToListAsync().Result;
         }
 
         public Trophy GetTrophyById(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Trophies.FindAsync(id).Result;
         }
 
-        
 
-        public IList<ApplicationUser> GetUsers()
+
+
+        public void DeleteAgeGroup(int id)
         {
-            throw new NotImplementedException();
+            dbContext.AgeGroups.Remove(GetAgeGropuById(id));
+            dbContext.SaveChanges();
         }
 
-        public void RemoveAgeGroup(int id)
+        public void DeleteChild(int id)
         {
-            throw new NotImplementedException();
+            dbContext.Children.Remove(GetChildById(id));
+            dbContext.SaveChanges();
         }
 
-        public void RemoveChild(int id)
+        public void DeleteNews(int id)
         {
-            throw new NotImplementedException();
+            dbContext.News.Remove(GetNewsByID(id));
+            dbContext.SaveChanges();
         }
 
-        public void RemoveNews(int id)
+        public void DeletePhoto(int id)
         {
-            throw new NotImplementedException();
+            dbContext.Photos.Remove(GetPhotoById(id));
+            dbContext.SaveChanges();
         }
 
-        public void RemovePhoto(int id)
+        public void DeleteTrophy(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveTrophy(int id)
-        {
-            throw new NotImplementedException();
+            dbContext.Trophies.Remove(GetTrophyById(id));
+            dbContext.SaveChanges();
         }
 
         public void UpdateAgeGroup(AgeGroup ageGroup)
         {
-            dbContext.Entry(ageGroup).State = EntityState.Modified;
+            var aG = GetAgeGropuById(ageGroup.AgeGroupID);
+            aG.MaxAge = ageGroup.MaxAge;
+            aG.MinAge = ageGroup.MinAge;
+            aG.Name = ageGroup.Name;
             dbContext.SaveChanges();
-            //var a = dbContext.AgeGroups.Find(ageGroup.AgeGroupID);
-            //a.MaxAge = ageGroup.MaxAge;
-            //a.MinAge = ageGroup.MinAge;
-            //a.Name = ageGroup.Name;
-           
         }
 
-        public void UpdateChild(int id)
+        public void UpdateChild(Child child)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(child).State = EntityState.Modified;
+            dbContext.SaveChanges();
+
         }
 
-        public void UpdateNews(int id)
+        public void UpdateNews(News news)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(news).State = EntityState.Modified;
+            dbContext.SaveChanges();
         }
 
-        public void UpdatePhoto(int id)
+        public void UpdatePhoto(Photo photo, HttpPostedFileBase image)
         {
-            throw new NotImplementedException();
+            var photoModify = GetPhotoById(photo.PhotoID);
+            photoModify.Name = photo.Name;
+
+            dbContext.SaveChanges();
         }
 
-        public void UpdateTrophy(int id)
+        public void UpdateTrophy(Trophy trophy)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(trophy).State = EntityState.Modified;
+            dbContext.SaveChanges();
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~AcademyRepository()
+        // {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }

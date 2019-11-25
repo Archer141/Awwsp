@@ -10,10 +10,15 @@ using System.Web.Mvc;
 
 namespace Awwsp.Controllers
 {
+    [Authorize(Roles ="Admin,HeadCoach")]
     public class AgeGropuController : Controller
     {
-        AcademyRepository repository = new AcademyRepository();
-        ApplicationDbContext dbContext = new ApplicationDbContext();
+        static AcademyRepository repository;
+        static ApplicationDbContext dbContext = new ApplicationDbContext();
+        public AgeGropuController()
+        {
+            repository = new AcademyRepository(dbContext);
+        }
         // GET: AgeGropu
         public ActionResult Index()
         {
@@ -46,7 +51,7 @@ namespace Awwsp.Controllers
         }
         public ActionResult Edit(int id)
         {
-            return View(repository.GetAgeGroup(id));
+            return View(repository.GetAgeGropuById(id));
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,7 +67,7 @@ namespace Awwsp.Controllers
             //{
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             //}
-              var ageGroup = repository.GetAgeGroup(id);
+              var ageGroup = repository.GetAgeGropuById(id);
             if (ageGroup == null)
             {
                 return HttpNotFound();

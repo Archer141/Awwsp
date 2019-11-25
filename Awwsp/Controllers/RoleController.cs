@@ -12,6 +12,7 @@ using Awwsp.ViewModels;
 
 namespace Awwsp.Controllers
 {
+   // [Authorize(Roles ="Admin")]
     public class RoleController : Controller
     {
 
@@ -33,8 +34,7 @@ namespace Awwsp.Controllers
         // GET: Role
         public ActionResult Index() 
         {
-            //var list = _repo.GetApplicationRoles();
-            //var list2 = RoleManager.Roles;
+       
             List<AcadamyRole> roles = new List<AcadamyRole>();
             foreach (var item in RoleManager.Roles)
             {
@@ -67,7 +67,6 @@ namespace Awwsp.Controllers
            
             ApplicationRole a = await RoleManager.FindByIdAsync(role.Id);
             a.Name = role.Name;
-            
             await RoleManager.UpdateAsync(a);
             return RedirectToAction("Index");
         }
