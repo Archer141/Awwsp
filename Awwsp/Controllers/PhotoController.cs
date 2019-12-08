@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Awwsp.Controllers
 {
+    [Authorize]
     public class PhotoController : Controller
     {
         AcademyRepository repository;
@@ -25,17 +26,18 @@ namespace Awwsp.Controllers
         // GET: Photo/Details/5
         public ActionResult Details(int id)
         {
-
-            return View();
+            return View(repository.GetPhotoById(id));
         }
 
         // GET: Photo/Create
+        [Authorize(Roles ="Admin,HedCoach,Coach")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Photo/Create
+        [Authorize(Roles ="Admin,HedCoach,Coach")]
         [HttpPost]
         public ActionResult Create(Photo photo, HttpPostedFileBase image1)
         {
@@ -47,12 +49,14 @@ namespace Awwsp.Controllers
             }
             else
             {
+                ModelState.AddModelError("", "Dodaj zdjęcie");
                 return View();
             }
 
         }
 
         // GET: Photo/Edit/5
+        [Authorize(Roles = "Admin,HedCoach,Coach")]
         public ActionResult Edit(int id)
         {
             return View(repository.GetPhotoById(id));
@@ -60,6 +64,7 @@ namespace Awwsp.Controllers
 
         // POST: Photo/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin,HedCoach,Coach")]
         public ActionResult Edit(Photo photo,HttpPostedFileBase image1)
         {
             if (ModelState.IsValid && image1 != null)
@@ -74,25 +79,13 @@ namespace Awwsp.Controllers
         }
 
         // GET: Photo/Delete/5
+        [Authorize(Roles = "Admin,HedCoach,Coach")]
         public ActionResult Delete(int id)
         {
-            return View();
+            repository.DeletePhoto(id);
+            return RedirectToAction("Index");
         }
 
-        // POST: Photo/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+ 
     }
 }

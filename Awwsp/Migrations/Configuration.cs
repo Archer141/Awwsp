@@ -15,8 +15,15 @@ namespace Awwsp.Migrations
 
         protected override void Seed(Awwsp.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            
+            //context.Roles.AddOrUpdate(
+            //    new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("Admin"),
+            //    new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("Parent"),
+            //    new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("HedCoach"),
+            //    new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("Coach")
+            //    );
 
+            //  This method will be called after migrating to the latest version.
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
         }

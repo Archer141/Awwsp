@@ -4,40 +4,46 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-           @{ 
-               var base64 = Convert.ToBase64String(item.Image);
-               var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
-               <img src="@imgSrc" style="max-height:100px;max-width:100px" />
-           }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PhotoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PhotoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PhotoID })
-        </td>
-    </tr>
-}
-
-</table>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1>Galeria</h1>
+        <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis erat ut efficitur bibendum. In tristique mi quis vehicula condimentum. Pellentesque sed ligula diam. In velit tellus, pretium nec ligula in, sagittis mollis ex. Integer aliquet sodales erat, placerat laoreet dui tristique eget. </p>
+        @Html.ActionLink("Dodaj nowe zdjęcie", "Create", null, new { @class = "btn btn-dark m-2" })
+        <a href="#" class="btn btn-secondary my-2">Wyświetlanie pionowe</a>
+    </div>
+</section>
+<div class="py-5 bg-light ">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 pb-1">
+                    <div class="card mb-4 box-shadow">
+                        @{
+                            var base64 = Convert.ToBase64String(item.Image);
+                            var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                            <a href="#">
+                                <img src="@imgSrc" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">@item.Name</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        @Html.ActionLink("Szczegóły", "Details", null, new { @class = "btn btn-sm btn-outline-secondary" })
+                                        @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach") || User.IsInRole("Coach"))
+                                        {
+                                            @Html.ActionLink("Edytuj", "Edit", new { id = item.PhotoID }, new { @class = "btn btn-sm btn-outline-secondary" })
+                                        }
+                                    </div>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

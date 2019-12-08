@@ -12,7 +12,7 @@ using Awwsp.ViewModels;
 
 namespace Awwsp.Controllers
 {
-   // [Authorize(Roles ="Admin")]
+    [Authorize(Roles ="Admin")]
     public class RoleController : Controller
     {
 

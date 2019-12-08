@@ -10,19 +10,19 @@ namespace Awwsp.Data
 {
     interface IAcademyRepository:IDisposable
     {
-        
 
+        IList<Child> GetChildren(string search, string sort, string sortDir, int skip, int pageSize, out int totalRecord);
         IList<AgeGroup> GetAgeGroups();
-        IList<Child> GetChildren();
+        IList<Child> GetChildrenAll();
         IList<News> GetNews();
         IList<Photo> GetPhotos();
         IList<Trophy> GetTrophies();
 
-        Child GetChildById(int id);
-        News GetNewsByID(int id);
-        Photo GetPhotoById(int id);
-        Trophy GetTrophyById(int id);
-        AgeGroup GetAgeGropuById(int id);
+        Task <Child> GetChildById(int? id);
+        News GetNewsByID(int? id);
+        Photo GetPhotoById(int? id);
+        Trophy GetTrophyById(int? id);
+        AgeGroup GetAgeGropuById(int? id);
 
         void AddChild(Child child);
         void AddNews(News news);
@@ -30,11 +30,11 @@ namespace Awwsp.Data
         void AddTrophy(Trophy trophy);
         void AddAgeGroup(AgeGroup ageGroup);
 
-        void DeleteChild(int id);
-        void DeleteNews(int id);
-        void DeletePhoto(int id);
-        void DeleteTrophy(int id);
-        void DeleteAgeGroup(int id);
+        void DeleteChild(int? id);
+        void DeleteNews(int? id);
+        void DeletePhoto(int? id);
+        void DeleteTrophy(int? id);
+        void DeleteAgeGroup(int? id);
 
         void UpdateChild(Child child);
         void UpdateNews(News news);
@@ -42,5 +42,6 @@ namespace Awwsp.Data
         void UpdateTrophy(Trophy trophy);
         void UpdateAgeGroup(AgeGroup ageGroup);
 
+        string PasswordHash(string value);
     }
 }

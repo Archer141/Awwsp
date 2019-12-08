@@ -192,12 +192,10 @@ namespace Awwsp.Controllers
                 {
                     var user = new ApplicationUser
                     {
-                        UserName = model.Email,
+                        UserName = model.FirstName,
                         Email = model.Email,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
-
-
                     };
                     await UserManager.CreateAsync(user, model.Password);
                     ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name", model.RoleName);
@@ -207,12 +205,10 @@ namespace Awwsp.Controllers
                 {
                     var user = new ApplicationUser
                     {
-                        UserName = model.Email,
+                        UserName = model.FirstName,
                         Email = model.Email,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
-
-
                     };
                     await UserManager.CreateAsync(user, model.Password);
                     await UserManager.AddToRoleAsync(user.Id, "Coach");
@@ -222,32 +218,28 @@ namespace Awwsp.Controllers
                 {
                     var user = new ApplicationUser
                     {
-                        UserName = model.Email,
+                        UserName = model.FirstName,
                         Email = model.Email,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
 
                     };
-                   var result = await UserManager.CreateAsync(user, model.Password);
-                   var result2 = await UserManager.AddToRoleAsync(user.Id, "Parent");
-
-                    if (result.Succeeded&&result2.Succeeded)
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
                     {
-                        //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            await UserManager.AddToRoleAsync(user.Id, "Parent");
+                     
+                            // Send an email with this link
+                            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                            await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                        // Send an email with this link
-                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                        return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Home");
+                      
                     }
                     AddErrors(result);
-                    AddErrors(result2);
                 }
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }

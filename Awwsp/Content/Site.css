@@ -1,11 +1,11 @@
 ﻿body {
-    padding-top: 50px;
+
     padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
+    padding-left: 0px;
     padding-right: 15px;
 }
 
@@ -21,4 +21,19 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.display-4{
+    font-size:24px;
+}
+
+.galery-image {
+    object-fit: cover;
+    width:338px;
+    height: 225.33px;
+}
+.card-img-top {
+    min-width: 100%;
+    width: auto;
+    height: auto;
 }

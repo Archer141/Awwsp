@@ -26,7 +26,6 @@ namespace Awwsp.Controllers
             if (list != null)
             {
                 return View(list);
-
             }
             return View(list);
         }

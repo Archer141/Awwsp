@@ -9,34 +9,78 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("Role", "Index", "Role")</li>
-                        <li>@Html.ActionLink("AgeGropu", "Index", "AgeGropu")</li>
-                        <li>@Html.ActionLink("Child", "Index", "Child")</li>
-                    }
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="d-md-flex d-block flex-row mx-md-auto mx-0">
+
+            <div class="collapse navbar-collapse justify-content-center " id="navbarNav">
+
+                <ul class="navbar-nav align-self-center" style="font-size:20px;">
+                    <li class="nav-item  ">
+                        @Html.ActionLink("Aktualności", "Index", "News", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item ">
+                        @Html.ActionLink("Kalendarz", "Index", "Photo", null, new { @class = "nav-link" })
+                    </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+
+
+                <ul class="navbar-nav align-self-center" style="font-size:40px;">
+                    <li class="nav-item ">
+                        @Html.ActionLink("Rodzic", "Index", "Account", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item ">
+                        @Html.ActionLink("Trener", "Index", "Account", null, new { @class = "nav-link " })
+                    </li>
+                    <li class="nav-item ">
+                        @Html.ActionLink("Zawodnik", "Index", "Account", null, new { @class = "nav-link" })
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav align-self-center " style="font-size:20px;">
+                    <li class="nav-item ">
+                        @Html.ActionLink("Galeria", "Index", "Photo", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item ">
+                        @Html.ActionLink("Kontakt", "Contact", "Home", null, new { @class = "nav-link" })
+                    </li>
+
+                </ul>
             </div>
+            @Html.Partial("_LoginPartial")
+            @*<ul class="navbar-nav ml-auto">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item">
+                    @Html.ActionLink("Wyloguj się", "SignOut", "Child", null, new { @class = "nav-link" })
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    @Html.ActionLink("Zaloguj się", "SignIn", "Child", null, new { @class = "nav-link" })
+                </li>
+            }
+
+        </ul>*@
+
+
         </div>
-    </div>
-    <div class="container body-content">
+
+
+    </nav>
+
+    <div class="container-fluid body-content">
+
         @RenderBody()
+
+
+
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
@@ -46,5 +90,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    @*<script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
+        <script src="../../Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
+        <script src="../../Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
+        <script src="../../Scripts/MvcFoolproofValidation.js" type="text/javascript"></script>*@
 </body>
 </html>
