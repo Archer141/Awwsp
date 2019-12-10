@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Awwsp.Controllers
 {
+    [Authorize(Roles = "Admin,Parent,Coach,HedCoach")]
     public class ParentController : Controller
     {
 

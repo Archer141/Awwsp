@@ -1,33 +1,33 @@
 ﻿@model IEnumerable<Awwsp.Models.Child>
 
-@{
-    ViewBag.Title = "AcceptApplication";
-    var grid = new WebGrid(canPage: true, rowsPerPage: 10);
-    grid.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
-}
+@*@{
+        ViewBag.Title = "AcceptApplication";
+        var grid = new WebGrid(canPage: true, rowsPerPage: 10);
+        grid.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
+    }
 
-<div class="container">
-    <h2>Lista zawodników do przyjęcia</h2>
-    <div>
+    <div class="container">
+        <h2>Lista zawodników do przyjęcia</h2>
+        <div>
 
-    </div>
-    <div>
-        @grid.Table(
-       tableStyle: "table table-responsive table-bordered",
-        columns: grid.Columns(
-            grid.Column(columnName: "FirsName", header: "Imię "),
-            grid.Column(columnName: "LastName", header: "Nazwisko ")
+        </div>
+        <div>
+            @grid.Table(
+           tableStyle: "table table-responsive table-bordered",
+            columns: grid.Columns(
+                grid.Column(columnName: "FirsName", header: "Imię "),
+                grid.Column(columnName: "LastName", header: "Nazwisko ")
+                )
             )
-        )
 
-        <div class="row">
-            <div class="col-sm-6">
-              @*  @grid.PagerList(mode:WebGridPagerModes.All,paginationStyle:"pagination pagination-small pagination-right")*@
+            <div class="row">
+                <div class="col-sm-6">
+                  @*  @grid.PagerList(mode:WebGridPagerModes.All,paginationStyle:"pagination pagination-small pagination-right")
             </div>
         </div>
     </div>
 </div>
-
+*@
 
 @using (Html.BeginForm())
 {

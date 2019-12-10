@@ -177,17 +177,18 @@ namespace Awwsp.Controllers
 
         }
         [Authorize(Roles ="Admin,HedCoach,Coach")]
-        public ActionResult AcceptApplication(int page=1,string sort ="ChildFirstName",string sortDir="asc",string search="")
-        {
-            int pageSize = 10;
-            int totalRecord = 0;
+        public ActionResult AcceptApplication() { 
+            //int page = 1,string sort = "ChildFirstName",string sortDir = "asc",string search = ""
+        //{
+        //    int pageSize = 10;
+        //    int totalRecord = 0;
 
-            if (page < 1) page = 1;
+        //    if (page < 1) page = 1;
 
-            int skip = (page * pageSize) - pageSize;
-            var data = repository.GetChildren(search,sort,sortDir,skip,pageSize,out totalRecord);
-            ViewBag.TotalRows = totalRecord;
-            var listToAccept = repository.GetChildrenAll().Where(x => x.IsActive == false).Where(x=>x.IsActive==false);
+        //    int skip = (page * pageSize) - pageSize;
+        //    var data = repository.GetChildren(search,sort,sortDir,skip,pageSize,out totalRecord);
+        //    ViewBag.TotalRows = totalRecord;
+          var listToAccept = repository.GetChildrenAll().Where(x => x.IsActive == false).Where(x=>x.IsActive==false);
             return View(listToAccept);
         }
         [Authorize(Roles ="Admin,HedCoach,Coach")]
