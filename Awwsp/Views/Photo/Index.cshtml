@@ -25,9 +25,9 @@
                         @{
                             var base64 = Convert.ToBase64String(item.Image);
                             var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
-                           
+
                                 <img onclick="setID()" src="@imgSrc" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
-                            
+                            }
                             <div class="card-body">
                                 <p class="card-text">@item.Name</p>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -41,7 +41,7 @@
                                 </div>
                                 <small class="text-muted">9 mins</small>
                             </div>
-                        }
+                        
                     </div>
                 </div>
             }

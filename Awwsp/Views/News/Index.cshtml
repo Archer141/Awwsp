@@ -4,48 +4,59 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Photo.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Text)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorId)
-        </th>
-        <th></th>
-    </tr>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1>Aktualności</h1>
+        <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis erat ut efficitur bibendum. In tristique mi quis vehicula condimentum. Pellentesque sed ligula diam. In velit tellus, pretium nec ligula in, sagittis mollis ex. Integer aliquet sodales erat, placerat laoreet dui tristique eget. </p>
+        @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+        {@Html.ActionLink("Dodaj newsa", "Create", null, new { @class = "btn btn-dark m-2" })}
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Text)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AuthorId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NewsID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NewsID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NewsID })
-        </td>
-    </tr>
-}
+    </div>
+</section>
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="card-columns">
 
-</table>
+            @foreach (var item in Model.Reverse())
+            {
+
+                <div class="card shadow">
+                    @{
+                        var base64 = Convert.ToBase64String(item.Photo.Image);
+                        var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                        <img onclick="setID()" src="@imgSrc" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
+                    }
+                    <div class="card-body">
+                        <p class="card-title h4">@item.Title</p>
+                        <p class="card-text">@item.Text</p>
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-center">
+                        <div class="btn-group ">
+                            @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-secondary" })
+                            }
+
+                            @Html.ActionLink("Details", "Details", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-secondary" })
+
+                            @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+                            {
+                                @Html.ActionLink("Delete", "Delete", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-secondary" })
+                            }
+                        </div>
+                    </div>
+                    
+                </div>
+                        }
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+

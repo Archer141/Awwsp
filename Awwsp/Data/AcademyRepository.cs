@@ -74,7 +74,7 @@ namespace Awwsp.Data
 
         public News GetNewsByID(int? id)
         {
-            return dbContext.News.FindAsync(id).Result;
+            return dbContext.News.Include(n=>n.Photo).Where(x=>x.NewsID==id).FirstOrDefault();
         }
 
         public Photo GetPhotoById(int? id)

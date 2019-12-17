@@ -54,20 +54,20 @@
             </div>
             @Html.Partial("_LoginPartial")
             @*<ul class="navbar-nav ml-auto">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <li class="nav-item">
-                    @Html.ActionLink("Wyloguj się", "SignOut", "Child", null, new { @class = "nav-link" })
-                </li>
-            }
-            else
-            {
-                <li class="nav-item">
-                    @Html.ActionLink("Zaloguj się", "SignIn", "Child", null, new { @class = "nav-link" })
-                </li>
-            }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Wyloguj się", "SignOut", "Child", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Zaloguj się", "SignIn", "Child", null, new { @class = "nav-link" })
+                        </li>
+                    }
 
-        </ul>*@
+                </ul>*@
 
 
         </div>
@@ -79,22 +79,16 @@
 
         @RenderBody()
 
-
-
-
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    </div>
+    <footer>
+    <div class="footer">
+        Wszelkie prawa zastrzeżone &copy; @DateTime.Now.Year - Akademia piłkarska Adrian Piaśick
     </div>
 
+   </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
-    @*<script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
-        <script src="../../Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
-        <script src="../../Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
-        <script src="../../Scripts/MvcFoolproofValidation.js" type="text/javascript"></script>*@
+  
 </body>
 </html>
