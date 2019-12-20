@@ -6,13 +6,14 @@
         <p> Witaj @User.Identity.Name</p>
     </div>
     <div class="list-group list-group-flush">
-        @Html.ActionLink("Zarządzaj kontem", "IndexPartial", "Manage", null, new { @id="loadPartialView", @class = "GetReviewsLink list-group-item list-group-item-action bg-light" })
-        @Html.ActionLink("Twoje pociechy", "Index", "Child", null, new {@id="show", @class = "list-group-item list-group-item-action bg-light" })
+        @Html.ActionLink("Zarządzaj kontem", "IndexPartial", "Manage",null, new { @class = "GetReviewsLink list-group-item list-group-item-action bg-light" })
+        @Html.ActionLink("Towje dzieci", "Index", "Child", null, new { @class = "GetChildren list-group-item list-group-item-action bg-light" })
         <a href="#" class="list-group-item list-group-item-action bg-light">Trofea</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Kalendarz</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Aktualności</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Trenuj w domu</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Zdrowe odrzywianie</a>
     </div>
+    
 </div>
 

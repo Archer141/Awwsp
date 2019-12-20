@@ -107,7 +107,7 @@ namespace Awwsp.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("IndexManagePartial", model);
+                return PartialView("_IndexManagePartial", model);
             }
             else
             {

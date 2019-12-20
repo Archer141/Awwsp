@@ -39,5 +39,14 @@
             $('#SomeDiv').html(result);
         });
     });
+    });
+
+        $(document).ready(function () {
+    $('.GetChildren').on('click', function (e) {
+        e.preventDefault();
+        $.get('@Url.Action("Index","Child")', function (result) {
+            $('#SomeDiv').html(result);
+        });
+    });
 });
 </script>

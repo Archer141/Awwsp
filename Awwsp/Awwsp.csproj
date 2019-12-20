@@ -478,7 +478,11 @@
     <Content Include="Views\Child\AcceptApplication.cshtml" />
     <Content Include="Views\Shared\LeftNav.cshtml" />
     <Content Include="Views\Parent\Index.cshtml" />
-    <Content Include="Views\Shared\IndexManagePartial.cshtml" />
+    <Content Include="Views\Shared\_IndexManagePartial.cshtml" />
+    <Content Include="Views\Shared\_IndexChildren.cshtml" />
+    <Content Include="Views\Shared\_CreateChild.cshtml" />
+    <Content Include="Views\Shared\_EditChild.cshtml" />
+    <Content Include="Views\Shared\_DetailsChild.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

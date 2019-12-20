@@ -25,10 +25,18 @@ namespace Awwsp.Controllers
         {
             repository = new AcademyRepository(db);
         }
-        // GET: Children
+        // GET: Children partial view index
         public ActionResult Index()
         {
-            return View(repository.GetChildrenAll(GetUserID()));
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_IndexChildren", repository.GetChildrenAll(GetUserID()));
+            }else return View(repository.GetChildrenAll());
+        }
+
+        public ActionResult ChildrenList()
+        {
+            return View(repository.GetChildrenAll());
         }
 
         // GET: Children/Details/5
@@ -47,16 +55,17 @@ namespace Awwsp.Controllers
         }
 
         // GET: Children/Create
-        public ActionResult Create()
+        public ActionResult Create(string controllerName)
         {
             ViewBag.AgeGroupID = new SelectList(db.AgeGroups, "AgeGroupID", "Name");
+            ViewBag.ControllerName = controllerName;
             return View();
         }
 
         // POST: Children/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ChildID,ChildFirstName,ChildLastName,DateOfBirth,PasswordHash,AgeGroupID")] ChildCreateVM child)
+        public ActionResult Create([Bind(Include = "ChildID,ChildFirstName,ChildLastName,DateOfBirth,PasswordHash,AgeGroupID")] ChildCreateVM child,string controller)
         {
 
 
@@ -82,7 +91,8 @@ namespace Awwsp.Controllers
                     AgeGroupID = ageGroupId,
                     UserID = GetUserID()
                 });
-                return RedirectToAction("Index");
+                return RedirectToAction("Index",controller);
+
             }
 
             ViewBag.AgeGroupID = new SelectList(db.AgeGroups, "AgeGroupID", "Name", child.AgeGroupID);
