@@ -53,33 +53,9 @@ namespace Awwsp.Controllers
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
-        {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
 
-            var userId = User.Identity.GetUserId();
-
-          
-           
-            var model = new IndexViewModel
-            {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                Roles = await UserManager.GetRolesAsync(userId)
-        };
-            return View(model);
-        }
-        public async Task<ActionResult> IndexPartial(ManageMessageId? message)
+        [Route(Name = "FromController")]
+        public async Task<ActionResult> Index(string controllerName,ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -101,7 +77,8 @@ namespace Awwsp.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                Roles = await UserManager.GetRolesAsync(userId)
+                Roles = await UserManager.GetRolesAsync(userId),
+                ControllerName = controllerName
             };
 
 
@@ -111,9 +88,51 @@ namespace Awwsp.Controllers
             }
             else
             {
-                return RedirectToAction("Index","Home",null);
+                return View("Index",model);
             }
         }
+
+        //
+        // GET: /Manage/ChangePassword
+        public ActionResult ChangePassword(string controllerName)
+        {
+            var model = new ChangePasswordViewModel { ControllerName = controllerName };
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ChangePassword", model);
+            }
+            else
+            {
+                return View();
+            }
+        }
+        //
+        // POST: /Manage/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("_ChangePassword", model);
+            }
+            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            if (result.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                if (Request.IsAjaxRequest())
+                {
+                    return RedirectToAction("Index", model.ControllerName, new { Message = ManageMessageId.ChangePasswordSuccess });
+                }
+            }
+            AddErrors(result);
+            return PartialView("_ChangePassword", model);
+        }
+
 
         //
         // POST: /Manage/RemoveLogin
@@ -253,36 +272,7 @@ namespace Awwsp.Controllers
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
-        //
-        // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Manage/ChangePassword
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
-            }
-            AddErrors(result);
-            return View(model);
-        }
+ 
 
         //
         // GET: /Manage/SetPassword

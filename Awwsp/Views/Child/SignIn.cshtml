@@ -4,38 +4,82 @@
     ViewBag.Title = "SignIn";
 }
 
-<h2>SignIn</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-<p class="text-danger">@ViewBag.Error</p>
-    <div>
-        @Html.LabelFor(model => model.FirstName)
-        <div>
-            @Html.EditorFor(model => model.FirstName)
-            @Html.ValidationMessageFor(model => model.FirstName)
+<head>
+    <link rel="stylesheet" href="~/Content/Login.css" />
+</head>
+<div class="d-flex min-vh-100 flex-column container-fluid">
+    <div class="row bg-light flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        <div class="d-none d-sm-block  col-sm-6 col-md-6 bg-player portlet-container portlet-dropzone">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+
+        </div>
+        <div class="col-sm-6 col-md-6 bg-info portlet-container portlet-dropzone bg-transparent">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12 text-center">
+                            <!--Card-->
+                            <div class="card text-center">
+
+                                <div class="card-header justify-content-center">
+                                    Sign in
+                                </div>
+                                <div class="card-body">
+
+                                    <p>@ViewBag.NoConfirm</p>
+                                    @Html.ValidationSummary()
+
+                                    @using (Html.BeginForm("SignIn", "Child", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <h1 class="p-1">Sign in</h1>
+                                        <div class="text-center">
+
+                                            <div class="form-group">
+                                                @*  <h1>First Name</h1>*@
+
+
+                                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control p-0", @placeholder = "First name" } })
+                                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                                            </div>
+                                            <div class="form-group ">
+                                                @*<h1>Last Name</h1>*@
+
+                                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control p-0", @placeholder = "Last name" } })
+                                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                                            </div>
+                                            <div class="form-group">
+                                                @*<h1>Password</h1>*@
+
+
+                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control p-0", @placeholder = "Password" } })
+                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <input type="submit" value="Log in" class="btn" />
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-        </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Zaloguj się" class="btn btn-default" />
-        </div>
-    </div>
-}
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

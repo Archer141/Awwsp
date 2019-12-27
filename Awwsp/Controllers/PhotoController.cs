@@ -44,6 +44,8 @@ namespace Awwsp.Controllers
 
             if (ModelState.IsValid && image1 != null)
             {
+                photo.Date = DateTime.Now;
+
                 repository.AddPhoto(photo,image1);
                 return RedirectToAction("Index");
             }

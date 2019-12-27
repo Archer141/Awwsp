@@ -70,7 +70,9 @@ namespace Awwsp
                 RequireDigit = true,
                 RequireLowercase = true,
                 RequireUppercase = true,
+               
             };
+            
 
             // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;
@@ -98,7 +100,12 @@ namespace Awwsp
             }
             return manager;
         }
+
+      
+
     }
+
+
     //Create new role manager
     public class ApplicationRoleManager : RoleManager<ApplicationRole>
     {
@@ -109,6 +116,8 @@ namespace Awwsp
                 return applicationManager;
         }
     }
+
+
 
 
     // Configure the application sign-in manager which is used in this application.

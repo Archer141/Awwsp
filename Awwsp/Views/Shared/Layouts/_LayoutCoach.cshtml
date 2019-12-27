@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @* MDB Bootstrap *@
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/mdb.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/style.css" type="text/css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav">
+                <li class="nav-item  ">
+                    @Html.ActionLink("Aktualności", "Index", "News", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item ">
+                    @Html.ActionLink("Kalendarz", "Index", "Photo", null, new { @class = "nav-link" })
+                </li>
+
+                <li class="nav-item ">
+                    @Html.ActionLink("Rodzic", "Index", "Parent", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item ">
+                    @Html.ActionLink("Trener", "Index", "Coach", null, new { @class = "nav-link " })
+                </li>
+                <li class="nav-item ">
+                    @Html.ActionLink("Zawodnik", "Index", "Child", null, new { @class = "nav-link" })
+                </li>
+
+                <li class="nav-item ">
+                    @Html.ActionLink("Galeria", "Index", "Photo", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item ">
+                    @Html.ActionLink("Kontakt", "Contact", "Home", null, new { @class = "nav-link" })
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+
+        </div>
+      
+
+
+    </nav>
+
+    <div class="container-fluid body-content">
+
+        <link href="~/Content/SideBar.css" rel="stylesheet">
+
+        <div class="d-flex " id="wrapper">
+
+            <!-- Sidebar -->
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading">
+                    Add new:
+                </div>
+                <div class="list-group list-group-flush">
+                    @Html.ActionLink("Trophy", "Create", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                </div>
+                <div class="sidebar-heading">
+                    Lista
+                </div>
+                <div class="list-group list-group-flush">
+                    @Html.ActionLink("Trophies", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                    @Html.ActionLink("Trophies", "Index", "News", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                    @Html.ActionLink("Trophies", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                </div>
+            </div>
+            <!-- /#sidebar-wrapper -->
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+
+                @RenderBody()
+
+            </div>
+            <!-- /#page-content-wrapper -->
+
+        </div>
+
+    </div>
+    <footer>
+        <div class="footer">
+            Wszelkie prawa zastrzeżone &copy; @DateTime.Now.Year - Akademia piłkarska Adrian Piaśick
+        </div>
+
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

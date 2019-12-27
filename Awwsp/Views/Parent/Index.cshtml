@@ -3,27 +3,10 @@
     ViewBag.Title = "Index";
 }
 
-<link href="~/Content/SideBar.css" rel="stylesheet">
 
-<div class="d-flex " id="wrapper">
-
-    <!-- Sidebar -->
-    @{Html.RenderPartial("LeftNav");}
-
-    <!-- /#sidebar-wrapper -->
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-
-        <div id="SomeDiv" class="container-fluid">
-            <h1 class="mt-4">Witaj w panelu rodzica</h1>
-            <p>Wybierz akcję z menu po lewej stronie</p>
-        </div>
-    </div>
-    <!-- /#page-content-wrapper -->
-
+<div id="SomeDiv">
+    <h1 class="text-center h1">Witaj w panelu rodzica wybierz opcję po lewej stronie</h1>
 </div>
-
-
 <!-- Menu Toggle Script -->
 <script>
     $("#menu-toggle").click(function (e) {
@@ -31,22 +14,4 @@
         $("#wrapper").toggleClass("toggled");
     });
 
-    $(document).ready(function () {
-    $('.GetReviewsLink').on('click', function (e) {
-        e.preventDefault();
-        //var id = $(this).data('id');
-        $.get('@Url.Action("IndexPartial","Manage")', /*{ id: id },*/ function (result) {
-            $('#SomeDiv').html(result);
-        });
-    });
-    });
-
-        $(document).ready(function () {
-    $('.GetChildren').on('click', function (e) {
-        e.preventDefault();
-        $.get('@Url.Action("Index","Child")', function (result) {
-            $('#SomeDiv').html(result);
-        });
-    });
-});
 </script>

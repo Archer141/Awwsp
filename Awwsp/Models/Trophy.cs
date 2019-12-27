@@ -9,10 +9,14 @@ namespace Awwsp.Models
     {
         public int TrophyID { get; set; }
         public string Name { get; set; }
+        public Nullable<int> PhotoID { get; set; }
+        public Photo Photo { get; set; }
         public Trophy()
         {
             this.Children = new HashSet<Child>();
         }
         public virtual ICollection<Child> Children { get; set; }
+        public DateTime Date { get; set; }
+
     }
 }

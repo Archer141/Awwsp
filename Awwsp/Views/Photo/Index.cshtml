@@ -32,10 +32,10 @@
                                 <p class="card-text">@item.Name</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        @Html.ActionLink("Szczegóły", "Details", null, new { @class = "btn btn-sm btn-outline-secondary" })
+                                        @Html.ActionLink("Szczegóły", "Details", new { id = item.PhotoID }, new { @class = "btn btn-sm btn-outline" })
                                         @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach") || User.IsInRole("Coach"))
                                         {
-                                            @Html.ActionLink("Edytuj", "Edit", new { id = item.PhotoID }, new { @class = "btn btn-sm btn-outline-secondary" })
+                                            @Html.ActionLink("Edytuj", "Edit", new { id = item.PhotoID }, new { @class = "btn btn-sm btn-outline" })
                                         }
                                     </div>
                                 </div>

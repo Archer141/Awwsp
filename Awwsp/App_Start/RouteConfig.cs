@@ -18,6 +18,32 @@ namespace Awwsp
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+              name: "FromController",
+              url: "{controller}/{action}/{name}",
+              defaults: new { controller = "Home", action = "Index", name = UrlParameter.Optional }
+          );
+
+        }
+    }
+    public class BinaryIntellectViewEngine : RazorViewEngine
+    {
+        public BinaryIntellectViewEngine()
+        {
+            string[] locations = new string[] {
+            "~/Views/{1}/{0}.cshtml",
+            "~/Views/Shared/Child/{0}.cshtml",
+            "~/Views/Shared/Parent/{0}.cshtml",
+            "~/Views/Shared/Manage/{0}.cshtml",
+            "~/Views/Shared/Navs/{0}.cshtml",
+            "~/Views/Shared/Coach/{0}.cshtml",
+            "~/Views/Shared/Layouts/{0}.cshtml"
+        };
+
+            this.ViewLocationFormats = locations;
+            this.PartialViewLocationFormats = locations;
+            this.MasterLocationFormats = locations;
         }
     }
 }

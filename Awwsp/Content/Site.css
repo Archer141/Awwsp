@@ -1,4 +1,7 @@
-﻿
+﻿body{
+    height:100%;
+}
+
 html {
     height: 100%;
     box-sizing: border-box;
@@ -19,13 +22,23 @@ body {
     font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
+.bg {
+    /* The image used */
+    background-color: #84cc73;
+    /* Full height */
+    width: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 /**
  * Footer Styles
  */
 
 .footer {
-    position: absolute;
+    /*position: absolute;*/
     right: 0;
     bottom: 0;
     left: 0;
@@ -45,9 +58,7 @@ body {
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    flex-grow: 1;
-}
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -77,3 +88,4 @@ textarea {
     width: auto;
     height: auto;
 }
+

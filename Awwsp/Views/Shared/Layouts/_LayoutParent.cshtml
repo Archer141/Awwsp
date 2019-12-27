@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <link href="~/Content/SideBar.css" rel="stylesheet">
+
+    @* MDB Bootstrap *@
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/mdb.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/style.css" type="text/css">
+
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="/Home/Index">
+                    <strong>AWWSP</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+                    <ul class="navbar-nav">
+                        <li class="nav-item  ">
+                            @Html.ActionLink("Aktualności", "Index", "News", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item ">
+                            @Html.ActionLink("Kalendarz", "Index", "Photo", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item ">
+                            @Html.ActionLink("Rodzic", "Index", "Parent", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item ">
+                            @Html.ActionLink("Trener", "Index", "Coach", null, new { @class = "nav-link " })
+                        </li>
+                        <li class="nav-item ">
+                            @Html.ActionLink("Zawodnik", "Index", "Child", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item ">
+                            @Html.ActionLink("Galeria", "Index", "Photo", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item ">
+                            @Html.ActionLink("Kontakt", "Contact", "Home", null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid body-content">
+
+
+        <div class="d-flex " id="wrapper">
+
+            <!-- Sidebar -->
+            @{Html.RenderPartial("LeftNav");}
+
+            <!-- /#sidebar-wrapper -->
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+
+                @RenderBody()
+
+            </div>
+            <!-- /#page-content-wrapper -->
+
+        </div>
+
+    </div>
+    <footer>
+        <div class="footer">
+            Wszelkie prawa zastrzeżone &copy; @DateTime.Now.Year - Akademia piłkarska Adrian Piaśick
+        </div>
+
+    </footer>
+
+    <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/popper.min.js"></script>
+    <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/mdb.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

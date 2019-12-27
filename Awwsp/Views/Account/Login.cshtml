@@ -2,62 +2,71 @@
 
 @{
     ViewBag.Title = "Log in";
-}
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            <p>@ViewBag.NoConfirm</p>
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+}
+<head>
+    <link rel="stylesheet" href="~/Content/Login.css" />
+</head>
+
+<div class="d-flex min-vh-100 flex-column container-fluid">
+    <div class="row bg-light flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        <div class="d-none d-sm-block  col-sm-6 col-md-6 bg-coach portlet-container portlet-dropzone p-0">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 bg-info portlet-container portlet-dropzone bg-transparent p-0">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12 text-center">
+
+                            <p>@ViewBag.NoConfirm</p>
+                            @Html.ValidationSummary()
+
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "text-center border border-light p-5", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <p class="h4 mb-4 white-text">Sign In</p>
+                                <div class="form-row mb-4">
+                                    <div class="col">
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "red-text" })
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                                    </div>
+                                </div>
+
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "red-text" })
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Password" } })
+
+
+                                //Enable this once you have account confirmation enabled for password reset functionality
+                                <div class="custom-control custom-checkbox pb-3">
+                                    @Html.EditorFor(model => model.RememberMe, new { htmlAttributes = new { @class = "custom-control-input", @placeholder = "Password" } })
+                                    @Html.LabelFor(model => model.RememberMe, new { @class = "custom-control-label white-text" })
+                                </div>
+                                <div class="form-row">
+                                    <small class="col">
+                                        @Html.ActionLink("Forgot your password ?", "ForgotPassword", null, new { @class = "white-text" })
+                                    </small>
+                                    <small class="col">
+                                        @Html.ActionLink("Register as a new user.", "Register", null, new { @class = "white-text" })
+                                    </small>
+                                </div>
+                                <button class="btn btn-info my-4 btn-block" type="submit">Log in</button>
+                            }
+
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
+            </div>
+        </div>
     </div>
-    @*<div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>*@
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

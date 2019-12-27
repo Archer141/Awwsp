@@ -126,7 +126,7 @@ namespace Awwsp.Data
 
         public IList<News> GetNews()
         {
-            return dbContext.News.ToListAsync().Result;
+            return dbContext.News.Include("Photo").ToListAsync().Result;
         }
 
         public IList<Photo> GetPhotos()

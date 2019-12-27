@@ -1,3 +1,26 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@using Microsoft.AspNet.Identity
+
+@{
+    string CurrentName = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"]);
+
+    switch (CurrentName)
+    {
+        case "Parent":
+            Layout = "~/Views/Shared/Layouts/_LayoutParent.cshtml"; break;
+        //case "Child":
+        //    Layout = "~/Views/Shared/Layouts/_LayoutParent.cshtml";
+        //    break;
+        case "Trophy":
+            Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
+            break;
+        case "Coach":
+            Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
+            break;
+        case "Player":
+            Layout = "~/Views/Shared/Layouts/_LayoutPlayer.cshtml";
+            break;
+        default:
+            Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+            break;
+    }
+}  

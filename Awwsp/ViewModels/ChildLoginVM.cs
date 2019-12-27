@@ -8,11 +8,11 @@ namespace Awwsp.ViewModels
 {
     public class ChildLoginVM
     {
-        [Required]
+        [Required(ErrorMessage ="First name is reqired")]
         public string FirstName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Last name is reqired")]
         public string LastName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Password is reqired")]
         public string  Password { get; set; }
 
     }

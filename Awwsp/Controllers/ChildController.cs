@@ -165,7 +165,7 @@ namespace Awwsp.Controllers
         public ActionResult SignIn(ChildLoginVM loginVM)
         {
 
-            if (ModelState.IsValid)
+            if (loginVM.FirstName!=null&&loginVM.LastName!=null&&loginVM.Password!=null)
             {
                 string hash = repository.PasswordHash(loginVM.Password);
                 var user = repository.GetChildrenAll().Where(x => x.ChildFirstName == loginVM.FirstName && x.ChildLastName == loginVM.LastName & x.PasswordHash == repository.PasswordHash(loginVM.Password)).FirstOrDefault();
@@ -174,9 +174,17 @@ namespace Awwsp.Controllers
                     FormsAuthentication.SetAuthCookie(loginVM.FirstName, false);
                     return RedirectToAction("Index", "Home");
                 }
+                else
+                {
+                    ModelState.AddModelError("", "Ivnalid password or login");
+                    return RedirectToAction("Login", "Account", loginVM);
+
+                }
             }
-            ViewBag.Error = "Niepoprawne dane lub brak konta";
-            return View();
+            ModelState.AddModelError("", "Niepoprawne dane lub brak konta");
+
+            return RedirectToAction("Login","Account",loginVM);
+
         }
 
 

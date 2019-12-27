@@ -74,6 +74,7 @@ namespace Awwsp.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+        
             return View();
         }
 
@@ -94,7 +95,7 @@ namespace Awwsp.Controllers
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
-                    ViewBag.NoConfirm = "Potwierdź email";
+                    ViewBag.NoConfirm = "Confirm your email";
                     return View(model);
                 }
             }

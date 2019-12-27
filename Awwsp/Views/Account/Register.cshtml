@@ -3,70 +3,85 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div class="d-flex min-vh-100 flex-column container-fluid">
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
 
-    <div class="row mb-3"   >
-        <div class="col-md-6">
-            @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "col-12 form-control" })
-            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-        </div>
-        <div class="col-md-6">
-            @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.LastName, new { @class = "col-12 form-control" })
-            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
 
-        </div>
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
-        @Html.TextBoxFor(m => m.Email, new { @class = "col-12 form-control" })
-        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-    </div>
-    <div class="row mb-3">
-        <div class="col-md-6">
-            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
-           
-                @Html.PasswordFor(m => m.Password, new { @class = "col-12 form-control" })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
 
-        </div>
-        <div class="col-md-6">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
-         
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "col-12 form-control" })
-                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+    <div id="bg-login" class="view flex-center">
 
-        </div>
-    </div>
-    if (User.Identity.IsAuthenticated)
-    {
-        if (User.IsInRole("Admin"))
-        {
-            <div class="mb-3">
-                @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label" })
-                <div >
-                    @Html.DropDownListFor(model => model.RoleName, new SelectList(ViewBag.Roles, "Text", "Text"), htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+        <div class="container-fluid  d-flex align-items-center justify-content-center flex-center ">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-12 text-center">
+                    <div class="container pt-2">
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h4 class="h4 text-center">Rejestracja</h4>
+                            <hr />
+                            //@Html.ValidationSummary("", new { @class = "text-danger" })
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "col-12 form-control" })
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "col-12 form-control" })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "col-12 form-control" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+
+                                    @Html.PasswordFor(m => m.Password, new { @class = "col-12 form-control" })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "col-12 form-control" })
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <div class="mb-3">
+                                        @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label" })
+                                        <div>
+                                            @Html.DropDownListFor(model => model.RoleName, new SelectList(ViewBag.Roles, "Text", "Text"), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+
+                            <button type="submit" class="btn btn-block btn-dark">Stwórz konto</button>
+
+                        }
+
+                        @section Scripts {
+                            @Scripts.Render("~/bundles/jqueryval")
+                        }
+                    </div>
                 </div>
             </div>
-        }
-    }
-
-
-        <div>
-            <button type="submit" class="btn btn-dark">Stwórz konto</button>
         </div>
 
-}
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    </div>
+</div>

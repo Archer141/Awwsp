@@ -12,6 +12,7 @@ namespace Awwsp.ViewModels
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public string ControllerName { get; set; }
 
         public IList<string> Roles { get; set; }
     }
@@ -30,14 +31,14 @@ namespace Awwsp.ViewModels
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Hasło musi mieć minimum 6 znaków", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Nowe hasło")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Potwierdź nowe hasło")]
+        [Compare("NewPassword", ErrorMessage = "Hasła nie zgadzają się")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -45,26 +46,28 @@ namespace Awwsp.ViewModels
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "Aktualne hasło")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Hasło musi mieć minimum 6 znaków", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Nowe hasło")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Potwierdź nowe hasło")]
+        [Compare("NewPassword", ErrorMessage = "Hasła nie zgadzają się")]
         public string ConfirmPassword { get; set; }
+
+        public string ControllerName { get; set; }
     }
 
     public class AddPhoneNumberViewModel
     {
         [Required]
         [Phone]
-        [Display(Name = "Phone Number")]
+        [Display(Name = "Numer telefonu")]
         public string Number { get; set; }
     }
 

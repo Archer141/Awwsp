@@ -13,5 +13,6 @@ namespace Awwsp.Models
         public string AuthorId { get; set; }
         public Nullable<int> PhotoID { get; set; }
         public Photo Photo { get; set; }
+        public DateTime Date { get; set; }
     }
 }

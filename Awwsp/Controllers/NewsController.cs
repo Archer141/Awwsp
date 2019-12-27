@@ -26,8 +26,8 @@ namespace Awwsp.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
-            var news = db.News.Include(n => n.Photo);
-            return View(await news.ToListAsync());
+           
+            return View(academyRepository.GetNews().Reverse());
         }
 
         // GET: News/Details/5
@@ -62,6 +62,7 @@ namespace Awwsp.Controllers
             if (ModelState.IsValid)
             {
                 news.AuthorId = GetUserID();
+                news.Date = DateTime.Now;
                 academyRepository.AddNews(news);
                 return RedirectToAction("Index");
             }

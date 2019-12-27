@@ -13,5 +13,7 @@ namespace Awwsp.Models
         public string Name { get; set; }
         public byte[] Image { get; set; }
         public virtual ICollection<News> News { get; set; }
+        public DateTime Date { get; set; }
+
     }
 }
