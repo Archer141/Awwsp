@@ -32,41 +32,26 @@
                                     <p>@ViewBag.NoConfirm</p>
                                     @Html.ValidationSummary()
 
-                                    @using (Html.BeginForm("SignIn", "Child", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    @using (Html.BeginForm("SignIn", "Child", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "text-center border border-light p-5", role = "form" }))
                                     {
                                         @Html.AntiForgeryToken()
-                                        <h1 class="p-1">Sign in</h1>
-                                        <div class="text-center">
-
-                                            <div class="form-group">
-                                                @*  <h1>First Name</h1>*@
-
-
-                                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control p-0", @placeholder = "First name" } })
-                                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-
+                                        <p class="h4 mb-4 white-text">Sign In</p>
+                                        <div class="form-row mb-4">
+                                            <div class="col">
+                                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "red-text" })
+                                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
                                             </div>
-                                            <div class="form-group ">
-                                                @*<h1>Last Name</h1>*@
-
-                                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control p-0", @placeholder = "Last name" } })
-                                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-
-                                            </div>
-                                            <div class="form-group">
-                                                @*<h1>Password</h1>*@
-
-
-                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control p-0", @placeholder = "Password" } })
-                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-
+                                            <div class="col">
+                                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "red-text" })
+                                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "red-text" })
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Password" } })
 
-                                            <input type="submit" value="Log in" class="btn" />
-                                        </div>
+                                        <button class="btn btn-info my-4 btn-block" type="submit">Log in</button>
+
                                     }
 
                                 </div>

@@ -198,9 +198,26 @@ namespace Awwsp.Controllers
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                     };
-                    await UserManager.CreateAsync(user, model.Password);
-                    ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name", model.RoleName);
-                    await UserManager.AddToRoleAsync(user.Id, model.RoleName);
+                    
+                    var result = await UserManager.CreateAsync(user, model.Password);
+
+                    if (result.Succeeded)
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, model.RoleName);
+                        // Send an email with this link
+                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        return RedirectToAction("Index", "Home");
+
+                    }
+                    else
+                    {
+                        ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name", model.RoleName);
+                    }
+                    AddErrors(result);
+
                 }
                 else if (User.IsInRole("HeadCoach"))
                 {
@@ -211,9 +228,13 @@ namespace Awwsp.Controllers
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                     };
-                    await UserManager.CreateAsync(user, model.Password);
-                    await UserManager.AddToRoleAsync(user.Id, "Coach");
-                    return RedirectToAction("Index");
+                   var result= await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, "Coach");
+                        return RedirectToAction("Index");
+                    }
+                    AddErrors(result);
                 }
                 else
                 {

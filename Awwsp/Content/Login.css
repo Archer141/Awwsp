@@ -28,3 +28,13 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+.bg-register {
+    /* The image used */
+    background-image: url("Images/sign-pen-business-document-48148.jpg");
+    /* Full height */
+    width: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
