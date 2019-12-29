@@ -31,7 +31,7 @@
                             {
                                 @Html.AntiForgeryToken()
 
-                                <p class="h4 mb-4 white-text">Sign In</p>
+                                <p class="h4 mb-4 white-text">Parent or Coach Sign In</p>
                                 <div class="form-row mb-4">
                                     <div class="col">
                                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "red-text" })
@@ -59,15 +59,15 @@
                                 <button class="btn btn-info my-4 btn-block" type="submit">Log in</button>
                             }
 
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

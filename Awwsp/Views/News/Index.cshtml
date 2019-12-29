@@ -21,42 +21,65 @@
             @foreach (var item in Model)
             {
 
-                <div class="card shadow">
-                    @{
+            <div class="card shadow ">
+                @{
+                    if (item.Photo != null)
+                    {
                         var base64 = Convert.ToBase64String(item.Photo.Image);
                         var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
-                        <img onclick="setID()" src="@imgSrc" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
-                    }
-                    <div class="card-body">
-                        <p class="card-title h4">@item.Title</p>
-                        <p class="card-text">@item.Text</p>
-                    </div>
-
-                    <div class="card-footer d-flex justify-content-center">
-                        <div class="btn-group ">
-                            @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
-                            {
-                                @Html.ActionLink("Edit", "Edit", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-secondary" })
-                            }
-
-                            @Html.ActionLink("Details", "Details", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-secondary" })
-
-                            @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
-                            {
-                                @Html.ActionLink("Delete", "Delete", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-secondary" })
-                            }
+                        <div class=" view overlay">
+                            <img onclick="setID()" src="@imgSrc" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
+                            <a href="/News/Details/@item.NewsID">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
                         </div>
-                    </div>
-                    
+                    }
+                    else
+                    {
+                        <div class=" view overlay">
+                            <img onclick="setID()" src="~/Content/Images/notfound.png" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
+                            <a href="/News/Details/@item.PhotoID">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                    }
+                }
+                <div class="card-body">
+                    <p class="card-title h4">@item.Title</p>
+                    <p class="card-text">@item.Text</p>
                 </div>
+
+                <div class="card-footer d-flex justify-content-center">
+                    <div class="btn-group ">
+                        @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-dark mr-1" })
                         }
 
 
 
+                        @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-danger ml-1", })
+                        }
+                    </div>
+                </div>
 
-
-
+            </div>
+            }
         </div>
     </div>
 </div>
 
+<script>
+            $(document).ready(function () {
+    $('.DisplayNews').on('click', function (e) {
+        e.preventDefault();
+       var id = $(this).data('id');//pisać zawsze małymi literami bo w html zamiana na małe
+        $.get('@Url.Action("Details","News")', {id:id }, function (result) {
+            $('#SomeDiv').html(result);
+        });
+        });
+    });
+
+</script>

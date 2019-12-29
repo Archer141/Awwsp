@@ -179,6 +179,16 @@ namespace Awwsp.Data
 
         public void DeletePhoto(int? id)
         {
+            var newsList= dbContext.News.Where(x => x.PhotoID == id).ToList();
+            var trophiesList= dbContext.Trophies.Where(x => x.PhotoID == id).ToList();
+            foreach (var item in newsList)
+            {
+                item.PhotoID = null;
+            }
+            foreach (var item in trophiesList)
+            {
+                item.PhotoID = null;
+            }
             dbContext.Photos.Remove(GetPhotoById(id));
             dbContext.SaveChanges();
         }

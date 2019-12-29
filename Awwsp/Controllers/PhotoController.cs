@@ -3,6 +3,7 @@ using Awwsp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,14 +31,14 @@ namespace Awwsp.Controllers
         }
 
         // GET: Photo/Create
-        [Authorize(Roles ="Admin,HedCoach,Coach")]
+        [Authorize(Roles ="Admin,HeadCoach,Coach")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Photo/Create
-        [Authorize(Roles ="Admin,HedCoach,Coach")]
+        [Authorize(Roles ="Admin,HeadCoach,Coach")]
         [HttpPost]
         public ActionResult Create(Photo photo, HttpPostedFileBase image1)
         {
@@ -58,7 +59,7 @@ namespace Awwsp.Controllers
         }
 
         // GET: Photo/Edit/5
-        [Authorize(Roles = "Admin,HedCoach,Coach")]
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
         public ActionResult Edit(int id)
         {
             return View(repository.GetPhotoById(id));
@@ -66,7 +67,7 @@ namespace Awwsp.Controllers
 
         // POST: Photo/Edit/5
         [HttpPost]
-        [Authorize(Roles = "Admin,HedCoach,Coach")]
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
         public ActionResult Edit(Photo photo,HttpPostedFileBase image1)
         {
             if (ModelState.IsValid && image1 != null)
@@ -76,18 +77,38 @@ namespace Awwsp.Controllers
             }
             else
             {
+                ModelState.AddModelError("", "Add photo");
                 return View();
             }
         }
 
         // GET: Photo/Delete/5
-        [Authorize(Roles = "Admin,HedCoach,Coach")]
-        public ActionResult Delete(int id)
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Photo photo = repository.GetPhotoById(id);
+            if (photo == null)
+            {
+                return HttpNotFound();
+            }
+            return View(photo);
+        }
+
+        // POST: Photo/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
             repository.DeletePhoto(id);
             return RedirectToAction("Index");
         }
+      
 
- 
+    
     }
 }

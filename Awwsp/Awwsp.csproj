@@ -324,6 +324,7 @@
     <Content Include="Content\Images\evening-field-football-field-goal-399187.jpg" />
     <Content Include="Content\Images\field-stadium-soccer-argentina-61143.jpg" />
     <Content Include="Content\Images\high-angle-photography-of-soccer-field-2935979.jpg" />
+    <Content Include="Content\Images\notfound.png" />
     <Content Include="Content\Images\photo-of-a-person-standing-on-football-field-2413089.jpg" />
     <Content Include="Content\Images\sign-pen-business-document-48148.jpg" />
     <Content Include="Content\Images\sports-field-2935982.jpg" />
@@ -650,7 +651,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Child\SignIn.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
@@ -673,6 +673,9 @@
     <Content Include="Views\Trophy\Details.cshtml" />
     <Content Include="Views\Trophy\Edit.cshtml" />
     <Content Include="Views\Trophy\Index.cshtml" />
+    <Content Include="Views\Photo\Delete.cshtml" />
+    <Content Include="Views\Child\SignIn.cshtml" />
+    <Content Include="Views\Photo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

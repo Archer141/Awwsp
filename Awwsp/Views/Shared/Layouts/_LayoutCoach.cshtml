@@ -56,7 +56,7 @@
 
     </nav>
 
-    <div class="container-fluid body-content">
+    <div class="container-fluid p-0">
 
         <link href="~/Content/SideBar.css" rel="stylesheet">
 
@@ -75,8 +75,8 @@
                 </div>
                 <div class="list-group list-group-flush">
                     @Html.ActionLink("Trophies", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
-                    @Html.ActionLink("Trophies", "Index", "News", null, new { @class = "list-group-item list-group-item-action bg-light" })
-                    @Html.ActionLink("Trophies", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                    @Html.ActionLink("Coach", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                    @Html.ActionLink("Accept applications", "AcceptApplication", "Child", null, new { @class = "list-group-item list-group-item-action bg-info white-text" })
                 </div>
             </div>
             <!-- /#sidebar-wrapper -->

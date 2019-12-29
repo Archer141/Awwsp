@@ -8,54 +8,47 @@
 <head>
     <link rel="stylesheet" href="~/Content/Login.css" />
 </head>
+
 <div class="d-flex min-vh-100 flex-column container-fluid">
     <div class="row bg-light flex-fill fill d-flex justify-content-start">
         <!-- I want this row height to filled the remaining height -->
-        <div class="d-none d-sm-block  col-sm-6 col-md-6 bg-player portlet-container portlet-dropzone">
+        <!-- I want this row height to filled the remaining height -->
+        <div class="d-none d-sm-block  col-sm-6 col-md-6 bg-player portlet-container portlet-dropzone p-0">
             <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
 
+            </div>
         </div>
-        <div class="col-sm-6 col-md-6 bg-info portlet-container portlet-dropzone bg-transparent">
+        <div class="col-sm-6 col-md-6 bg-info portlet-container portlet-dropzone bg-transparent p-0">
             <!-- if row is not the right to stretch the remaining height, this column also fine -->
             <div class="view flex-center">
                 <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 text-center">
-                            <!--Card-->
-                            <div class="card text-center">
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "text-center border border-light p-5", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
 
-                                <div class="card-header justify-content-center">
-                                    Sign in
+                                <p class="h4 mb-4 white-text">Parent or Coach Sign In</p>
+                                <div class="form-row mb-4">
+                                    <div class="col">
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "red-text" })
+                                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
+                                    </div>
+                                    <div class="col">
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "red-text" })
+                                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+                                    </div>
                                 </div>
-                                <div class="card-body">
 
-                                    <p>@ViewBag.NoConfirm</p>
-                                    @Html.ValidationSummary()
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "red-text" })
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Password" } })
 
-                                    @using (Html.BeginForm("SignIn", "Child", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "text-center border border-light p-5", role = "form" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <p class="h4 mb-4 white-text">Sign In</p>
-                                        <div class="form-row mb-4">
-                                            <div class="col">
-                                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "red-text" })
-                                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
-                                            </div>
-                                            <div class="col">
-                                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "red-text" })
-                                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
-                                            </div>
-                                        </div>
 
-                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "red-text" })
-                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Password" } })
 
-                                        <button class="btn btn-info my-4 btn-block" type="submit">Log in</button>
 
-                                    }
-
-                                </div>
-                            </div>
+                                <button class="btn btn-info my-4 btn-block" type="submit">Log in</button>
+                            }
                         </div>
                     </div>
                 </div>

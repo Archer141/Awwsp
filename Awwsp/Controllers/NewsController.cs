@@ -48,6 +48,7 @@ namespace Awwsp.Controllers
         }
 
         // GET: News/Create
+        [Authorize(Roles ="Admin,HeadCoach,Coach")]
         public ActionResult Create()
         {
             ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos(), "PhotoID", "Name");
@@ -56,6 +57,7 @@ namespace Awwsp.Controllers
 
         // POST: News/Create
         [HttpPost]
+        [Authorize(Roles ="Admin,HeadCoach,Coach")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "NewsID,Text,Title,PhotoID")] News news)
         {
@@ -71,6 +73,7 @@ namespace Awwsp.Controllers
             return View(news);
         }
 
+        [Authorize(Roles ="Admin,HeadCoach,Coach")]
         // GET: News/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -92,10 +95,13 @@ namespace Awwsp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin,HeadCoach,Coach")]
         public ActionResult Edit([Bind(Include = "NewsID,Text,Title,AuthorID,PhotoID")] News news)
         {
             if (ModelState.IsValid)
             {
+                news.AuthorId = GetUserID();
+                news.Date = DateTime.Now;
                 academyRepository.UpdateNews(news);
                 return RedirectToAction("Index");
             }
@@ -104,6 +110,7 @@ namespace Awwsp.Controllers
         }
 
         // GET: News/Delete/5
+        [Authorize(Roles ="Admin,HeadCoach,Coach")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,10 +127,10 @@ namespace Awwsp.Controllers
 
         // POST: News/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles ="Admin,HeadCoach,Coach")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            News news = academyRepository.GetNewsByID(id);
             academyRepository.DeleteNews(id);
             return RedirectToAction("Index");
         }

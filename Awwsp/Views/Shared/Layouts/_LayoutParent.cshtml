@@ -60,26 +60,37 @@
         </nav>
     </header>
 
-    <div class="container-fluid body-content">
+    \
 
+    <div id="wrapper">
 
-        <div class="d-flex " id="wrapper">
+        <!-- Sidebar -->
 
-            <!-- Sidebar -->
-            @{Html.RenderPartial("LeftNav");}
+        <div class="bg-light border-right" id="sidebar-wrapper">
 
-            <!-- /#sidebar-wrapper -->
-            <!-- Page Content -->
-            <div id="page-content-wrapper">
-
-                @RenderBody()
-
+            <div class="list-group list-group-flush">
+                @Html.ActionLink("Zarządzaj kontem", "IndexPartial", "Manage", null, new { @class = "ManageAccount list-group-item list-group-item-action bg-light" })
+                @Html.ActionLink("Your childern", "Index", "Child", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                @Html.ActionLink("Trofea dzieci", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                @Html.ActionLink("Kalendarz", "Index", "Calendar", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                @Html.ActionLink("Aktualności", "Index", "News", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                @Html.ActionLink("Trenuj w domu", "SelfTrain", "Parent", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                @Html.ActionLink("Zdrowe odrzywianie", "HealthFood", "Parent", null, new { @class = "list-group-item list-group-item-action bg-light" })
             </div>
-            <!-- /#page-content-wrapper -->
 
         </div>
 
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper" >
+
+            @RenderBody()
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
     </div>
+
     <footer>
         <div class="footer">
             Wszelkie prawa zastrzeżone &copy; @DateTime.Now.Year - Akademia piłkarska Adrian Piaśick
@@ -87,13 +98,22 @@
 
     </footer>
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/popper.min.js"></script>
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/mdb.min.js"></script>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
 
+    </script>
+
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>

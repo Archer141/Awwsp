@@ -2,48 +2,5 @@
 @{
     string ControllerName = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"]);
 }
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
 
-
-        $(document).ready(function () {
-    $('.ManageAccount').on('click', function (e) {
-        e.preventDefault();
-        var id = $(this).data('name');//pisać zawsze małymi literami bo w html zamiana na małe
-        $.get('@Url.Action("Index","Manage")', {controllerName:id }, function (result) {
-            $('#SomeDiv').html(result);
-        });
-    });
-    });
-
-        $(document).ready(function () {
-    $('.GetChildren').on('click', function (e) {
-        e.preventDefault();
-        $.get('@Url.Action("Index","Child")', function (result) {
-            $('#SomeDiv').html(result);
-        });
-    });
-        });
-
-
-</script>
-
-<div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">
-
-    </div>
-    <div class="list-group list-group-flush">
-        @Html.ActionLink("Zarządzaj kontem", "IndexPartial", "Manage", null, new { @class = "ManageAccount list-group-item list-group-item-action bg-light", data_Name = ControllerName })
-        @Html.ActionLink("Towje dzieci", "Index", "Child", null, new { @class = "list-group-item list-group-item-action bg-light" })
-        @Html.ActionLink("Trofea dzieci", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
-        @Html.ActionLink("Kalendarz", "Index", "Calendar", null, new { @class = "list-group-item list-group-item-action bg-light" })
-        @Html.ActionLink("Aktualności", "Index", "News", null, new { @class = "list-group-item list-group-item-action bg-light" })
-        @Html.ActionLink("Trenuj w domu", "SelfTrain", "Parent", null, new { @class = "list-group-item list-group-item-action bg-light" })
-        @Html.ActionLink("Zdrowe odrzywianie", "HealthFood", "Parent", null, new { @class = "list-group-item list-group-item-action bg-light" })
-    </div>
-
-</div>
 

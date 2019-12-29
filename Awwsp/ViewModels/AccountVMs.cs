@@ -73,7 +73,7 @@ namespace Awwsp.ViewModels
         [Display(Name = "Hasło")]
         public string Password { get; set; }
 
-        [Display(Name = "Zapamiętaj mnie ?")]
+        [Display(Name = "Remember Me ?")]
         public bool RememberMe { get; set; }
 
 

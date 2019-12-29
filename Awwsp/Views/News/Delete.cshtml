@@ -4,53 +4,35 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+@{
+    var base64 = Convert.ToBase64String(Model.Photo.Image);
+    var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+}
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>News</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo.Name)
-        </dt>
+<section class="jumbotron text-center ">
+    <div class="container">
+        <h1>@Model.Title</h1>
 
-        <dd>
-            @Html.DisplayFor(model => model.Photo.Name)
-        </dd>
+        <h3>Are you sure you want to delete this?</h3>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ActionLink("Edit", "Edit", new { id = Model.NewsID }, new { @class = "btn btn-dark" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark" })
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
+            <input type="submit" value="Delete" class="btn btn-danger" />
 
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    </div>
+</section>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AuthorId)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="py-5 bg-warning d-flex align-content-center">
+    <div class="container">
+        <div class="jumbotron text-center" style="background-image:url(@imgSrc)">
         </div>
-    }
+    </div>
 </div>
+
+
