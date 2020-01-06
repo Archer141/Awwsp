@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace Awwsp.Models
     {
         public int TrophyID { get; set; }
         public string Name { get; set; }
+        [Display(Name ="Choose photo or")]
         public Nullable<int> PhotoID { get; set; }
         public Photo Photo { get; set; }
         public Trophy()

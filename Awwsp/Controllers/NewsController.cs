@@ -24,9 +24,9 @@ namespace Awwsp.Controllers
         }
         // GET: News
         [AllowAnonymous]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-           
+
             return View(academyRepository.GetNews().Reverse());
         }
 

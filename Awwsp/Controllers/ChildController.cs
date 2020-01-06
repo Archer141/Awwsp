@@ -31,7 +31,8 @@ namespace Awwsp.Controllers
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_IndexChildren", repository.GetChildrenAll(GetUserID()));
-            }else return View(repository.GetChildrenAll());
+            }
+            else return View(repository.GetChildrenAll());
         }
 
         public ActionResult ChildrenList()
@@ -65,7 +66,7 @@ namespace Awwsp.Controllers
         // POST: Children/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ChildID,ChildFirstName,ChildLastName,DateOfBirth,PasswordHash,AgeGroupID")] ChildCreateVM child,string controller)
+        public ActionResult Create([Bind(Include = "ChildID,ChildFirstName,ChildLastName,DateOfBirth,PasswordHash,AgeGroupID")] ChildCreateVM child, string controller)
         {
 
 
@@ -86,12 +87,13 @@ namespace Awwsp.Controllers
                     ChildID = child.ChildID,
                     ChildFirstName = child.ChildFirstName,
                     ChildLastName = child.ChildLastName,
+                    FullName = child.ChildFirstName+" "+ child.ChildLastName,
                     DateOfBirth = child.DateOfBirth,
                     PasswordHash = repository.PasswordHash(child.PasswordHash),
                     AgeGroupID = ageGroupId,
                     UserID = GetUserID()
                 });
-                return RedirectToAction("Index",controller);
+                return RedirectToAction("Index", controller);
 
             }
 
@@ -155,35 +157,46 @@ namespace Awwsp.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult SignIn()
+        public ActionResult Login()
         {
             return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult SignIn(ChildLoginVM loginVM)
+        public ActionResult Login(ChildLoginVM loginVM)
         {
-
-            if (loginVM.FirstName!=null&&loginVM.LastName!=null&&loginVM.Password!=null)
+            if (loginVM.FirstName != null && loginVM.LastName != null && loginVM.Password != null)
             {
                 string hash = repository.PasswordHash(loginVM.Password);
-                var user = repository.GetChildrenAll().Where(x => x.ChildFirstName == loginVM.FirstName && x.ChildLastName == loginVM.LastName & x.PasswordHash == repository.PasswordHash(loginVM.Password)).FirstOrDefault();
+                var user = repository.GetChildrenAll().Where(x => x.ChildFirstName.ToLower() == loginVM.FirstName.ToLower() && x.ChildLastName.ToLower() == loginVM.LastName.ToLower() & x.PasswordHash == repository.PasswordHash(loginVM.Password)).FirstOrDefault();
+
                 if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(loginVM.FirstName, false);
-                    return RedirectToAction("Index", "Home");
+                    if (user.IsActive)
+                    {
+                        FormsAuthentication.SetAuthCookie(loginVM.FirstName + " " + loginVM.LastName, false);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(" ", "Wait for activation");
+                        loginVM.Error = "Wait for activation";
+
+                        return View(loginVM);
+                    }
+
                 }
                 else
                 {
                     ModelState.AddModelError("", "Ivnalid password or login");
-                    return RedirectToAction("Login", "Account", loginVM);
-
+                    loginVM.Error = "Ivnalid password or login";
+                    return View(loginVM);
                 }
             }
-            ModelState.AddModelError("", "Niepoprawne dane lub brak konta");
 
-            return RedirectToAction("Login","Account",loginVM);
+            ModelState.AddModelError("", "Niepoprawne dane lub brak konta");
+            return View(loginVM);
 
         }
 
@@ -194,22 +207,23 @@ namespace Awwsp.Controllers
             return RedirectToAction("Index", "Home");
 
         }
-        [Authorize(Roles ="Admin,HedCoach,Coach")]
-        public ActionResult AcceptApplication() { 
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
+        public ActionResult AcceptApplication()
+        {
             //int page = 1,string sort = "ChildFirstName",string sortDir = "asc",string search = ""
-        //{
-        //    int pageSize = 10;
-        //    int totalRecord = 0;
+            //{
+            //    int pageSize = 10;
+            //    int totalRecord = 0;
 
-        //    if (page < 1) page = 1;
+            //    if (page < 1) page = 1;
 
-        //    int skip = (page * pageSize) - pageSize;
-        //    var data = repository.GetChildren(search,sort,sortDir,skip,pageSize,out totalRecord);
-        //    ViewBag.TotalRows = totalRecord;
-          var listToAccept = repository.GetChildrenAll().Where(x => x.IsActive == false).Where(x=>x.IsActive==false);
+            //    int skip = (page * pageSize) - pageSize;
+            //    var data = repository.GetChildren(search,sort,sortDir,skip,pageSize,out totalRecord);
+            //    ViewBag.TotalRows = totalRecord;
+            var listToAccept = repository.GetChildrenAll().Where(x => x.IsActive == false).Where(x => x.IsActive == false);
             return View(listToAccept);
         }
-        [Authorize(Roles ="Admin,HedCoach,Coach")]
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
 
         [HttpPost]
         public ActionResult AcceptApplication(IEnumerable<Child> children)
@@ -235,13 +249,13 @@ namespace Awwsp.Controllers
             }
             return userIdValue;
         }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

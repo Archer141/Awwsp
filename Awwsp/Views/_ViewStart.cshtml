@@ -11,13 +11,16 @@
         //    Layout = "~/Views/Shared/Layouts/_LayoutParent.cshtml";
         //    break;
         case "Trophy":
-            Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+            Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
             break;
         case "Coach":
-            Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+            Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
             break;
         case "Player":
             Layout = "~/Views/Shared/Layouts/_LayoutPlayer.cshtml";
+            break;  
+        case "Notification":
+            Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
             break;
         default:
             Layout = "~/Views/Shared/Layouts/_Layout.cshtml";

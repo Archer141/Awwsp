@@ -1,7 +1,7 @@
 ﻿@model Awwsp.ViewModels.ChildLoginVM
 
 @{
-    ViewBag.Title = "SignIn";
+    ViewBag.Title = "Login";
 }
 
 
@@ -25,29 +25,36 @@
                 <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 text-center">
-                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "text-center border border-light p-5", role = "form" }))
+                            @using (Html.BeginForm("Login", "Child", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "text-center border border-light p-5", role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
-
                                 <p class="h4 mb-4 white-text">Parent or Coach Sign In</p>
                                 <div class="form-row mb-4">
                                     <div class="col">
-                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "red-text" })
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "white-text" })
                                         @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
                                     </div>
                                     <div class="col">
-                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "red-text" })
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "white-text" })
                                         @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
                                     </div>
                                 </div>
 
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "red-text" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "white-text" })
                                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Password" } })
 
 
+                        <div class="white-text">
+                            @if (Model != null)
+                            {
+                                @Html.ValidationSummary();
+                                @Model.Error
+                            }
 
+                        </div>
+   
 
-                                <button class="btn btn-info my-4 btn-block" type="submit">Log in</button>
+                                   <button class="btn btn-info my-4 btn-block" type="submit">Log in</button>
                             }
                         </div>
                     </div>

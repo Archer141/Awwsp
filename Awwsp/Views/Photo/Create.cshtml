@@ -39,7 +39,7 @@
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
-             
+
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
@@ -52,12 +52,11 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 </div>
-                <div class="form-group">
-                    <div>
-                    </div>
-
+                
+                <div class="custom-control custom-checkbox py-3">
+                    @Html.EditorFor(model => model.IsTrophy, new { htmlAttributes = new { @class = "custom-control-input", @placeholder = "Password" } })
+                    @Html.LabelFor(model => model.IsTrophy, new { @class = "custom-control-label white-text" })
                 </div>
-
 
 
             </div>

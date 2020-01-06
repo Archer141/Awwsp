@@ -52,7 +52,7 @@ namespace Awwsp.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Dodaj zdjęcie");
+                ModelState.AddModelError(" ", "Dodaj zdjęcie");
                 return View();
             }
 
@@ -70,14 +70,24 @@ namespace Awwsp.Controllers
         [Authorize(Roles = "Admin,HeadCoach,Coach")]
         public ActionResult Edit(Photo photo,HttpPostedFileBase image1)
         {
-            if (ModelState.IsValid && image1 != null)
+            if (ModelState.IsValid  )
             {
-                repository.UpdatePhoto(photo, image1);
-                return RedirectToAction("Index");
+                if (image1 != null)
+                {
+                 repository.UpdatePhoto(photo, image1);
+                 return RedirectToAction("Index");
+                }
+                else
+                {
+
+                    repository.UpdatePhoto(photo);
+                    return RedirectToAction("Index");
+
+                }
             }
             else
             {
-                ModelState.AddModelError("", "Add photo");
+                
                 return View();
             }
         }

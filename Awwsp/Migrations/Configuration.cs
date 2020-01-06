@@ -19,7 +19,7 @@ namespace Awwsp.Migrations
             //context.Roles.AddOrUpdate(
             //    new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("Admin"),
             //    new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("Parent"),
-            //    new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("HedCoach"),
+            //    new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("HeadCoach"),
             //    new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("Coach")
             //    );
 

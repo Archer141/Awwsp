@@ -3,32 +3,71 @@
 
 
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>Trophy</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.TrophyID)
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div  >
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+<div class="d-flex min-vh-100 flex-column container-fluid">
+    <div class="row bg-light flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        @*<div class="d-none d-sm-block  col-sm-6 col-md-6 bg-coach portlet-container portlet-dropzone p-0">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+
                 </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+            </div>*@
+        <div class="col bg-warning portlet-container portlet-dropzone bg-transparent p-0">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12 text-center">
+
+                            <p>@ViewBag.NoConfirm</p>
+                            @Html.ValidationSummary()
+
+                            @using (Html.BeginForm("Edit", "Trophy", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "text-center border border-light p-5", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.TrophyID)
+                                <p class="h4 mb-4 white-text">Create new Trophy or Cup</p>
+                                <div class="form-row mb-4">
+                                    <div class="col">
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "red-text" })
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    @Html.LabelFor(model => model.PhotoID, "Choose photo", htmlAttributes: new { @class = "control-label white-text" })
+                                    <div>
+                                        @Html.DropDownList("PhotoID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.PhotoID, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                                <div class="mt-1 ">   <label class="text-white">or upload new</label></div>
+
+                                <div class="input-group">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="image1"
+                                               aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Choose new file</label>
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                </div>
+                                <button class="btn btn-info my-4 btn-block" type="submit">Create</button>
+                            }
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

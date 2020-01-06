@@ -1,29 +1,64 @@
 ﻿@model IEnumerable<Awwsp.Models.Trophy>
 
 
+<div class="py-5 ">
+    <div class="container ">
+        <h1 class="text-center h1 black-text">
+            Trophies
+        </h1>
+        <hr />
+        <div class="row">
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.TrophyID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.TrophyID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.TrophyID })
-            </td>
-        </tr>
-    }
-    
-    </table>
+            @foreach (var item in Model)
+            {
+                <div class="col my-2">
+                    <div class="card shadow ">
+                        @{
+                            if (item.Photo != null)
+                            {
+                                var base64 = Convert.ToBase64String(item.Photo.Image);
+                                var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                                <div class=" view overlay">
+                                    <img onclick="setID()" src="@imgSrc" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
+                                    <a href="/Trophy/Details/@item.TrophyID">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class=" view overlay">
+                                    <img onclick="setID()" src="~/Content/Images/notfound.png" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
+                                    <a href="/Trophy/Details/@item.PhotoID">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                            }
+                        }
+                        <div class="card-body text-center">
+                            <p class="card-title h4">@item.Name</p>
+                        </div>
+
+                        <div class="card-footer d-flex justify-content-center">
+                            <div class="btn-group ">
+                                @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+                                {
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.TrophyID }, new { @class = "btn btn-sm btn-outline-dark mr-1" })
+                                }
+
+
+
+                                @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+                                {
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.TrophyID }, new { @class = "btn btn-sm btn-outline-danger ml-1", })
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -15,26 +15,26 @@ namespace Awwsp.Controllers
     public class TrophyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private AcademyRepository repository;
+        private AcademyRepository academyRepository;
         public TrophyController()
         {
-            repository = new AcademyRepository(db);
+            academyRepository = new AcademyRepository(db);
         }
 
         // GET: Trophies
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Trophies.ToListAsync());
+            return View(academyRepository.GetTrophies());
         }
-        
+
         // GET: Trophies/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trophy trophy = await db.Trophies.FindAsync(id);
+            Trophy trophy = academyRepository.GetTrophyById(id);
             if (trophy == null)
             {
                 return HttpNotFound();
@@ -45,7 +45,7 @@ namespace Awwsp.Controllers
         // GET: Trophies/Create
         public ActionResult Create()
         {
-            ViewBag.PhotoID = new SelectList(repository.GetPhotos(), "PhotoID", "Name");
+            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos().Where(x=>x.IsTrophy==true).ToList(), "PhotoID", "Name");
             return View();
         }
 
@@ -54,31 +54,39 @@ namespace Awwsp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TrophyID,Name")] Trophy trophy)
+        public ActionResult Create([Bind(Include = "TrophyID,Name,PhotoID")] Trophy trophy, HttpPostedFileBase image1)
         {
             if (ModelState.IsValid)
             {
-                trophy.Date = DateTime.Now;
+                if (image1 != null)
+                {
+                    academyRepository.AddPhoto(new Photo { Date = DateTime.Now, Name = trophy.Name, IsTrophy = true }, image1);
+                    trophy.PhotoID = academyRepository.GetPhotos().Last().PhotoID;
+                }
 
-                db.Trophies.Add(trophy);
-                await db.SaveChangesAsync();
+                trophy.Date = DateTime.Now;
+                academyRepository.AddTrophy(trophy);
                 return RedirectToAction("Index");
             }
+            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
+
             return View(trophy);
         }
 
         // GET: Trophies/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trophy trophy = await db.Trophies.FindAsync(id);
+            Trophy trophy = academyRepository.GetTrophyById(id);
             if (trophy == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
+
             return View(trophy);
         }
 
@@ -87,25 +95,31 @@ namespace Awwsp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "TrophyID,Name")] Trophy trophy)
+        public ActionResult Edit([Bind(Include = "TrophyID,Name,PhotoID")] Trophy trophy, HttpPostedFileBase image1)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(trophy).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                if (image1 != null)
+                {
+                    academyRepository.AddPhoto(new Photo { Date = DateTime.Now, Name = trophy.Name, IsTrophy = true }, image1);
+                    trophy.PhotoID = academyRepository.GetPhotos().Last().PhotoID;
+                }
+                academyRepository.UpdateTrophy(trophy);
                 return RedirectToAction("Index");
             }
+            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
+
             return View(trophy);
         }
 
         // GET: Trophies/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trophy trophy = await db.Trophies.FindAsync(id);
+            Trophy trophy = academyRepository.GetTrophyById(id);
             if (trophy == null)
             {
                 return HttpNotFound();
@@ -116,11 +130,9 @@ namespace Awwsp.Controllers
         // POST: Trophies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Trophy trophy = await db.Trophies.FindAsync(id);
-            db.Trophies.Remove(trophy);
-            await db.SaveChangesAsync();
+            academyRepository.DeleteTrophy(id);
             return RedirectToAction("Index");
         }
 

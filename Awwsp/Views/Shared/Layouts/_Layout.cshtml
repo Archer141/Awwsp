@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html class="h-100">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/style.css" type="text/css">
 </head>
 
-<body >
+<body class="d-flex flex-column h-100" >
 
     @*<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
 
@@ -118,16 +118,17 @@
     </header>
 
     <main>
-        @RenderBody()
+        <div>
+            @RenderBody()
+        </div>
     </main>
   
  
 
-    <footer class="footer">
+    <footer class="footer mt-auto py-3">
         <div class="container" >
             Wszelkie prawa zastrzeżone &copy; @DateTime.Now.Year - Akademia piłkarska Adrian Piaśick
         </div>
-
     </footer>
 
     @Scripts.Render("~/bundles/jquery")

@@ -1,6 +1,4 @@
-﻿body {
-    margin-bottom: 60px;
-}
+﻿
 
 html {
     min-height: 100%;
@@ -13,13 +11,6 @@ html {
     box-sizing: inherit;
 }
 
-body {
-    position: relative;
-    margin: 0;
-    padding-bottom: 6rem;
-    min-height: 100%;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-}
 
 .bg {
     /* The image used */
@@ -32,18 +23,6 @@ body {
     background-size: cover;
 }
 
-/**
- * Footer Styles
- */
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px; /* Set the fixed height of the footer here */
-    line-height: 60px; /* Vertically center the text there */
-    background-color: #f5f5f5;
-}
 
 
 .jumbotron {
@@ -106,4 +85,11 @@ body {
 
 .shadow-textarea textarea.form-control {
     padding-left: 0.8rem;
+}
+
+@media only screen and (min-width: 600px) {
+    #square {
+        width: 533px;
+        height: 533px;
+    }
 }

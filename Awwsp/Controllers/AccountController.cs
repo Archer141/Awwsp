@@ -57,6 +57,7 @@ namespace Awwsp.Controllers
                 _userManager = value;
             }
         }
+
         public ApplicationRoleManager RoleManager
         {
             get
@@ -68,6 +69,7 @@ namespace Awwsp.Controllers
                 _roleManager = value;
             }
         }
+    
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -193,7 +195,7 @@ namespace Awwsp.Controllers
                 {
                     var user = new ApplicationUser
                     {
-                        UserName = model.FirstName,
+                        UserName = model.Email,
                         Email = model.Email,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
@@ -223,7 +225,7 @@ namespace Awwsp.Controllers
                 {
                     var user = new ApplicationUser
                     {
-                        UserName = model.FirstName,
+                        UserName = model.Email,
                         Email = model.Email,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
@@ -240,7 +242,7 @@ namespace Awwsp.Controllers
                 {
                     var user = new ApplicationUser
                     {
-                        UserName = model.FirstName,
+                        UserName = model.Email,
                         Email = model.Email,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
@@ -515,6 +517,8 @@ namespace Awwsp.Controllers
 
             base.Dispose(disposing);
         }
+
+
 
         #region Helpers
 

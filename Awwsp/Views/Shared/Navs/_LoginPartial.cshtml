@@ -13,7 +13,7 @@
 
             <ul class="navbar-nav ml-auto ">
                 <li class="nav-item">
-                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "nav-link", title = "Manage" })
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Parent", routeValues: null, htmlAttributes: new { @class = "nav-link", title = "Parent site" })
                 </li>
                 <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
             </ul>
@@ -21,9 +21,14 @@
     }
     else
     {
-        <li class="nav-item">
-            @Html.ActionLink("Log Off", "SignOut", "Child", null, new { @class = "nav-link" })
-        </li>
+        <ul class="navbar-nav ml-auto ">
+            <li class="nav-item text-white">
+             @Html.ActionLink("Hello " + User.Identity.GetUserName()+"!","Index","Player", routeValues: null, htmlAttributes: new { @class = "nav-link", title = "Player page" })
+            </li>
+            <li class="nav-item">
+              @Html.ActionLink(" Log Off", "SignOut", "Child",null, new { @class = "nav-link" })
+            </li>
+        </ul>
     }
 }
 else
@@ -31,12 +36,12 @@ else
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
         <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
-  
+
         <li class="nav-item">
-            @Html.ActionLink("Log in Child", "SignIn", "Child", null, new { @class = "nav-link" })
+            @Html.ActionLink("Log in Child", "Login", "Child", null, new { @class = "nav-link" })
         </li>
     </ul>
-   
+
 }
 
 

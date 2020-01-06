@@ -84,7 +84,7 @@ namespace Awwsp.Data
 
         public Trophy GetTrophyById(int? id)
         {
-            return dbContext.Trophies.FindAsync(id).Result;
+            return dbContext.Trophies.Include(x=>x.Photo).Where(z=>z.TrophyID==id).FirstOrDefault();
         }
 
 
@@ -109,20 +109,7 @@ namespace Awwsp.Data
 
             return list;
         }
-        public IList<Child> GetChildren(string search,string sort, string sortDir,int skip,int pageSize, out int totalRecord)
-        {
-          var list =  (from a in dbContext.Children where
-            a.ChildFirstName.Contains(search) ||
-            a.ChildLastName.Contains(search)
-             select a);
-            totalRecord = list.Count();
-            list.OrderBy(sort + " " + sortDir);
-            if (pageSize>0)
-            {
-                list = list.Skip(skip).Take(pageSize);
-            }
-            return list.ToList();
-        }
+
 
         public IList<News> GetNews()
         {
@@ -136,14 +123,8 @@ namespace Awwsp.Data
 
         public IList<Trophy> GetTrophies()
         {
-            return dbContext.Trophies.ToListAsync().Result;
+            return dbContext.Trophies.Include("Photo").ToListAsync().Result;
         }
-
-
-
-
-
-
 
         public void DeleteAgeGroup(int? id)
         {
@@ -227,15 +208,29 @@ namespace Awwsp.Data
 
         public void UpdatePhoto(Photo photo, HttpPostedFileBase image)
         {
+         
+
             var photoModify = GetPhotoById(photo.PhotoID);
             photoModify.Name = photo.Name;
-
+            photoModify.Date = DateTime.Now;
+            photoModify.Image = new byte[image.ContentLength];
+            image.InputStream.Read(photoModify.Image, 0, image.ContentLength);
             dbContext.SaveChanges();
         }
-
+        public void UpdatePhoto(Photo photo)
+        {
+            var photoModify = GetPhotoById(photo.PhotoID);
+            photoModify.Date = DateTime.Now;
+            photoModify.IsTrophy = photo.IsTrophy;
+            photoModify.Name = photo.Name;
+            dbContext.SaveChanges();
+        }
         public void UpdateTrophy(Trophy trophy)
         {
-            dbContext.Entry(trophy).State = EntityState.Modified;
+            var trophyModify = GetTrophyById(trophy.TrophyID);
+            trophyModify.Date = DateTime.Now;
+            trophyModify.PhotoID = trophy.PhotoID;
+            trophyModify.Name = trophy.Name;
             dbContext.SaveChanges();
         }
 
@@ -284,6 +279,39 @@ namespace Awwsp.Data
             Dispose(true);
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
+        }
+
+        public IList<Notification> GetNotifications()
+        {
+           return dbContext.Notifications.Include("AgeGroup").ToList();
+        }
+
+        public Notification GetNotificationById(int? id)
+        {
+            return GetNotifications().Where(x=>x.Id==id).FirstOrDefault();
+        }
+
+        public void AddNotification(Notification notification)
+        {
+            dbContext.Notifications.Add(notification);
+            dbContext.SaveChanges();
+        }
+
+        public void DeleteNotification(int? id)
+        {
+            var notifiTodelete = GetNotificationById(id);
+            dbContext.Notifications.Remove(notifiTodelete);
+            dbContext.SaveChanges();
+
+        }
+
+        public void UpdateNotification(Notification notification)
+        {
+            var notifyForUpdate = GetNotificationById(notification.Id);
+            notifyForUpdate.AgeGroupId = notification.AgeGroupId;
+            notifyForUpdate.Title = notification.Title;
+            notifyForUpdate.Text = notification.Text;
+
         }
 
 

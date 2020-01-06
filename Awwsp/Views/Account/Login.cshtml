@@ -24,8 +24,8 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 text-center">
 
-                            <p>@ViewBag.NoConfirm</p>
-                            @Html.ValidationSummary()
+                            <p class="white-text">@ViewBag.NoConfirm @Html.ValidationSummary()</p>
+                           
 
                             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "text-center border border-light p-5", role = "form" }))
                             {

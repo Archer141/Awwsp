@@ -1,0 +1,69 @@
+﻿@model Awwsp.Models.Notification
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div class="d-flex min-vh-100 flex-column container-fluid">
+    <div class="row bg-light flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        @*<div class="d-none d-sm-block  col-sm-6 col-md-6 bg-coach portlet-container portlet-dropzone p-0">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+
+                </div>
+            </div>*@
+        <div class="col bg-info portlet-container portlet-dropzone bg-transparent p-0">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+                    <div class="row d-flex justify-content-center">
+                        <div  class="col-md-12 text-center">
+
+
+                            <div id="square" class="text-center border border-warning p-5">
+                                @Html.AntiForgeryToken()
+
+                                <p class="h4 mb-4 white-text">
+                                    Are you sure you want to delete this?
+                                </p>
+                                <p class="h4 mb-4 white-text">
+                                    @Html.DisplayFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "Title" } })
+                                </p>
+
+
+
+                                <div class="form-group white-text ">
+                                    <div>
+                                        @Html.DisplayFor(model => model.Text, new { @class = "white-text" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group mb-0 ">
+                                    <div class="white-text">
+                                        @Html.DisplayFor(model => model.AgeGroup.Name, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-actions no-color">
+                                        <input type="submit" value="Delete" class="btn btn-warning" />
+
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 

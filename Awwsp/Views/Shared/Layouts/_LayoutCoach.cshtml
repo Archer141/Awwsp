@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,13 +14,13 @@
     <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/mdb.min.css" type="text/css">
     <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/style.css" type="text/css">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
 
         <div class="collapse navbar-collapse" id="navbarNav">
 
@@ -51,8 +52,6 @@
             @Html.Partial("_LoginPartial")
 
         </div>
-      
-
 
     </nav>
 
@@ -67,15 +66,18 @@
                 <div class="sidebar-heading">
                     Add new:
                 </div>
-                <div class="list-group list-group-flush">
-                    @Html.ActionLink("Trophy", "Create", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                <div class="list-group list-group-flush  bg-">
+                    @Html.ActionLink("Trophy", "Create", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-warning white-text" })
+                    @Html.ActionLink("Notification", "Create", "Notification", null, new { @class = "list-group-item list-group-item-action bg-info  white-text" })
+                    @Html.ActionLink("Coach", "Register", "Account", null, new { @class = "list-group-item list-group-item-action bg-dark white-text" })
                 </div>
                 <div class="sidebar-heading">
                     Lista
                 </div>
                 <div class="list-group list-group-flush">
-                    @Html.ActionLink("Trophies", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                    @Html.ActionLink("Trophies", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-warning" })
                     @Html.ActionLink("Coach", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                    @Html.ActionLink("Notification", "Index", "Notification", null, new { @class = "list-group-item list-group-item-action bg-light" })
                     @Html.ActionLink("Accept applications", "AcceptApplication", "Child", null, new { @class = "list-group-item list-group-item-action bg-info white-text" })
                 </div>
             </div>
