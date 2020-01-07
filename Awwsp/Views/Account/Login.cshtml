@@ -17,17 +17,17 @@
 
             </div>
         </div>
-        <div class="col-sm-6 col-md-6 bg-info portlet-container portlet-dropzone bg-transparent p-0">
+        <div class=" col-md-6 col-sm-6 bg-info portlet-container portlet-dropzone bg-transparent p-0">
             <!-- if row is not the right to stretch the remaining height, this column also fine -->
             <div class="view flex-center">
                 <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-12 text-center">
+                        <div class=" text-center">
 
                             <p class="white-text">@ViewBag.NoConfirm @Html.ValidationSummary()</p>
                            
 
-                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "text-center border border-light p-5", role = "form" }))
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "text-center border border-light p-5 m-1", role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
 

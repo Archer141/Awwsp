@@ -44,11 +44,11 @@ namespace Awwsp.ViewModels
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Kod")]
+        [Display(Name = "Code")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Zapamiętaj przeglądarkę?")]
+        [Display(Name = "Remember broswer?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -70,7 +70,7 @@ namespace Awwsp.ViewModels
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Hasło")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Display(Name = "Remember Me ?")]
@@ -83,11 +83,11 @@ namespace Awwsp.ViewModels
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Imie")]
+        [Display(Name = "Firts Name")]
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name = "Nazwisko")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]
         [EmailAddress]
@@ -95,16 +95,16 @@ namespace Awwsp.ViewModels
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Minimalna długość hasła to 6 znaków", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Min. 6 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Podaj hasło")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Potwierdź hasło")]
-        [Compare("Password", ErrorMessage = "")]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "Password not macth")]
         public string ConfirmPassword { get; set; }
-        [Display(Name ="Typ użytkownika")]
+        [Display(Name ="User type")]
         public string RoleName { get; set; }
     }
 
@@ -116,14 +116,14 @@ namespace Awwsp.ViewModels
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Minimalna długość hasła to 6 znaków", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Min. 6 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Podaj hasło")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Potwierdź hasło")]
-        [Compare("Password", ErrorMessage = "Hasła nie zgadzają się")]
+        [Display(Name = "Confirm passowrd")]
+        [Compare("Password", ErrorMessage = "Password not match")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -131,7 +131,7 @@ namespace Awwsp.ViewModels
 
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Email field if required")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
