@@ -87,7 +87,7 @@ html {
     padding-left: 0.8rem;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 1130px) {
     #square {
         width: 533px;
         height: 533px;

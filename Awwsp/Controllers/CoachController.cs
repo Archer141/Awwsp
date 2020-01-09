@@ -10,10 +10,11 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Awwsp.Controllers
 {
-    [Authorize(Roles = "Admin,HedCoah,Coach")]
+    [Authorize(Roles = "Admin,HeadCoach,Coach")]
     public class CoachController : Controller
     {
 
@@ -60,7 +61,7 @@ namespace Awwsp.Controllers
             var coachId = roles.Where(y => y.Name == "Coach").Select(z => z.Id).FirstOrDefault();
             var headCoachId = roles.Where(y => y.Name == "HeadCoach").Select(z => z.Id).FirstOrDefault();
             var users = UserManager.Users.Where(x=>x.Roles.FirstOrDefault().RoleId==coachId|| x.Roles.FirstOrDefault().RoleId == headCoachId).ToList();
-
+            
             return View(users);
         }
 
@@ -144,6 +145,73 @@ namespace Awwsp.Controllers
             return View(model);
         }
 
+        public ActionResult ChangeRole(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var userEdit = UserManager.Users.Where(x => x.Id == id).FirstOrDefault();
+            if (userEdit!=null)
+            {
+                List<SelectListItem> roleList = new List<SelectListItem>();
+               
+                foreach (var item in RoleManager.Roles)
+                {
+                    roleList.Add(new SelectListItem { Text = item.Name, Value = item.Name });
+                }
+
+                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x=>x.Name!="Admin"), "Id", "Name");
+
+                ChangeRoleVM changeRoleVM = new ChangeRoleVM {
+                    Id = userEdit.Id,
+                    FirstName = userEdit.FirstName,
+                    LastName=userEdit.LastName,
+                    Email =userEdit.UserName,
+                    PreviousRoleName= UserManager.GetRolesAsync(id).Result.FirstOrDefault(),
+                   
+                };
+                return View(changeRoleVM);
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangeRole(ChangeRoleVM changeRoleVm)
+        {
+            if (ModelState.IsValid)
+            {
+                var roleID =  RoleManager.FindByName(changeRoleVm.RoleName).Id;
+             
+                var userEdit = UserManager.Users.Where(x => x.Id == changeRoleVm.Id).FirstOrDefault();
+                
+
+               
+                
+             var status = UserManager.AddToRole(changeRoleVm.Id, changeRoleVm.RoleName).Succeeded;
+                var status2 = UserManager.RemoveFromRole(changeRoleVm.Id, changeRoleVm.PreviousRoleName).Succeeded;
+                if (status&&status2)
+                {
+                    //Roles.RemoveUserFromRole(changeRoleVm.Email, changeRoleVm.PreviousRoleName);
+
+                    return RedirectToAction("AllCoach");
+                }
+                //Roles.AddUserToRole(changeRoleVm.Email, changeRoleVm.RoleName);
+                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
+
+                return View(changeRoleVm);
+            }
+            else
+            {
+                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
+
+                return View(changeRoleVm);
+
+            }
+
+        }
+
+
         // GET: Coach/Delete/5
         public ActionResult Delete(string id)
         {
@@ -177,6 +245,8 @@ namespace Awwsp.Controllers
                 ModelState.AddModelError("", error);
             }
         }
+
+
 
     }
 }

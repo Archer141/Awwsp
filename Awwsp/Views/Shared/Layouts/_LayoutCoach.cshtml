@@ -69,14 +69,14 @@
                 <div class="list-group list-group-flush  bg-">
                     @Html.ActionLink("Trophy", "Create", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-warning white-text" })
                     @Html.ActionLink("Notification", "Create", "Notification", null, new { @class = "list-group-item list-group-item-action bg-info  white-text" })
-                    @Html.ActionLink("Coach", "Register", "Account", null, new { @class = "list-group-item list-group-item-action bg-dark white-text" })
+                    @Html.ActionLink("Coach", "NewCoach", "Coach", null, new { @class = "list-group-item list-group-item-action bg-dark white-text" })
                 </div>
                 <div class="sidebar-heading">
                     Lista
                 </div>
                 <div class="list-group list-group-flush">
                     @Html.ActionLink("Trophies", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-warning" })
-                    @Html.ActionLink("Coach", "Index", "Trophy", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                    @Html.ActionLink("Coach", "AllCoach", "Coach", null, new { @class = "list-group-item list-group-item-action bg-light" })
                     @Html.ActionLink("Notification", "Index", "Notification", null, new { @class = "list-group-item list-group-item-action bg-light" })
                     @Html.ActionLink("Accept applications", "AcceptApplication", "Child", null, new { @class = "list-group-item list-group-item-action bg-info white-text" })
                 </div>

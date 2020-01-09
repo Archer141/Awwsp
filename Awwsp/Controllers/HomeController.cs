@@ -7,6 +7,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Awwsp.Controllers
 {
@@ -27,35 +29,41 @@ namespace Awwsp.Controllers
             
             if (User.Identity.IsAuthenticated)
             {
-            
-                //Zalogowane dziecko
-                var childLoged = academyRepository.GetChildrenAll().Where(x => x.FullName.ToLower() == User.Identity.Name.ToLower()).FirstOrDefault();
-
-                //Dzieci zalogowanego użytkownika
-                var yourChildren = academyRepository.GetChildrenAll().Where(x => x.UserID == GetUserID()).ToList();
-
-                //Znajdź powiadomiena dla każdego dziecka
-                if (GetUserID()!="")
+                if (academyRepository.GetChildrenAll().Where(x=>x.UserID==User.Identity.GetUserId())!=null)
                 {
-                    if (yourChildren.Count!=0)
+                    
+
+                    
+
+                    //Znajdź powiadomiena dla każdego dziecka
+                    if (GetUserID() != "")
                     {
-                        foreach (var item in yourChildren)
+                        //Dzieci zalogowanego użytkownika
+                     var yourChildren = academyRepository.GetChildrenAll().Where(x => x.UserID == GetUserID()).ToList();
+                        if (yourChildren.Count != 0)
                         {
-                            var notifi = academyRepository.GetNotifications().Where(x => x.AgeGroupId == item.AgeGroupID).LastOrDefault();
-                            if (notifi != null)
+                            foreach (var item in yourChildren)
                             {
-                                yourNotifications.Add(notifi);
+                                var notifi = academyRepository.GetNotifications().Where(x => x.AgeGroupId == item.AgeGroupID).LastOrDefault();
+                                if (notifi != null)
+                                {
+                                    yourNotifications.Add(notifi);
+                                }
                             }
                         }
+
                     }
-                  
+                    else//lub jeśli zalogowane jest dziecko znajdujemy tylko jedno powiadomienie dla zawodnika
+                    {
+                        //Zalogowane dziecko
+                        var childLoged = academyRepository.GetChildrenAll().Where(x => x.FullName == User.Identity.Name).FirstOrDefault();
+                        var notifiChild = academyRepository.GetNotifications().Where(x => x.AgeGroupId == childLoged.AgeGroupID).LastOrDefault();
+                        yourNotifications.Add(notifiChild);
+                    }
                 }
-                else//lub jeśli zalogowane jest dziecko znajdujemy tylko jedno powiadomienie dla zawodnika
-                {
-                    var notifiChild = academyRepository.GetNotifications().Where(x => x.AgeGroupId == childLoged.AgeGroupID).LastOrDefault();
-                    yourNotifications.Add(notifiChild);
-                }
+               
             }
+
             var news = academyRepository.GetNews().Reverse().Take(3).ToList();
 
             foreach (var item in news)

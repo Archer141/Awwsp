@@ -1,0 +1,76 @@
+﻿@model Awwsp.ViewModels.ChangeRoleVM
+
+@{
+    ViewBag.Title = "ChangeRole";
+    Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
+}
+
+
+
+<div class="d-flex min-vh-100 flex-column container-fluid">
+    <div class="row flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+
+        <div class="col bg-coach portlet-container portlet-dropzone bg-transparent p-0">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-strong ">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12 text-center">
+
+                            <p class="white-text">@ViewBag.Error @Html.ValidationSummary()</p>
+
+
+
+                            @using (Html.BeginForm("ChangeRole", "Coach", FormMethod.Post, new { @class = "text-center border rgba-white-light border-light p-5", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <h4 class="h4  mb-4 white-text">Choose new role for:</h4>
+                                @Html.ValidationSummary()
+                                @Html.HiddenFor(model=>model.Id)
+                                @Html.HiddenFor(model=>model.LastName)
+                                @Html.HiddenFor(model=>model.FirstName)
+                                @Html.HiddenFor(model=>model.Email)
+                                @Html.HiddenFor(model=>model.PreviousRoleName)
+                        <div class="form-row white-text ">
+                            <div class="col h5">
+                                @Html.DisplayFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control mb-4 ", @placeholder = "First Name" } })
+                                @Html.DisplayFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control mb-4 ", @placeholder = "Last Name " } })
+
+                            </div>
+                         
+                           
+                                <div class="col h5 amber-text">@Model.PreviousRoleName</div>
+                               
+                        </div>
+                              
+
+                                if (User.Identity.IsAuthenticated)
+                                {
+
+                                    <div class="mb-3">
+                                        @*@Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label white-text" })*@
+                                        <div>
+                                            @Html.DropDownListFor(model => model.RoleName, new SelectList(ViewBag.Roles, "Text", "Text"), htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                }
+
+                                <button type="submit" class="btn btn-block btn-dark">Change</button>
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

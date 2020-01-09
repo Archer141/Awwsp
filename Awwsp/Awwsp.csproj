@@ -289,6 +289,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AgeGropuController.cs" />
     <Compile Include="Controllers\ChildController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
@@ -346,6 +347,7 @@
     <Compile Include="Models\AgeGroup.cs" />
     <Compile Include="Models\Child.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="ViewModels\ChangeRoleVM.cs" />
     <Compile Include="ViewModels\ChildLoginVM.cs" />
     <Compile Include="ViewModels\ChildCreateVM.cs" />
     <Compile Include="ViewModels\HomeVM.cs" />
@@ -727,11 +729,12 @@
     <Content Include="Views\Coach\AllCoach.cshtml" />
     <Content Include="Views\Coach\Delete.cshtml" />
     <Content Include="Views\Coach\NewCoach.cshtml" />
+    <Content Include="Views\Coach\ChangeRole.cshtml" />
+    <Content Include="Views\Admin\AllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Client Scripts\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Player\" />
     <Folder Include="Views\Shared\Parent\" />

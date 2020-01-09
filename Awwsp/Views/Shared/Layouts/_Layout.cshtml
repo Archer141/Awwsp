@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/mdb.min.css" type="text/css">
     <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/style.css" type="text/css">
+    <!-- MDBootstrap Datatables  -->
+    <link href="~/Content/MDB-Free_4.11.0/css/addons/datatables.min.css" rel="stylesheet">
 </head>
 
-<body class="d-flex flex-column h-100" >
+<body class="d-flex flex-column h-100">
 
     @*<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
 
@@ -122,11 +124,11 @@
             @RenderBody()
         </div>
     </main>
-  
- 
+
+
 
     <footer class="footer mt-auto py-3">
-        <div class="container" >
+        <div class="container">
             Wszelkie prawa zastrzeżone &copy; @DateTime.Now.Year - Akademia piłkarska Adrian Piaśick
         </div>
     </footer>
@@ -138,7 +140,8 @@
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/popper.min.js"></script>
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/mdb.min.js"></script>
-
+    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/addons/datatables.min.js"></script>
 
     @RenderSection("scripts", required: false)
 

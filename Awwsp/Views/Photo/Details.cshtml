@@ -25,7 +25,11 @@
 <div class="container justify-content-center d-flex">
     <div class="btn-group">
         @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark m-1" })
+        @if(User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+        {
         @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoID }, new { @class = "btn btn-dark m-1" })
         @Html.ActionLink("Delete", "Delete", new { id = Model.PhotoID }, new { @class = "btn btn-danger m-1" })
+        }
+
     </div>
 </div>
