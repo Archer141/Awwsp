@@ -27,31 +27,36 @@
                                 @Html.AntiForgeryToken()
                                 <h4 class="h4 mb-4 white-text">Registration</h4>
 
-                                <div class="form-row ">
-                                    <div class="col">
-                                        @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "First Name" } })
-                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                                <div class="form-row mb-2 ">
+                                    <div class="col ">
+                                        @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control mb-1", @placeholder = "First Name" } })
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "white-text mb-1" })
                                     </div>
                                     <div class="col">
-                                        @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Last Name " } })
-                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control mb-1", @placeholder = "Last Name " } })
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "white-text mb-1" })
                                     </div>
                                 </div>
-
-                                @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Email" } })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-
+                                <div class="mb-2">
+                                    @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control mb-1", @placeholder = "Email" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "white-text mb-1" })
+                                </div>
+                                <div class="mb-2">
+                                    @Html.EditorFor(m => m.PhoneNumber, new { htmlAttributes = new { @class = "form-control mb-1", @placeholder = "Phone number" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "white-text mb-1" })
+                                </div>
                                 <div class="form-row mb-4">
                                     <div class="col">
-                                        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Password" } })
-                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "form-control mb-1", @placeholder = "Password" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "white-text mb-1" })
                                     </div>
                                     <div class="col">
-                                        @Html.EditorFor(m => m.ConfirmPassword, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Confirm password" } })
-                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(m => m.ConfirmPassword, new { htmlAttributes = new { @class = "form-control mb-1", @placeholder = "Confirm password" } })
+                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "white-text mb-1" })
                                     </div>
-                                </div>
-                                @Html.ValidationSummary()
+                                </div><div class="white-text">
+                                @Html.ValidationSummary()</div>
                                 if (User.Identity.IsAuthenticated)
                                 {
                                     if (User.IsInRole("Admin"))
@@ -60,7 +65,7 @@
                                             @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label white-text" })
                                             <div>
                                                 @Html.DropDownListFor(model => model.RoleName, new SelectList(ViewBag.Roles, "Text", "Text"), htmlAttributes: new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "white-text" })
                                             </div>
                                         </div>
                                     }

@@ -9,6 +9,7 @@ namespace Awwsp.Models
     public class Trophy
     {
         public int TrophyID { get; set; }
+        [Required(ErrorMessage ="Name is required")]
         public string Name { get; set; }
         [Display(Name ="Choose photo or")]
         public Nullable<int> PhotoID { get; set; }

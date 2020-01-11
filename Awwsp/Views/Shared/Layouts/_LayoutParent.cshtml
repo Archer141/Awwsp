@@ -82,7 +82,7 @@
 
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
-        <div id="page-content-wrapper" >
+        <div id="page-content-wrapper">
 
             @RenderBody()
 
@@ -105,13 +105,10 @@
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/popper.min.js"></script>
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/mdb.min.js"></script>
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
 
-    </script>
+
+    <!-- AdminLTE -->
+    <script src="~/Scripts/dist/js/adminlte.js"></script>
 
 
     @RenderSection("scripts", required: false)

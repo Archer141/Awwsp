@@ -29,22 +29,32 @@
                                 @Html.HiddenFor(model => model.Id)
 
 
-                                <p class="h4 mb-4 white-text">
-                                    @Html.DisplayFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "Title" } })
-
-                                </p>
-
-                   
 
                                 <div class="form-group white-text ">
-                                    <div>
-                                        @Html.DisplayFor(model => model.Text, new { @class = "white-text"})
+                                    @Html.LabelFor(model => model.Title, new { @class = "white-text" })
+
+                                    <div class="h4 text-left">
+                                        @Html.DisplayFor(model => model.Title,  new { @class = "white-text" })
+
+                                    </div>
+
+                                </div>
+                               
+
+
+                                <div class="form-group white-text ">
+                                    @Html.LabelFor(model => model.Text, new { @class = "white-text" })
+
+                                    <div class="h4 text-left">
+                                        @Html.DisplayFor(model => model.Text, new { @class = "white-text" })
                                     </div>
 
                                 </div>
                                 <div class="form-group mb-0 ">
-                                    <div>
-                                        @Html.DisplayFor(model => model.AgeGroup.Name, new { @class = "form-control" })
+                                    @Html.LabelFor(model => model.AgeGroup.Name, new { @class = "white-text" })
+
+                                    <div class="h4 white-text text-left">
+                                        @Html.DisplayFor(model => model.AgeGroup.Name, new { @class = "white-text" })
                                     </div>
                                 </div>
                             </div>

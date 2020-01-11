@@ -18,10 +18,10 @@
                 <thead>
                     <tr>
                         <th scope="col" class="th-sm">
-                            @Html.DisplayNameFor(model => model.FirstName)
+                            First Name
                         </th>
                         <th scope="col"class="th-sm">
-                            @Html.DisplayNameFor(model => model.LastName)
+                           Last Name
                         </th>
                         <th scope="col"class="th-sm">
                             @Html.DisplayNameFor(model => model.Email)
@@ -31,13 +31,13 @@
                             @Html.DisplayNameFor(model => model.SecurityStamp)
                         </th>
                         <th scope="col"class="th-sm">
-                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                          Phone Number
                         </th>
 
                         <th scope="col"class="th-sm">
-                            @Html.DisplayNameFor(model => model.UserName)
+                          User Name
                         </th>
-                        <th scope="col"class="th-sm">Zarządzanie</th>
+                        <th scope="col"class="th-sm"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,21 +59,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.PhoneNumber)
                             </td>
-                          
                             <td>
                                 @Html.DisplayFor(modelItem => item.UserName)
                             </td>
                             <td>
-                                <div class=" btn-group-sm">
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline" })
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-outline" })
+                                <div class=" btn-group-sm flex-center">
+                                    @Html.ActionLink("Change role", "ChangeRole", new { id = item.Id }, new { @class = "btn btn-default m-1" })
                                     @if (item.UserName != User.Identity.Name)
                                     {
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger m-1" })
                                     }
                                     else
                                     {
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline disabled" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger disabled m-1" })
 
                                     }
                                 </div>
@@ -85,12 +83,6 @@
             </table>
         </div>
     </div>
-<script>
-    $(document).ready(function () {
-        $('#dtBasicExample').DataTable();
-        $('.dataTables_length').addClass('bs-select');
-    });
-</script>
 
 <script>
     $(document).ready(function () {

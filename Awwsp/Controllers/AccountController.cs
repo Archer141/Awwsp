@@ -190,17 +190,18 @@ namespace Awwsp.Controllers
         {
             if (ModelState.IsValid)
             {
-               
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    PhoneNumber = model.PhoneNumber,
+                };
+
+
                 if (User.IsInRole("Admin"))
                 {
-                    var user = new ApplicationUser
-                    {
-                        UserName = model.Email,
-                        Email = model.Email,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                    };
-                    
                     var result = await UserManager.CreateAsync(user, model.Password);
 
                     if (result.Succeeded)
@@ -210,7 +211,6 @@ namespace Awwsp.Controllers
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
                         return RedirectToAction("Index", "Home");
 
                     }
@@ -223,13 +223,7 @@ namespace Awwsp.Controllers
                 }
                 else if (User.IsInRole("HeadCoach"))
                 {
-                    var user = new ApplicationUser
-                    {
-                        UserName = model.Email,
-                        Email = model.Email,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                    };
+                 
                    var result= await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -240,14 +234,7 @@ namespace Awwsp.Controllers
                 }
                 else
                 {
-                    var user = new ApplicationUser
-                    {
-                        UserName = model.Email,
-                        Email = model.Email,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-
-                    };
+                 
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -264,6 +251,8 @@ namespace Awwsp.Controllers
                     AddErrors(result);
                 }
             }
+
+            ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name", model.RoleName);
             // If we got this far, something failed, redisplay form
             return View(model);
         }

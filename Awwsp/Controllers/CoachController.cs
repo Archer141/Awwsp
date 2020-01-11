@@ -21,8 +21,8 @@ namespace Awwsp.Controllers
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
         private ApplicationDbContext dbContext = new ApplicationDbContext();
-        private static AcademyRepository academyRepository;
-        
+
+
         public ApplicationUserManager UserManager
         {
             get
@@ -53,15 +53,15 @@ namespace Awwsp.Controllers
             return View(model);
         }
 
-        [Authorize(Roles ="HeadCoach,Admin")]
+        [Authorize(Roles = "HeadCoach,Admin")]
         public ActionResult AllCoach()
         {
 
             var roles = RoleManager.Roles.ToList();
             var coachId = roles.Where(y => y.Name == "Coach").Select(z => z.Id).FirstOrDefault();
             var headCoachId = roles.Where(y => y.Name == "HeadCoach").Select(z => z.Id).FirstOrDefault();
-            var users = UserManager.Users.Where(x=>x.Roles.FirstOrDefault().RoleId==coachId|| x.Roles.FirstOrDefault().RoleId == headCoachId).ToList();
-            
+            var users = UserManager.Users.Where(x => x.Roles.FirstOrDefault().RoleId == coachId || x.Roles.FirstOrDefault().RoleId == headCoachId).ToList();
+
             return View(users);
         }
 
@@ -91,16 +91,17 @@ namespace Awwsp.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    PhoneNumber = model.PhoneNumber.ToString(),
+                };
 
                 if (User.IsInRole("Admin"))
                 {
-                    var user = new ApplicationUser
-                    {
-                        UserName = model.Email,
-                        Email = model.Email,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                    };
 
                     var result = await UserManager.CreateAsync(user, model.Password);
 
@@ -124,13 +125,7 @@ namespace Awwsp.Controllers
                 }
                 else if (User.IsInRole("HeadCoach"))
                 {
-                    var user = new ApplicationUser
-                    {
-                        UserName = model.Email,
-                        Email = model.Email,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                    };
+
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -153,24 +148,25 @@ namespace Awwsp.Controllers
             }
 
             var userEdit = UserManager.Users.Where(x => x.Id == id).FirstOrDefault();
-            if (userEdit!=null)
+            if (userEdit != null)
             {
                 List<SelectListItem> roleList = new List<SelectListItem>();
-               
+
                 foreach (var item in RoleManager.Roles)
                 {
                     roleList.Add(new SelectListItem { Text = item.Name, Value = item.Name });
                 }
 
-                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x=>x.Name!="Admin"), "Id", "Name");
+                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
 
-                ChangeRoleVM changeRoleVM = new ChangeRoleVM {
+                ChangeRoleVM changeRoleVM = new ChangeRoleVM
+                {
                     Id = userEdit.Id,
                     FirstName = userEdit.FirstName,
-                    LastName=userEdit.LastName,
-                    Email =userEdit.UserName,
-                    PreviousRoleName= UserManager.GetRolesAsync(id).Result.FirstOrDefault(),
-                   
+                    LastName = userEdit.LastName,
+                    Email = userEdit.UserName,
+                    PreviousRoleName = UserManager.GetRolesAsync(id).Result.FirstOrDefault(),
+
                 };
                 return View(changeRoleVM);
             }
@@ -181,16 +177,13 @@ namespace Awwsp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var roleID =  RoleManager.FindByName(changeRoleVm.RoleName).Id;
-             
-                var userEdit = UserManager.Users.Where(x => x.Id == changeRoleVm.Id).FirstOrDefault();
-                
+                var roleID = RoleManager.FindByName(changeRoleVm.RoleName).Id;
 
-               
-                
-             var status = UserManager.AddToRole(changeRoleVm.Id, changeRoleVm.RoleName).Succeeded;
-                var status2 = UserManager.RemoveFromRole(changeRoleVm.Id, changeRoleVm.PreviousRoleName).Succeeded;
-                if (status&&status2)
+                var userEdit = UserManager.Users.Where(x => x.Id == changeRoleVm.Id).FirstOrDefault();
+
+                var status = UserManager.AddToRole(changeRoleVm.Id, changeRoleVm.RoleName);
+                var status2 = UserManager.RemoveFromRole(changeRoleVm.Id, changeRoleVm.PreviousRoleName);
+                if (status.Succeeded && status2.Succeeded)
                 {
                     //Roles.RemoveUserFromRole(changeRoleVm.Email, changeRoleVm.PreviousRoleName);
 
@@ -198,13 +191,13 @@ namespace Awwsp.Controllers
                 }
                 //Roles.AddUserToRole(changeRoleVm.Email, changeRoleVm.RoleName);
                 ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
-
+                AddErrors(status);
+                AddErrors(status2);
                 return View(changeRoleVm);
             }
             else
             {
                 ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
-
                 return View(changeRoleVm);
 
             }
@@ -219,7 +212,7 @@ namespace Awwsp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = UserManager.Users.Where(x=>x.Id==id).FirstOrDefault();
+            var user = UserManager.Users.Where(x => x.Id == id).FirstOrDefault();
             if (user == null)
             {
                 return HttpNotFound();

@@ -13,7 +13,7 @@ namespace Awwsp.Models
         [Display(Name ="Title")]
         public string Title { get; set; }
         [Required]
-        [Display(Name ="Text")]
+        [Display(Name ="Description")]
         public string Text { get; set; }
 
         [Required]

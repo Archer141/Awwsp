@@ -6,7 +6,7 @@ namespace Awwsp.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Email is required!")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
@@ -56,19 +56,19 @@ namespace Awwsp.ViewModels
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Email is required!")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Email is required!")]
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password is required!")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -82,19 +82,26 @@ namespace Awwsp.ViewModels
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="First name is required")]
         [Display(Name = "Firts Name")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Last name is required")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Email is required")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Phone number is required")]
+        [DataType(DataType.PhoneNumber)]
+        [MinLength(9, ErrorMessage = "Please enter valid phone number")]
+        [MaxLength(9, ErrorMessage = "Please enter valid phone number")]
+        [Phone(ErrorMessage = "Please enter valid phone number")]
+        [Display(Name = "Phone number")]
+        public string PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Password is required")]
         [StringLength(100, ErrorMessage = "Min. 6 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Podaj hasło")]
@@ -110,12 +117,12 @@ namespace Awwsp.ViewModels
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Email is required!")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password is required!")]
         [StringLength(100, ErrorMessage = "Min. 6 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]

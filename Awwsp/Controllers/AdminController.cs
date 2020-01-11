@@ -1,9 +1,12 @@
 ﻿using Awwsp.Data;
 using Awwsp.Models;
+using Awwsp.ViewModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,7 +18,7 @@ namespace Awwsp.Controllers
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
         private ApplicationDbContext dbContext = new ApplicationDbContext();
-        private static AcademyRepository academyRepository;
+
 
         public ApplicationUserManager UserManager
         {
@@ -119,6 +122,73 @@ namespace Awwsp.Controllers
             {
                 return View();
             }
+
         }
+
+
+
+        public ActionResult ChangeRole(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var userEdit = UserManager.Users.Where(x => x.Id == id).FirstOrDefault();
+            if (userEdit != null)
+            {
+                List<SelectListItem> roleList = new List<SelectListItem>();
+
+                foreach (var item in RoleManager.Roles)
+                {
+                    roleList.Add(new SelectListItem { Text = item.Name, Value = item.Name });
+                }
+
+                ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name");
+
+                ChangeRoleVM changeRoleVM = new ChangeRoleVM
+                {
+                    Id = userEdit.Id,
+                    FirstName = userEdit.FirstName,
+                    LastName = userEdit.LastName,
+                    Email = userEdit.UserName,
+                    PreviousRoleName = UserManager.GetRolesAsync(id).Result.FirstOrDefault(),
+
+                };
+                return View(changeRoleVM);
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangeRole(ChangeRoleVM changeRoleVm)
+        {
+            if (ModelState.IsValid)
+            {
+                var roleID = RoleManager.FindByName(changeRoleVm.RoleName).Id;
+
+                var userEdit = UserManager.Users.Where(x => x.Id == changeRoleVm.Id).FirstOrDefault();
+                var status = UserManager.AddToRole(changeRoleVm.Id, changeRoleVm.RoleName).Succeeded;
+                var status2 = UserManager.RemoveFromRole(changeRoleVm.Id, changeRoleVm.PreviousRoleName).Succeeded;
+                if (status && status2)
+                {
+                    //Roles.RemoveUserFromRole(changeRoleVm.Email, changeRoleVm.PreviousRoleName);
+
+                    return RedirectToAction("AllCoach");
+                }
+                //Roles.AddUserToRole(changeRoleVm.Email, changeRoleVm.RoleName);
+                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
+
+                return View(changeRoleVm);
+            }
+            else
+            {
+                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
+
+                return View(changeRoleVm);
+
+            }
+
+        }
+
     }
 }

@@ -27,23 +27,23 @@
                                 @Html.AntiForgeryToken()
                                 <h4 class="h4  mb-4 white-text">Choose new role for:</h4>
                                 @Html.ValidationSummary()
-                                @Html.HiddenFor(model=>model.Id)
-                                @Html.HiddenFor(model=>model.LastName)
-                                @Html.HiddenFor(model=>model.FirstName)
-                                @Html.HiddenFor(model=>model.Email)
-                                @Html.HiddenFor(model=>model.PreviousRoleName)
-                        <div class="form-row white-text ">
-                            <div class="col h5">
-                                @Html.DisplayFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control mb-4 ", @placeholder = "First Name" } })
-                                @Html.DisplayFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control mb-4 ", @placeholder = "Last Name " } })
+                                @Html.HiddenFor(model => model.Id)
+                                @Html.HiddenFor(model => model.LastName)
+                                @Html.HiddenFor(model => model.FirstName)
+                                @Html.HiddenFor(model => model.Email)
+                                @Html.HiddenFor(model => model.PreviousRoleName)
+                                <div class="form-row white-text ">
+                                    <div class="col h5">
+                                        @Html.DisplayFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control mb-4 ", @placeholder = "First Name" } })
+                                        @Html.DisplayFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control mb-4 ", @placeholder = "Last Name " } })
 
-                            </div>
-                         
-                           
-                                <div class="col h5 amber-text">@Model.PreviousRoleName</div>
-                               
-                        </div>
-                              
+                                    </div>
+
+
+                                    <div class="col h5 amber-text">@Model.PreviousRoleName</div>
+
+                                </div>
+
 
                                 if (User.Identity.IsAuthenticated)
                                 {
@@ -56,6 +56,7 @@
                                     </div>
 
                                 }
+                            <div class="white-text">    @Html.ValidationSummary()</div>
 
                                 <button type="submit" class="btn btn-block btn-dark">Change</button>
 

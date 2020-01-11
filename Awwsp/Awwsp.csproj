@@ -290,7 +290,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AgeGropuController.cs" />
+    <Compile Include="Controllers\AgeGroupController.cs" />
     <Compile Include="Controllers\ChildController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -340,6 +340,10 @@
     <Compile Include="Migrations\202001051930043_fulname.Designer.cs">
       <DependentUpon>202001051930043_fulname.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001102030072_displayname.cs" />
+    <Compile Include="Migrations\202001102030072_displayname.Designer.cs">
+      <DependentUpon>202001102030072_displayname.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="ViewModels\AcceptApplicationVM.cs" />
@@ -362,8 +366,78 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Contact.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap\mixins\_border-radius.css" />
+    <Content Include="Content\css\bootstrap\mixins\_screen-reader.css" />
+    <Content Include="Content\css\bootstrap\mixins\_visibility.css" />
+    <Content Include="Content\css\bootstrap\utilities\_stretched-link.css" />
+    <Content Include="Content\css\bootstrap\_media.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\dist\css\adminlte.css" />
+    <Content Include="Content\dist\css\adminlte.min.css" />
+    <Content Include="Content\dist\css\alt\adminlte.components.css" />
+    <Content Include="Content\dist\css\alt\adminlte.components.min.css" />
+    <Content Include="Content\dist\css\alt\adminlte.core.css" />
+    <Content Include="Content\dist\css\alt\adminlte.core.min.css" />
+    <Content Include="Content\dist\css\alt\adminlte.extra-components.css" />
+    <Content Include="Content\dist\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="Content\dist\css\alt\adminlte.pages.css" />
+    <Content Include="Content\dist\css\alt\adminlte.pages.min.css" />
+    <Content Include="Content\dist\css\alt\adminlte.plugins.css" />
+    <Content Include="Content\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Content\dist\img\AdminLTELogo.png" />
+    <Content Include="Content\dist\img\avatar.png" />
+    <Content Include="Content\dist\img\avatar04.png" />
+    <Content Include="Content\dist\img\avatar2.png" />
+    <Content Include="Content\dist\img\avatar3.png" />
+    <Content Include="Content\dist\img\avatar5.png" />
+    <Content Include="Content\dist\img\boxed-bg.jpg" />
+    <Content Include="Content\dist\img\boxed-bg.png" />
+    <Content Include="Content\dist\img\credit\american-express.png" />
+    <Content Include="Content\dist\img\credit\cirrus.png" />
+    <Content Include="Content\dist\img\credit\mastercard.png" />
+    <Content Include="Content\dist\img\credit\mestro.png" />
+    <Content Include="Content\dist\img\credit\paypal.png" />
+    <Content Include="Content\dist\img\credit\paypal2.png" />
+    <Content Include="Content\dist\img\credit\visa.png" />
+    <Content Include="Content\dist\img\default-150x150.png" />
+    <Content Include="Content\dist\img\icons.png" />
+    <Content Include="Content\dist\img\photo1.png" />
+    <Content Include="Content\dist\img\photo2.png" />
+    <Content Include="Content\dist\img\photo3.jpg" />
+    <Content Include="Content\dist\img\photo4.jpg" />
+    <Content Include="Content\dist\img\prod-1.jpg" />
+    <Content Include="Content\dist\img\prod-2.jpg" />
+    <Content Include="Content\dist\img\prod-3.jpg" />
+    <Content Include="Content\dist\img\prod-4.jpg" />
+    <Content Include="Content\dist\img\prod-5.jpg" />
+    <Content Include="Content\dist\img\user1-128x128.jpg" />
+    <Content Include="Content\dist\img\user2-160x160.jpg" />
+    <Content Include="Content\dist\img\user3-128x128.jpg" />
+    <Content Include="Content\dist\img\user4-128x128.jpg" />
+    <Content Include="Content\dist\img\user5-128x128.jpg" />
+    <Content Include="Content\dist\img\user6-128x128.jpg" />
+    <Content Include="Content\dist\img\user7-128x128.jpg" />
+    <Content Include="Content\dist\img\user8-128x128.jpg" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fontawesome-free\css\all.css" />
+    <Content Include="Content\fontawesome-free\css\all.min.css" />
+    <Content Include="Content\fontawesome-free\css\brands.css" />
+    <Content Include="Content\fontawesome-free\css\brands.min.css" />
+    <Content Include="Content\fontawesome-free\css\fontawesome.css" />
+    <Content Include="Content\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="Content\fontawesome-free\css\regular.css" />
+    <Content Include="Content\fontawesome-free\css\regular.min.css" />
+    <Content Include="Content\fontawesome-free\css\solid.css" />
+    <Content Include="Content\fontawesome-free\css\solid.min.css" />
+    <Content Include="Content\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="Content\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="Content\fontawesome-free\css\v4-shims.css" />
+    <Content Include="Content\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />
     <Content Include="Content\Images\action-ball-field-game-274506.jpg" />
     <Content Include="Content\Images\aerial-view-of-soccer-field-1171084.jpg" />
     <Content Include="Content\Images\evening-field-football-field-goal-399187.jpg" />
@@ -509,11 +583,55 @@
     <Content Include="Content\MDB-Free_4.11.0\scss\_custom-styles.scss" />
     <Content Include="Content\MDB-Free_4.11.0\scss\_custom-variables.scss" />
     <Content Include="Content\MDB-Free_4.11.0\Useful_Resources.pdf" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\dist\css\adminlte.css.map" />
+    <Content Include="Content\dist\css\adminlte.min.css.map" />
+    <Content Include="Content\dist\css\alt\adminlte.components.css.map" />
+    <Content Include="Content\dist\css\alt\adminlte.components.min.css.map" />
+    <Content Include="Content\dist\css\alt\adminlte.core.css.map" />
+    <Content Include="Content\dist\css\alt\adminlte.core.min.css.map" />
+    <Content Include="Content\dist\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="Content\dist\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="Content\dist\css\alt\adminlte.pages.css.map" />
+    <Content Include="Content\dist\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="Content\dist\css\alt\adminlte.plugins.css.map" />
+    <Content Include="Content\dist\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Scripts\dist\js\adminlte.js.map" />
+    <Content Include="Scripts\dist\js\adminlte.min.js.map" />
+    <Content Include="Content\css\.DS_Store" />
+    <Content Include="Content\css\bootstrap\.DS_Store" />
+    <Content Include="Content\css\bootstrap\mixins\.DS_Store" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\dist\js\adminlte.js" />
+    <Content Include="Scripts\dist\js\adminlte.min.js" />
+    <Content Include="Scripts\dist\js\demo.js" />
+    <Content Include="Scripts\dist\js\pages\dashboard.js" />
+    <Content Include="Scripts\dist\js\pages\dashboard2.js" />
+    <Content Include="Scripts\dist\js\pages\dashboard3.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery\core.js" />
+    <Content Include="Scripts\jquery\jquery.js" />
+    <Content Include="Scripts\jquery\jquery.min.js" />
+    <Content Include="Scripts\jquery\jquery.slim.js" />
+    <Content Include="Scripts\jquery\jquery.slim.min.js" />
+    <Content Include="Scripts\js\bootstrap.min.js" />
+    <Content Include="Scripts\js\jquery.min.js" />
+    <Content Include="Scripts\js\main.js" />
+    <Content Include="Scripts\js\popper.js" />
     <Content Include="Scripts\mvcfoolproof.unobtrusive.js" />
     <Content Include="Scripts\mvcfoolproof.unobtrusive.min.js" />
     <Content Include="Scripts\MvcFoolproofJQueryValidation.js" />
@@ -679,10 +797,10 @@
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />
-    <Content Include="Views\AgeGropu\Index.cshtml" />
-    <Content Include="Views\AgeGropu\Create.cshtml" />
-    <Content Include="Views\AgeGropu\Edit.cshtml" />
-    <Content Include="Views\AgeGropu\Delete.cshtml" />
+    <Content Include="Views\AgeGroup\Index.cshtml" />
+    <Content Include="Views\AgeGroup\Create.cshtml" />
+    <Content Include="Views\AgeGroup\Edit.cshtml" />
+    <Content Include="Views\AgeGroup\Delete.cshtml" />
     <Content Include="Views\Photo\Create.cshtml" />
     <Content Include="Views\Photo\Index.cshtml" />
     <Content Include="Views\Photo\Details.cshtml" />
@@ -702,15 +820,9 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Child\AcceptApplication.cshtml" />
-    <Content Include="Views\Shared\Navs\LeftNav.cshtml" />
+    <Content Include="Views\Shared\Navs\_CoachNav.cshtml" />
     <Content Include="Views\Parent\Index.cshtml" />
-    <Content Include="Views\Shared\Manage\_IndexManagePartial.cshtml" />
-    <Content Include="Views\Shared\Child\_IndexChildren.cshtml" />
-    <Content Include="Views\Shared\Child\_CreateChild.cshtml" />
-    <Content Include="Views\Shared\Child\_EditChild.cshtml" />
-    <Content Include="Views\Shared\Child\_DetailsChild.cshtml" />
     <Content Include="Views\Shared\Layouts\_LayoutParent.cshtml" />
-    <Content Include="Views\Shared\Manage\_ChangePassword.cshtml" />
     <Content Include="Views\Coach\Index.cshtml" />
     <Content Include="Views\Shared\Layouts\_LayoutCoach.cshtml" />
     <Content Include="Views\Trophy\Create.cshtml" />
@@ -731,13 +843,17 @@
     <Content Include="Views\Coach\NewCoach.cshtml" />
     <Content Include="Views\Coach\ChangeRole.cshtml" />
     <Content Include="Views\Admin\AllUsers.cshtml" />
+    <Content Include="Views\Admin\ChangeRole.cshtml" />
+    <Content Include="Views\Shared\Navs\_CoachSideBar.cshtml" />
+    <Content Include="Scripts\jquery\jquery.min.map" />
+    <Content Include="Scripts\jquery\jquery.slim.min.map" />
+    <Content Include="Scripts\js\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Client Scripts\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Player\" />
-    <Folder Include="Views\Shared\Parent\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -772,6 +888,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001051930043_fulname.resx">
       <DependentUpon>202001051930043_fulname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001102030072_displayname.resx">
+      <DependentUpon>202001102030072_displayname.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

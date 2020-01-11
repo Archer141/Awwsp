@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Awwsp.Models.AgeGroup>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <div class="container-fluid">
+        <div class="mt-2">
+            <p class="h2">All age groups</p>
+            <hr />
+        </div>
+        <div class="table-responsive-xl table-responsive-sm">
+            <table id="tab" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MinAge)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MaxAge)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MinAge)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaxAge)
+                            </td>
+                            <td>
+                                <div class="btn-group-sm flex-center">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.AgeGroupID }, new { @class = "btn btn-default m-1" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.AgeGroupID }, new { @class = "btn btn-danger m-1" })
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function () {
+        $('#tab').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+    </script>

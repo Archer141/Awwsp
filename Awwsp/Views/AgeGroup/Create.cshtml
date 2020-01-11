@@ -1,0 +1,73 @@
+﻿@model Awwsp.Models.AgeGroup
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<div class="d-flex min-vh-100 flex-column container-fluid">
+    <div class="row bg-light flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        @*<div class="d-none d-sm-block  col-sm-6 col-md-6 bg-coach portlet-container portlet-dropzone p-0">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+
+                </div>
+            </div>*@
+        <div class="col bg-warning portlet-container portlet-dropzone bg-transparent p-0">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+                    <div class="row d-flex justify-content-center">
+                        <div id="square" class="col-md-12 text-center">
+
+
+
+
+                            @using (Html.BeginForm("Create", "AgeGroup", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "text-center border border-light p-5", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <p class="h4 mb-4 white-text">Create new age group</p>
+                                <p>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-white" })
+                                </p>
+
+                                <div class="form-row mb-4">
+                                    <div class="col">
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "red-text" })
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                                    </div>
+                                </div>
+                                <div class="form-row mb-4">
+                                    <div id="min" class="col">
+                                        @Html.EditorFor(model => model.MinAge, new { htmlAttributes = new { @class = "form-control", @placeholder = "Min age" } })
+                                        @Html.ValidationMessageFor(model => model.MinAge, "", new { @class = "text-white" })
+                                    </div>
+                                    <div id="max" class="col">
+                                        @Html.EditorFor(model => model.MaxAge, new { htmlAttributes = new { @class = "form-control", @placeholder = "Max age" } })
+                                        @Html.ValidationMessageFor(model => model.MaxAge, "", new { @class = "text-white" })
+                                    </div>
+                                </div>
+                                <button class="btn btn-info my-4 btn-block" type="submit">Create</button>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function valid(a, b) {
+            if (a > b) {
+
+            }
+        }
+    </script>
+}
