@@ -311,6 +311,7 @@ namespace Awwsp.Data
             notifyForUpdate.AgeGroupId = notification.AgeGroupId;
             notifyForUpdate.Title = notification.Title;
             notifyForUpdate.Text = notification.Text;
+            dbContext.SaveChanges();
 
         }
 

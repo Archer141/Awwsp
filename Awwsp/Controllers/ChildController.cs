@@ -77,7 +77,8 @@ namespace Awwsp.Controllers
                 if (age > 18 || age < 3)
                 {
                     ViewBag.AgeGroupID = new SelectList(db.AgeGroups, "AgeGroupID", "Name", child.AgeGroupID);
-                    ModelState.AddModelError("DateOfBirth", "Wiek dziecka jest nie odpowiedni do zapisu w akadami");
+               //     ModelState.AddModelError("DateOfBirth", "Wiek dziecka jest nie odpowiedni do zapisu w akadami");
+                    ModelState.AddModelError("DateOfBirth", "Unfortunately child age is not appropriate to register in academy");
                     return View(child);
                 }
                 var AgeGroups = repository.GetAgeGroups();
@@ -195,7 +196,7 @@ namespace Awwsp.Controllers
                 }
             }
 
-            ModelState.AddModelError("", "Niepoprawne dane lub brak konta");
+            ModelState.AddModelError("", "Wrong password or login");
             return View(loginVM);
 
         }

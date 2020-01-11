@@ -442,7 +442,17 @@
     <Content Include="Content\Images\aerial-view-of-soccer-field-1171084.jpg" />
     <Content Include="Content\Images\evening-field-football-field-goal-399187.jpg" />
     <Content Include="Content\Images\field-stadium-soccer-argentina-61143.jpg" />
+    <Content Include="Content\Images\Food\abundance-berries-blueberries-close-up-1153655.jpg" />
+    <Content Include="Content\Images\Food\brown-white-and-orange-round-food-on-table-top-41967.jpg" />
+    <Content Include="Content\Images\Food\close-up-photo-of-green-leafed-plants-1213859.jpg" />
+    <Content Include="Content\Images\Food\closes-up-photo-of-macaroni-1437267.jpg" />
+    <Content Include="Content\Images\Food\fruits-grocery-bananas-market-4621.jpg" />
+    <Content Include="Content\Images\Food\full-frame-shot-of-green-peas-255469.jpg" />
+    <Content Include="Content\Images\Food\pexels-photo-803963.jpeg" />
+    <Content Include="Content\Images\Food\walnuts-in-a-bowl-1823476.jpg" />
     <Content Include="Content\Images\high-angle-photography-of-soccer-field-2935979.jpg" />
+    <Content Include="Content\Images\LogoMakr_8LKNHe.png" />
+    <Content Include="Content\Images\LogoMakr_9J2xaU.png" />
     <Content Include="Content\Images\notfound.png" />
     <Content Include="Content\Images\photo-of-a-person-standing-on-football-field-2413089.jpg" />
     <Content Include="Content\Images\sign-pen-business-document-48148.jpg" />
@@ -849,6 +859,8 @@
     <Content Include="Scripts\jquery\jquery.slim.min.map" />
     <Content Include="Scripts\js\.DS_Store" />
     <Content Include="Views\Shared\Navs\_ParentSideBar.cshtml" />
+    <Content Include="Views\Parent\Food.cshtml" />
+    <Content Include="Views\Parent\Training.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

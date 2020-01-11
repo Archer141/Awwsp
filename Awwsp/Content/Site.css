@@ -35,6 +35,29 @@ html {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.bg-child-register {
+    /* The image used */
+    background-image: url(https://images.pexels.com/photos/1375148/pexels-photo-1375148.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-color: #84cc73;
+    /* Full height */
+    width: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-team {
+    /* The image used */
+    background-image: url(https://images.pexels.com/photos/262524/pexels-photo-262524.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-color: #84cc73;
+    /* Full height */
+    width: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .navbar-expand{
     padding-left:0;
@@ -72,6 +95,7 @@ html {
     width:338px;
     height: 225.33px;
 }
+
 .card-img-top {
     min-width: 100%;
     width: auto;

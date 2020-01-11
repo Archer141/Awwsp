@@ -5,9 +5,74 @@
     Layout = "~/Views/Shared/Layouts/_LayoutParent.cshtml";
 }
 
-<div class="bg-light flex-fill fill d-flex justify-content-start">
+<div class="d-flex min-vh-100 flex-column container-fluid">
+    <div class="row bg-light flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        @*<div class="d-none d-sm-block  col-sm-6 col-md-6 bg-coach portlet-container portlet-dropzone p-0">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
 
+                </div>
+            </div>*@
+        <div class="col bg-child-register portlet-container portlet-dropzone bg-transparent p-0">
+
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-strong ">
+                    <div class="row d-flex justify-content-center">
+                        <div id="square" class="col-md-12 text-center">
+
+
+
+                            @using (Html.BeginForm("Create", "Child", FormMethod.Post, new { @class = "text-center border rgba-white-light border-light p-5", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <p class="h4 mb-3 white-text ">Register</p>
+                                <p class="h5 mb-3 white-text  font-weight-light">Complete this form to create child account</p>
+
+                                <div class="form-row mb-4">
+
+                                    <div class="col">
+                                        @Html.EditorFor(model => model.ChildFirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
+                                        @Html.ValidationMessageFor(model => model.ChildFirstName, "", new { @class = "white-text" })
+
+                                    </div>
+                                    <div class="col">
+                                        @Html.EditorFor(model => model.ChildLastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+                                        @Html.ValidationMessageFor(model => model.ChildLastName, "", new { @class = "white-text" })
+
+                                    </div>
+                                </div>
+
+                              
+                                    <div class=" mb-4">
+                                        @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+                                        @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "white-text" })
+
+                                    </div>
+
+                                
+
+                                <div class=" mb-4">
+                                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "white-text" })
+                                </div>
+
+
+
+                                <button class="btn btn-info my-4 btn-block" type="submit">Register</button>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

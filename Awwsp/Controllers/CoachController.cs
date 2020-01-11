@@ -227,9 +227,16 @@ namespace Awwsp.Controllers
         {
             var user = UserManager.Users.Where(x => x.Id == id).FirstOrDefault();
 
-            UserManager.DeleteAsync(user);
+           var statsu = UserManager.DeleteAsync(user);
 
-            return RedirectToAction("Index");
+            if (statsu.Result.Succeeded)
+            {
+                return RedirectToAction("AllCoach");
+            }
+            else
+            {
+                return View(user);
+            }
         }
         private void AddErrors(IdentityResult result)
         {

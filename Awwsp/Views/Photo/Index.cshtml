@@ -10,13 +10,13 @@
 <section class="jumbotron text-center ">
     <div class="container">
         <h1>Galeria</h1>
-        <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis erat ut efficitur bibendum. In tristique mi quis vehicula condimentum. Pellentesque sed ligula diam. In velit tellus, pretium nec ligula in, sagittis mollis ex. Integer aliquet sodales erat, placerat laoreet dui tristique eget. </p>
+        <p class="lead text-muted">This is photo gallery with photos from our trainings </p>
         @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach") || User.IsInRole("Coach"))
         {
             @Html.ActionLink("Dodaj nowe zdjęcie", "Create", null, new { @class = "btn btn-dark m-2" })
         }
-            <a href="#" class="btn btn-secondary my-2">Wyświetlanie pionowe</a>
-        </div>
+        <a href="#" class="btn btn-secondary my-2">Wyświetlanie pionowe</a>
+    </div>
 </section>
 
 <div class="py-5 bg-light ">
@@ -31,7 +31,7 @@
                             {
                                 var base64 = Convert.ToBase64String(item.Image);
                                 var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
-                                <div class=" view overlay">
+                                <div class="view overlay">
                                     <img onclick="setID()" src="@imgSrc" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
                                     <a href="/Photo/Details/@item.PhotoID">
                                         <div class="mask rgba-white-slight"></div>
@@ -40,7 +40,7 @@
                             }
                             else
                             {
-                                <div class=" view overlay">
+                                <div class="card-header view overlay">
                                     <img onclick="setID()" src="~/Content/Images/notfound.png" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
                                     <a href="/Photo/Details/@item.PhotoID">
                                         <div class="mask rgba-white-slight"></div>
@@ -64,41 +64,8 @@
 
                     </div>
                 </div>
-            }
+                            }
         </div>
-        <div id="myModal" class="modal">
 
-            <!-- The Close Button -->
-            <span class="close">&times;</span>
-
-            <!-- Modal Content (The Image) -->
-            <img class="modal-content" id="img01">
-
-            <!-- Modal Caption (Image Text) -->
-            <div id="caption"></div>
-        </div>
     </div>
 </div>
-
-<script>
-  
-    // Get the modal
-    var modal = document.getElementById("myModal");
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
-    var img = document.getElementById("myImg");
-    var modalImg = document.getElementById("img01");
-    var captionText = document.getElementById("caption");
-    img.onclick = function () {
-        modal.style.display = "block";
-        modalImg.src = this.src;
-        captionText.innerHTML = this.alt;
-    }
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-</script>

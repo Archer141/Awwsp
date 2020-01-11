@@ -21,7 +21,6 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 text-center">
 
-                            <p class="white-text">@ViewBag.NoConfirm @Html.ValidationSummary()</p>
 
 
 
@@ -29,6 +28,7 @@
                             {
                                 @Html.AntiForgeryToken()
                                 <h4 class="h4 mb-4 white-text">Add new coach</h4>
+                                <div class="white-text"> @Html.ValidationSummary()</div>
 
                                 <div class="form-row mb-2 ">
                                     <div class="col ">

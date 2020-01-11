@@ -43,7 +43,7 @@ namespace Awwsp.Controllers
             }
             return View(notification);
         }
-        [Authorize(Roles = "Admin,HeadCoach")]
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
         // GET: notifications/Create
         public ActionResult Create()
         {
@@ -55,6 +55,7 @@ namespace Awwsp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Title,Text,AgeGroupId")] Notification notification)
         {
@@ -68,7 +69,7 @@ namespace Awwsp.Controllers
             return View(notification);
         }
 
-        // GET: notifications/Edit/5
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]// GET: notifications/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,6 +89,7 @@ namespace Awwsp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Text,AgeGroupId")] Notification notification)
         {
@@ -101,6 +103,7 @@ namespace Awwsp.Controllers
         }
 
         // GET: notifications/Delete/5
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,6 +120,7 @@ namespace Awwsp.Controllers
 
         // POST: notifications/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin,HeadCoach,Coach")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

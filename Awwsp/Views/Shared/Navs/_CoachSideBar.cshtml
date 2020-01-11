@@ -1,9 +1,9 @@
 ﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="home/index" class="brand-link">
-        <img src="~/Content/Images/high-angle-photography-of-soccer-field-2935979.jpg" alt="AWWSP" class="brand-image  "
+        <img src="~/Content/Images/LogoMakr_8LKNHe.png" alt="AWWSP" class="brand-image  "
              style="opacity: .8">
-        <span class="brand-text font-weight-light">AWWSP</span>
+        <span class="brand-text font-weight-light">Academy</span>
     </a>
 
     <!-- Sidebar -->
@@ -34,6 +34,10 @@
                     </a>
 
                 </li>
+                @if (User.IsInRole("Admin")||User.IsInRole("HeadCoach"))
+                {
+
+
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -57,6 +61,7 @@
                         </li>
                     </ul>
                 </li>
+                                }
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-trophy"></i>
