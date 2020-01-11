@@ -820,7 +820,7 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Child\AcceptApplication.cshtml" />
-    <Content Include="Views\Shared\Navs\_CoachNav.cshtml" />
+    <Content Include="Views\Shared\Navs\_Nav.cshtml" />
     <Content Include="Views\Parent\Index.cshtml" />
     <Content Include="Views\Shared\Layouts\_LayoutParent.cshtml" />
     <Content Include="Views\Coach\Index.cshtml" />
@@ -848,6 +848,7 @@
     <Content Include="Scripts\jquery\jquery.min.map" />
     <Content Include="Scripts\jquery\jquery.slim.min.map" />
     <Content Include="Scripts\js\.DS_Store" />
+    <Content Include="Views\Shared\Navs\_ParentSideBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

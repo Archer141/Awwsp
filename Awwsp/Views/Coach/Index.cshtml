@@ -11,10 +11,16 @@
             <div class="view flex-center">
                 <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-12 text-center white-text"   >
-
-                          <p class="display-3">Welcome Coach!</p>
-                          <p class="display-4">What do you want to do?</p>
+                        <div class="col-md-12 text-center white-text">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <p class="display-3">Welcome Admin!</p>
+                            }
+                            else
+                            {
+                                 <p class="display-3">Welcome Coach!</p>
+                            }
+                            <p class="display-4">What do you want to do?</p>
 
                         </div>
                     </div>

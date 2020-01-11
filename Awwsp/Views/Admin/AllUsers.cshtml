@@ -2,15 +2,14 @@
 
 @{
     ViewBag.Title = "AllUsers";
-    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
 }
     <div class="container-fluid">
         <div class="text-center">
             <h2 class="display-3 mt-2">All registred users</h2>
 
-            <p>
+            @*<p>
                 @Html.ActionLink("Create New", "Account",null,new { @class="btn btn-outline-info"})
-            </p>
+            </p>*@
 
         </div>
         <div class="table-responsive-xl ">
@@ -64,7 +63,7 @@
                             </td>
                             <td>
                                 <div class=" btn-group-sm flex-center">
-                                    @Html.ActionLink("Change role", "ChangeRole", new { id = item.Id }, new { @class = "btn btn-default m-1" })
+                                    @Html.ActionLink("Change role", "ChangeRole", new { id = item.Id }, new { @class = "btn btn-warning m-1" })
                                     @if (item.UserName != User.Identity.Name)
                                     {
                                         @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger m-1" })
