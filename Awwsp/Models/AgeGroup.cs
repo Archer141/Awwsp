@@ -11,7 +11,7 @@ namespace Awwsp.Models
     {
         public int AgeGroupID { get; set; }
         [Required(ErrorMessage ="Name is requuired")]
-        [Display(Name="Age gropu name")]
+        [Display(Name="Team")]
         public string Name { get; set; }
         [Required(ErrorMessage ="Max age is required")]
         [Range(3, 17,ErrorMessage ="Min age must be grater than 3 and lower than 17")]
@@ -21,5 +21,6 @@ namespace Awwsp.Models
         [Range(4, 18, ErrorMessage = "Max age must be grater than 3 and lower than 17")]
         [LessThan("MinAge", DependentPropertyDisplayName="Min age", ErrorMessage ="Field min age must be lower than max age")]
         public int MaxAge { get; set; }
+        public ICollection<Child> Children { get; set; }
     }
 }

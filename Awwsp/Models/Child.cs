@@ -10,23 +10,24 @@ namespace Awwsp.Models
     {
         public int ChildID { get; set; }
 
-        [Required(ErrorMessage = "To pole jest wymagane")]
-        [Display(Name = "Imie")]
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "First name")]
         public string ChildFirstName { get; set; }
 
-        [Required(ErrorMessage = "To pole jest wymagane")]
-        [Display(Name = "Nazwisko")]
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Last name")]
         public string ChildLastName { get; set; }
 
-        [Required(ErrorMessage = "To pole jest wymagane")]
+        [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
-        [Required(ErrorMessage = "Podaje hasło")]
-        [Display(Name = "Hasło")]
+        [Required(ErrorMessage = "Password is required")]
+        [Display(Name = "Password")]
         [DataType(DataType.Password)]
-        [StringLength(100, MinimumLength = 6, ErrorMessage = "Minimalna długość to 6")]
+        [StringLength(100, MinimumLength = 6, ErrorMessage = "Min 6 characters are required")]
         public string PasswordHash { get; set; }
+        [Display(Name ="Is Accepted?")]
         public bool IsActive { get; set; }
         public string UserID { get; set; }
         public virtual ApplicationUser User { get; set; }
@@ -37,7 +38,6 @@ namespace Awwsp.Models
         public virtual ICollection<Trophy> Trophies { get; set; }
         public int? AgeGroupID { get; set; }
         public AgeGroup AgeGroup { get; set; }
-
         public string FullName { get; set; }
   
         

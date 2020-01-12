@@ -1,0 +1,82 @@
+﻿@model Awwsp.ViewModels.PlayersVM
+    
+@{
+    ViewBag.Title = "Players";
+    List<string> tabs = new List<string>();
+    tabs.Add("tab1");
+    tabs.Add("tab2");
+    tabs.Add("tab3");
+    tabs.Add("tab4");
+    tabs.Add("tab5");
+    tabs.Add("tab6");
+    tabs.Add("tab7");
+    tabs.Add("tab8");
+    tabs.Add("tab9");
+    tabs.Add("tab10");
+    int i = 0;
+}
+
+    <div class="container">
+        <div class="mt-2">
+            <p class="h2">Players in academy</p>
+            <hr />
+        </div>
+        @foreach (var item in Model.AgeGroups)
+        {
+            <div class="my-2">
+                <div class="d-flex d-inline-block">
+                   <button type="button" class="btn btn-outline-dark-green  btn-block" data-toggle="collapse" data-target="#@tabs[i]d">@item.Name &ensp;<i class="fas fa-angle-down"></i></button>
+                </div>
+            <div id="@tabs[i]d"  class="table-responsive-xl table-responsive-sm collapse">
+                <table id="@tabs[i++]" class=" table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Child.FullName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Child.DateOfBirth)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item2 in item.Children)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item2.FullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item2.DateOfBirth)
+                                </td>
+                                <td>
+                                    <div class="btn-group-sm flex-center">
+                                        @Html.ActionLink("Delete", "Delete", new { id = item2.AgeGroupID }, new { @class = "btn btn-danger m-1" })
+                                        @Html.ActionLink("Send notification","Send","Notification", new { id = item2.ChildID }, new { @class = "btn btn-info m-1" })
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        }
+
+    </div>
+<script>
+    $(document).ready(function () {
+        $('#tab1').DataTable();
+        $('#tab2').DataTable();
+        $('#tab3').DataTable();
+        $('#tab4').DataTable();
+        $('#tab5').DataTable();
+        $('#tab6').DataTable();
+        $('#tab7').DataTable();
+        $('#tab8').DataTable();
+        $('#tab9').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>

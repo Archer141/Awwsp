@@ -20,7 +20,7 @@
                         <div class="col-md-12 text-center">
 
 
-                            <div id="square" class="text-center border border-warning p-5">
+                            <div id="square" class="text-center border border-light p-5">
                                 @Html.AntiForgeryToken()
 
                                 <p class="h4 mb-4 white-text">
@@ -46,9 +46,9 @@
                                 {
                                     @Html.AntiForgeryToken()
 
-                                    <div class="flex-center">
-                                        <input type="submit" value="Delete" class="btn btn-danger" />
-                                        @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-success" })
+                                    <div class="">
+                                        <button class="btn btn-danger my-4 btn-block" type="submit">Delete</button>
+                                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success my-4 btn-block" })
                                     </div>
                                 }
                             </div>

@@ -3,67 +3,70 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="container-fluid">
+    <div class="mt-2">
+        <p class="h2">Your children registred in academy</p>
+        <hr />
+    </div>
+    <div class="table-responsive-xl table-responsive-sm">
+        <table id="tab" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AgeGroup.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChildFirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChildLastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateOfBirth)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </th>
+                
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AgeGroup.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ChildFirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ChildLastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOfBirth)
+                        </td>
+                       
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsActive)
+                        </td>
+                       
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ChildID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ChildID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ChildID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#tab').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AgeGroup.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChildFirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChildLastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AgeGroup.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChildFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChildLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfBirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PasswordHash)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ChildID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ChildID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ChildID })
-        </td>
-    </tr>
-}
-
-</table>

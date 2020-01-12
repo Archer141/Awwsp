@@ -26,7 +26,7 @@
                     </li>
                 }
                 <li class="nav-item">
-                    <a href="/child/AcceptApplication" class="nav-link">
+                    <a href="/Coach/AcceptRegistration" class="nav-link">
                         <i class="nav-icon fas fa-list-alt"></i>
                         <p>
                             Pending applications
@@ -34,34 +34,43 @@
                     </a>
 
                 </li>
-                @if (User.IsInRole("Admin")||User.IsInRole("HeadCoach"))
+                <li class="nav-item">
+                    <a href="/Coach/Players" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                           Players list
+                        </p>
+                    </a>
+
+                </li>
+                @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
                 {
 
 
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                        <p>
-                            Coach
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                            <a href="/Coach/NewCoach" class="nav-link">
-                                <i class="fas fa-plus nav-icon"></i>
-                                <p>Create</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/Coach/AllCoach" class="nav-link">
-                                <i class="fas fa-list nav-icon"></i>
-                                <p>Show all</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                                }
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                            <p>
+                                Coach
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="display: none;">
+                            <li class="nav-item">
+                                <a href="/Coach/NewCoach" class="nav-link">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>Create</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/Coach/AllCoach" class="nav-link">
+                                    <i class="fas fa-list nav-icon"></i>
+                                    <p>Show all</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                }
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-trophy"></i>

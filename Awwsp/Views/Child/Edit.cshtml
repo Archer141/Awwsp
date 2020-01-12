@@ -4,87 +4,74 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+
+<div class="d-flex min-vh-100 flex-column container-fluid">
+    <div class="row bg-light flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        @*<div class="d-none d-sm-block  col-sm-6 col-md-6 bg-coach portlet-container portlet-dropzone p-0">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+
+                </div>
+            </div>*@
+        <div class="col bg-child-register portlet-container portlet-dropzone bg-transparent p-0">
+
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-strong ">
+                    <div class="row d-flex justify-content-center">
+                        <div id="square" class="col-md-12 text-center">
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Child</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ChildID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ChildFirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div  >
-                @Html.EditorFor(model => model.ChildFirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ChildFirstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            @using (Html.BeginForm("Create", "Child", FormMethod.Post, new { @class = "text-center border rgba-white-light border-light p-5", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ChildLastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div  >
-                @Html.EditorFor(model => model.ChildLastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ChildLastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                <p class="h4 mb-3 white-text ">Edit account</p>
+                                @Html.HiddenFor(model => model.ChildID)
+                                <div class="form-row mb-4">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div  >
-                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                    <div class="col">
+                                        @Html.EditorFor(model => model.ChildFirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
+                                        @Html.ValidationMessageFor(model => model.ChildFirstName, "", new { @class = "white-text" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PasswordHash, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div  >
-                @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                    </div>
+                                    <div class="col">
+                                        @Html.EditorFor(model => model.ChildLastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+                                        @Html.ValidationMessageFor(model => model.ChildLastName, "", new { @class = "white-text" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div  >
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsActive)
-                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class=" mb-4">
+                                    @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+                                    @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "white-text" })
+                                </div>
+
+
+
+                                <div class=" mb-4">
+                                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "white-text" })
+                                </div>
+
+
+
+                               <div class="flex-center"> <button class="btn btn-info my-4 " type="submit">Register</button>
+                                @Html.ActionLink("Back to List", "Index",null,new { @class="btn btn-info my-4 "})</div>
+                            }
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div  >
-                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AgeGroupID, "AgeGroupID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div  >
-                @Html.DropDownList("AgeGroupID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AgeGroupID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
     </div>
-}
+</div>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+
 </div>
 
 @section Scripts {

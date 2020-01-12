@@ -31,14 +31,14 @@ namespace Awwsp.ViewModels
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "Hasło musi mieć minimum 6 znaków", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Password must have 6 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Nowe hasło")]
+        [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Potwierdź nowe hasło")]
-        [Compare("NewPassword", ErrorMessage = "Hasła nie zgadzają się")]
+        [Display(Name = "Confirm new pasowrd")]
+        [Compare("NewPassword", ErrorMessage = "Password do not match !")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -46,18 +46,18 @@ namespace Awwsp.ViewModels
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Aktualne hasło")]
+        [Display(Name = "Current password")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Hasło musi mieć minimum 6 znaków", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Password must have 6 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Nowe hasło")]
+        [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Potwierdź nowe hasło")]
-        [Compare("NewPassword", ErrorMessage = "Hasła nie zgadzają się")]
+        [Display(Name = "Confirm new password")]
+        [Compare("NewPassword", ErrorMessage = "Password do not match !")]
         public string ConfirmPassword { get; set; }
 
         public string ControllerName { get; set; }
@@ -67,7 +67,7 @@ namespace Awwsp.ViewModels
     {
         [Required]
         [Phone]
-        [Display(Name = "Numer telefonu")]
+        [Display(Name = "Phone number")]
         public string Number { get; set; }
     }
 

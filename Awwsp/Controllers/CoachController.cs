@@ -21,8 +21,13 @@ namespace Awwsp.Controllers
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
         private ApplicationDbContext dbContext = new ApplicationDbContext();
+        private AcademyRepository repository;
+        private ApplicationDbContext context = new ApplicationDbContext();
 
-
+        public CoachController()
+        {
+            repository = new AcademyRepository(context);
+        }
         public ApplicationUserManager UserManager
         {
             get
@@ -227,7 +232,7 @@ namespace Awwsp.Controllers
         {
             var user = UserManager.Users.Where(x => x.Id == id).FirstOrDefault();
 
-           var statsu = UserManager.DeleteAsync(user);
+            var statsu = UserManager.DeleteAsync(user);
 
             if (statsu.Result.Succeeded)
             {
@@ -238,6 +243,49 @@ namespace Awwsp.Controllers
                 return View(user);
             }
         }
+
+
+        public ActionResult AcceptRegistration()
+        {
+            var model = new AcceptApplicationVM() { PlayersToRegister = GetPlayersToRegister(), };
+
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AcceptRegistration(AcceptApplicationVM vM)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var item in vM.SelectedPlayers)
+                {
+                    var player = repository.GetChildById(int.Parse(item)).Result;
+                    player.IsActive = true;
+                    repository.UpdateChild(player);
+                }
+                return View("Players", repository.GetChildrenAll());
+            };
+            var model = new AcceptApplicationVM() { PlayersToRegister = GetPlayersToRegister(), };
+            return View(model);
+        }
+
+        public ActionResult Players() {
+
+
+            return View(new PlayersVM() { AgeGroups = repository.GetAgeGroups().ToList()});
+        
+        }
+
+        private IList<SelectListItem> GetPlayersToRegister()
+        {
+            var list = new List<SelectListItem>();
+            foreach (var item in repository.GetChildrenAll().Where(x=>x.IsActive==false))
+            {
+                list.Add(new SelectListItem { Text = item.FullName, Value = item.ChildID.ToString() });
+            }
+            return list;
+        }
+
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -245,8 +293,5 @@ namespace Awwsp.Controllers
                 ModelState.AddModelError("", error);
             }
         }
-
-
-
     }
 }

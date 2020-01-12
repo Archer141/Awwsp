@@ -362,6 +362,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\NotificationShowVM.cs" />
+    <Compile Include="ViewModels\PlayersVM.cs" />
     <Compile Include="ViewModels\TrophyCreateVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -829,7 +830,6 @@
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\Child\AcceptApplication.cshtml" />
     <Content Include="Views\Shared\Navs\_Nav.cshtml" />
     <Content Include="Views\Parent\Index.cshtml" />
     <Content Include="Views\Shared\Layouts\_LayoutParent.cshtml" />
@@ -861,6 +861,8 @@
     <Content Include="Views\Shared\Navs\_ParentSideBar.cshtml" />
     <Content Include="Views\Parent\Food.cshtml" />
     <Content Include="Views\Parent\Training.cshtml" />
+    <Content Include="Views\Coach\AcceptRegistration.cshtml" />
+    <Content Include="Views\Coach\Players.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

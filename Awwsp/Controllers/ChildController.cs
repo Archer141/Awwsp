@@ -28,18 +28,10 @@ namespace Awwsp.Controllers
         // GET: Children partial view index
         public ActionResult Index()
         {
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_IndexChildren", repository.GetChildrenAll(GetUserID()));
-            }
-            else return View(repository.GetChildrenAll());
+            return View(repository.GetChildrenAll(GetUserID()));
         }
 
-        public ActionResult ChildrenList()
-        {
-            return View(repository.GetChildrenAll());
-        }
-
+   
         // GET: Children/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -120,6 +112,7 @@ namespace Awwsp.Controllers
 
         // POST: Children/Edit/5
         [HttpPost]
+
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ChildID,ChildFirstName,ChildLastName,DateOfBirth,PasswordHash,IsActive,UserID,AgeGroupID")] Child child)
         {
@@ -183,7 +176,6 @@ namespace Awwsp.Controllers
                     {
                         ModelState.AddModelError(" ", "Wait for activation");
                         loginVM.Error = "Wait for activation";
-
                         return View(loginVM);
                     }
 
@@ -208,33 +200,8 @@ namespace Awwsp.Controllers
             return RedirectToAction("Index", "Home");
 
         }
-        [Authorize(Roles = "Admin,HeadCoach,Coach")]
-        public ActionResult AcceptApplication()
-        {
-            //int page = 1,string sort = "ChildFirstName",string sortDir = "asc",string search = ""
-            //{
-            //    int pageSize = 10;
-            //    int totalRecord = 0;
-
-            //    if (page < 1) page = 1;
-
-            //    int skip = (page * pageSize) - pageSize;
-            //    var data = repository.GetChildren(search,sort,sortDir,skip,pageSize,out totalRecord);
-            //    ViewBag.TotalRows = totalRecord;
-            var listToAccept = repository.GetChildrenAll().Where(x => x.IsActive == false).Where(x => x.IsActive == false);
-            return View(listToAccept);
-        }
-        [Authorize(Roles = "Admin,HeadCoach,Coach")]
-
-        [HttpPost]
-        public ActionResult AcceptApplication(IEnumerable<Child> children)
-        {
-            foreach (var item in children)
-            {
-                repository.UpdateChild(item);
-            }
-            return View();
-        }
+    
+      
 
         public string GetUserID()
         {

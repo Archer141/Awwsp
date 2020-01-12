@@ -1,0 +1,26 @@
+﻿@model Awwsp.ViewModels.AcceptApplicationVM
+@{
+    ViewBag.Title = "AcceptRegistration";
+}
+
+<h2>AcceptRegistration</h2>
+
+<div class="container">
+    @using (Html.BeginForm("AcceptRegistration", "Coach"))
+    {
+        foreach (var item in Model.PlayersToRegister)
+        {
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           name="SelectedPlayers"
+                           value="@item.Value"
+                           @if (Model.SelectedPlayers.Contains(item.Value)) { <text> checked </text>  } /> @item.Text
+                    </label>
+                </div>
+            }
+            <div class="form-group text-center">
+                <input type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+        }
+</div>

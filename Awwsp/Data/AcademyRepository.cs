@@ -87,26 +87,24 @@ namespace Awwsp.Data
             return dbContext.Trophies.Include(x=>x.Photo).Where(z=>z.TrophyID==id).FirstOrDefault();
         }
 
-
-
-
-
-
-
         public IList<AgeGroup> GetAgeGroups()
         {
-            var list = dbContext.AgeGroups.ToList();
-            return list;
+            var list = dbContext.AgeGroups.Include("Children").ToListAsync();
+            return list.Result;
         }
 
         public IList<Child> GetChildrenAll()
         {
-            return dbContext.Children.ToListAsync().Result;
+            return dbContext.Children.Include("AgeGroup").ToListAsync().Result;
         }
+        /// <summary>
+        /// Get parent children
+        /// </summary>
+        /// <param name="id">Parent id</param>
+        /// <returns></returns>
         public IList<Child> GetChildrenAll(string id)
         {
-            var list = dbContext.Children.Where(x => x.UserID == id).ToList();
-
+            var list = dbContext.Children.Include("AgeGroup").Where(x => x.UserID == id).ToListAsync().Result;
             return list;
         }
 
