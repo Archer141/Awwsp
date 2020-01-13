@@ -51,6 +51,8 @@ namespace Awwsp.Models
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Trophy> Trophies { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+      
+
 
     }
 

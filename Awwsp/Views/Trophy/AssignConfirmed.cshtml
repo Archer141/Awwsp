@@ -1,0 +1,78 @@
+﻿@model Awwsp.ViewModels.AssignConfirmVM
+@{
+    ViewBag.Title = "AssignConfirmed";
+}
+
+
+<div class="d-flex min-vh-100 flex-column container-fluid">
+    <div class="row  flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        @*<div class="d-none d-sm-block  col-sm-6 col-md-6 bg-coach portlet-container portlet-dropzone p-0">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+
+                </div>
+            </div>*@
+        <div class="col juicy-peach-gradient portlet-container portlet-dropzone bg-transparent p-0">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-slight ">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12 text-center">
+
+
+                            <div class="text-center border border-white p-5">
+                                @Html.AntiForgeryToken()
+
+                                <p class="h4 mb-4 white-text">
+                                    Assign @Model.Trophy.Name to @Model.AgeGroup.Name ?
+                                </p>
+
+                                <div id="square" class="card">
+                                  
+                                    <div class="card-body">
+                                        @if (Model.Trophy.Photo != null)
+                                        {
+                                            var base64 = Convert.ToBase64String(Model.Trophy.Photo.Image);
+                                            var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                                            <div class=" view overlay">
+                                                <img onclick="setID()" src="@imgSrc" class="img-fluid" style=" display: block; object-fit:cover" />
+
+                                                <div class="mask rgba-white-slight"></div>
+
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class=" view overlay">
+                                                <img onclick="setID()" src="~/Content/Images/notfound.png" class="card-img-top" style=" display: block; object-fit:contain" />
+                                                <div class="mask rgba-white-slight"></div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="card-footer">
+                                        @using (Html.BeginForm())
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(model => model.Trophy)
+                                            @Html.HiddenFor(model => model.AgeGroup)
+                                            <button class="btn btn-success btn-block" type="submit" value="Assign to group">Assign to group</button>
+
+                                        }
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

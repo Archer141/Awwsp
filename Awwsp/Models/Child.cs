@@ -35,7 +35,7 @@ namespace Awwsp.Models
         {
             this.Trophies = new HashSet<Trophy>();
         }
-        public virtual ICollection<Trophy> Trophies { get; set; }
+        public ICollection<Trophy> Trophies { get; set; }
         public int? AgeGroupID { get; set; }
         public AgeGroup AgeGroup { get; set; }
         public string FullName { get; set; }

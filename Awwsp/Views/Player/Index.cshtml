@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="d-flex bg-team min-vh-100 flex-column container-fluid">
+    <div class="row flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+
+        <div class="col rgba-black-slight  portlet-container portlet-dropzone bg-transparent p-0">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-strong ">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12 text-center white-text ">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <p class="display-3">Welcome Admin!</p>
+                            }
+                            @if (User.IsInRole("Parent"))
+                            {
+                                <p class="display-3">Welcome Parent!</p>
+                            }
+                            else
+                            {
+                                <p class="display-3">Welcome Player!</p>
+                            }
+                       
+                            <p class="display-4">What do you want to do?</p>
+                            <p class="h3 font-weight-lighter">On the left side you can see menu if not press button in top left corner</p>
+                            <span class="fas fa-arrows-alt-h" style="font-size:20px"></span>
+                     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

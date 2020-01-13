@@ -18,7 +18,7 @@ namespace Awwsp.Models
         {
             this.Children = new HashSet<Child>();
         }
-        public virtual ICollection<Child> Children { get; set; }
+        public ICollection<Child> Children { get; set; }
         public DateTime Date { get; set; }
 
     }

@@ -31,15 +31,15 @@ namespace Awwsp.Controllers
             return View(repository.GetChildrenAll(GetUserID()));
         }
 
-   
+
         // GET: Children/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Child child = await repository.GetChildById(id);
+            Child child = repository.GetChildById(id);
             if (child == null)
             {
                 return HttpNotFound();
@@ -95,13 +95,13 @@ namespace Awwsp.Controllers
         }
 
         // GET: Children/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Child child = await repository.GetChildById(id);
+            Child child = repository.GetChildById(id);
             if (child == null)
             {
                 return HttpNotFound();
@@ -143,9 +143,9 @@ namespace Awwsp.Controllers
         // POST: Children/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Child child = await repository.GetChildById(id);
+            Child child = repository.GetChildById(id);
             repository.DeleteChild(id);
             return RedirectToAction("Index");
         }

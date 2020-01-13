@@ -20,9 +20,9 @@ namespace Awwsp
             );
 
             routes.MapRoute(
-              name: "FromController",
-              url: "{controller}/{action}/{name}",
-              defaults: new { controller = "Home", action = "Index", name = UrlParameter.Optional }
+              name: "Assign",
+              url: "{controller}/{action}/{trophyId}/{ageGroupId}",
+              defaults: new { controller = "Home", action = "Index"}
           );
 
         }

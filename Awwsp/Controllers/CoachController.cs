@@ -258,11 +258,11 @@ namespace Awwsp.Controllers
             {
                 foreach (var item in vM.SelectedPlayers)
                 {
-                    var player = repository.GetChildById(int.Parse(item)).Result;
+                    var player = repository.GetChildById(int.Parse(item));
                     player.IsActive = true;
                     repository.UpdateChild(player);
                 }
-                return View("Players", repository.GetChildrenAll());
+                return RedirectToAction("Players");
             };
             var model = new AcceptApplicationVM() { PlayersToRegister = GetPlayersToRegister(), };
             return View(model);

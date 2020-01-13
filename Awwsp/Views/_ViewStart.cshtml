@@ -6,26 +6,27 @@
     switch (CurrentName)
     {
         case "Parent":
-            Layout = "~/Views/Shared/Layouts/_LayoutParent.cshtml"; break;
+            Layout = "~/Views/Shared/Layouts/_LayoutParent.cshtml";
+            break;
+        case "Player":
+            Layout = "~/Views/Shared/Layouts/_LayoutPlayer.cshtml";
+            break;
+        case "Coach":
+            Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
+            break;
         case "Child":
             Layout = "~/Views/Shared/Layouts/_LayoutParent.cshtml";
             break;
         case "Trophy":
             Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
             break;
-        case "Coach":
-            Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
-            break;
         case "Admin":
             Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
-            break;
-        case "Player":
-            Layout = "~/Views/Shared/Layouts/_LayoutPlayer.cshtml";
             break;
         case "Notification":
             Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
             break;
-             case "AgeGroup":
+        case "AgeGroup":
             Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
             break;
         default:

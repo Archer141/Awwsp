@@ -64,12 +64,12 @@ namespace Awwsp.Data
 
         public AgeGroup GetAgeGropuById(int? id)
         {
-            return dbContext.AgeGroups.Find(id);
+            return dbContext.AgeGroups.Include("Children").Where(x=>x.AgeGroupID==id).FirstOrDefault();
         }
 
-        public Task<Child> GetChildById(int? id)
+        public Child GetChildById(int? id)
         {
-            return dbContext.Children.FindAsync(id);
+            return dbContext.Children.FindAsync(id).Result;
         }
 
         public News GetNewsByID(int? id)
@@ -121,7 +121,7 @@ namespace Awwsp.Data
 
         public IList<Trophy> GetTrophies()
         {
-            return dbContext.Trophies.Include("Photo").ToListAsync().Result;
+            return dbContext.Trophies.Include("Photo").Include("Children").ToListAsync().Result;
         }
 
         public void DeleteAgeGroup(int? id)
@@ -146,7 +146,7 @@ namespace Awwsp.Data
 
         public void DeleteChild(int? id)
         {
-            dbContext.Children.Remove(GetChildById(id).Result);
+            dbContext.Children.Remove(GetChildById(id));
             dbContext.SaveChangesAsync();
         }
 

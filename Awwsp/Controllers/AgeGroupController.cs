@@ -23,10 +23,7 @@ namespace Awwsp.Controllers
         public ActionResult Index()
         {
             var list = repository.GetAgeGroups();
-            if (list != null)
-            {
-                return View(list);
-            }
+         
             return View(list);
         }
 

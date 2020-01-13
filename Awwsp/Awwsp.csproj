@@ -351,6 +351,7 @@
     <Compile Include="Models\AgeGroup.cs" />
     <Compile Include="Models\Child.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="ViewModels\AssignVm.cs" />
     <Compile Include="ViewModels\ChangeRoleVM.cs" />
     <Compile Include="ViewModels\ChildLoginVM.cs" />
     <Compile Include="ViewModels\ChildCreateVM.cs" />
@@ -863,12 +864,17 @@
     <Content Include="Views\Parent\Training.cshtml" />
     <Content Include="Views\Coach\AcceptRegistration.cshtml" />
     <Content Include="Views\Coach\Players.cshtml" />
+    <Content Include="Views\Trophy\Assign.cshtml" />
+    <Content Include="Views\Trophy\AssignConfirmed.cshtml" />
+    <Content Include="Views\Player\Index.cshtml" />
+    <Content Include="Views\Player\YourTrophies.cshtml" />
+    <Content Include="Views\Shared\Navs\_PlayerSideBar.cshtml" />
+    <Content Include="Views\Shared\Layouts\_LayoutPlayer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Client Scripts\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\Player\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

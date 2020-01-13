@@ -19,7 +19,7 @@ namespace Awwsp.Data
         IList<Trophy> GetTrophies();
         IList<Notification>  GetNotifications();
 
-        Task <Child> GetChildById(int? id);
+        Child GetChildById(int? id);
         News GetNewsByID(int? id);
         Photo GetPhotoById(int? id);
         Trophy GetTrophyById(int? id);

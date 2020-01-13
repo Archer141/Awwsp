@@ -90,27 +90,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
                     <ul class="navbar-nav">
                         <li class="nav-item  ">
-                            @Html.ActionLink("Aktualności", "Index", "News", null, new { @class = "nav-link" })
+                            @Html.ActionLink("News", "Index", "News", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item ">
-                            @Html.ActionLink("Kalendarz", "Index", "Photo", null, new { @class = "nav-link" })
-                        </li>
-
-                        <li class="nav-item ">
-                            @Html.ActionLink("Rodzic", "Index", "Parent", null, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item ">
-                            @Html.ActionLink("Trener", "Index", "Coach", null, new { @class = "nav-link " })
-                        </li>
-                        <li class="nav-item ">
-                            @Html.ActionLink("Zawodnik", "Index", "Child", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Callendar", "Index", "Photo", null, new { @class = "nav-link" })
                         </li>
 
                         <li class="nav-item ">
-                            @Html.ActionLink("Galeria", "Index", "Photo", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Parent", "Index", "Parent", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item ">
-                            @Html.ActionLink("Kontakt", "Contact", "Home", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Coach", "Index", "Coach", null, new { @class = "nav-link " })
+                        </li>
+                        <li class="nav-item ">
+                            @Html.ActionLink("Player", "Index", "Player", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item ">
+                            @Html.ActionLink("Gallery", "Index", "Photo", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item ">
+                            @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
                         </li>
                     </ul>
                     @Html.Partial("_LoginPartial")

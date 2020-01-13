@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Awwsp.Models;
 using Awwsp.Data;
+using Awwsp.ViewModels;
 
 namespace Awwsp.Controllers
 {
@@ -136,6 +137,47 @@ namespace Awwsp.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult Assign(int id)
+        {
+            Trophy trophy = academyRepository.GetTrophyById(id);
+
+            return View(new AssignVm { AgeGroups = academyRepository.GetAgeGroups().ToList(), Trophy = trophy });
+        }
+
+
+
+        [Route("Assign")]
+        public ActionResult AssignConfirmed(int? trophyId, int? ageGroupId)
+        {
+            if (trophyId==null||ageGroupId==null)
+            {
+                return HttpNotFound();
+            }
+            return View(new AssignConfirmVM
+            {
+                Trophy = academyRepository.GetTrophyById(trophyId),
+                AgeGroup = academyRepository.GetAgeGropuById(ageGroupId)
+            });
+        }
+        [HttpPost, ActionName("AssignConfirmed")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AssignConfirmedd(int trophyId, int ageGroupId)
+        {
+            var trophy = academyRepository.GetTrophyById(trophyId);
+            var  ageGroup = academyRepository.GetAgeGropuById(ageGroupId);
+
+            foreach (var item in academyRepository.GetChildrenAll().Where(x=>x.IsActive==true).ToList())
+            {
+                item.Trophies.Add(trophy);
+                trophy.Children.Add(item);
+            }
+            db.SaveChanges();
+
+            var trophy2 = academyRepository.GetTrophyById(trophyId);
+            
+            return RedirectToAction("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
