@@ -4,7 +4,6 @@
     ViewBag.Title = "Assign";
 }
 
-<h2>Assign</h2>
 <div class="container-fluid">
     <div class="mt-2">
         <p class="h2">Assign trophy @Model.Trophy.Name</p>
@@ -29,8 +28,28 @@
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td>
-                            <div class="btn-group-sm flex-center">
-                                @Html.ActionLink("Assign", "AssignConfirmed", new { trophyId = Model.Trophy.TrophyID ,ageGroupId = item.AgeGroupID }, new { @class = "btn btn-warning m-1" })
+                            <div class="btn-group-sm  flex-center">
+                                @if (item.Children != null)
+                                {
+                                    if (Model.Trophy.Children.Contains(item.Children.FirstOrDefault()))
+                                    {
+
+                                        @Html.ActionLink("Assign", "AssignConfirmed", new { trophyId = Model.Trophy.TrophyID, ageGroupId = item.AgeGroupID }, new { @class = "btn disabled btn-warning m-1" })
+
+                                    }
+                                    else
+                                    {
+
+                                        @Html.ActionLink("Assign", "AssignConfirmed", new { trophyId = Model.Trophy.TrophyID, ageGroupId = item.AgeGroupID }, new { @class = "btn btn-warning m-1" })
+
+                                    }
+                                }
+                                else
+                                {
+
+                                    @Html.ActionLink("Assign", "AssignConfirmed", new { trophyId = Model.Trophy.TrophyID, ageGroupId = item.AgeGroupID }, new { @class = "btn btn-warning m-1" })
+
+                                }
                             </div>
                         </td>
                     </tr>

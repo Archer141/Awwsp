@@ -17,8 +17,8 @@ namespace Awwsp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new BinaryIntellectViewEngine());
+            //ViewEngines.Engines.Clear();
+            //ViewEngines.Engines.Add(new BinaryIntellectViewEngine());
         }
     }
 }

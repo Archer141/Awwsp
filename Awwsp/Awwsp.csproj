@@ -421,6 +421,7 @@
     <Content Include="Content\dist\img\user6-128x128.jpg" />
     <Content Include="Content\dist\img\user7-128x128.jpg" />
     <Content Include="Content\dist\img\user8-128x128.jpg" />
+    <Content Include="Content\Error.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fontawesome-free\css\all.css" />
@@ -778,7 +779,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\Layouts\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -801,7 +802,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\Navs\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Child\Create.cshtml" />
     <Content Include="Views\Child\Delete.cshtml" />
     <Content Include="Views\Child\Details.cshtml" />
@@ -834,11 +835,11 @@
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\Shared\Navs\_Nav.cshtml" />
+    <Content Include="Views\Shared\_Nav.cshtml" />
     <Content Include="Views\Parent\Index.cshtml" />
-    <Content Include="Views\Shared\Layouts\_LayoutParent.cshtml" />
+    <Content Include="Views\Shared\_LayoutParent.cshtml" />
     <Content Include="Views\Coach\Index.cshtml" />
-    <Content Include="Views\Shared\Layouts\_LayoutCoach.cshtml" />
+    <Content Include="Views\Shared\_LayoutCoach.cshtml" />
     <Content Include="Views\Trophy\Create.cshtml" />
     <Content Include="Views\Trophy\Delete.cshtml" />
     <Content Include="Views\Trophy\Details.cshtml" />
@@ -858,11 +859,11 @@
     <Content Include="Views\Coach\ChangeRole.cshtml" />
     <Content Include="Views\Admin\AllUsers.cshtml" />
     <Content Include="Views\Admin\ChangeRole.cshtml" />
-    <Content Include="Views\Shared\Navs\_CoachSideBar.cshtml" />
+    <Content Include="Views\Shared\_CoachSideBar.cshtml" />
     <Content Include="Scripts\jquery\jquery.min.map" />
     <Content Include="Scripts\jquery\jquery.slim.min.map" />
     <Content Include="Scripts\js\.DS_Store" />
-    <Content Include="Views\Shared\Navs\_ParentSideBar.cshtml" />
+    <Content Include="Views\Shared\_ParentSideBar.cshtml" />
     <Content Include="Views\Parent\Food.cshtml" />
     <Content Include="Views\Parent\Training.cshtml" />
     <Content Include="Views\Coach\AcceptRegistration.cshtml" />
@@ -871,13 +872,15 @@
     <Content Include="Views\Trophy\AssignConfirmed.cshtml" />
     <Content Include="Views\Player\Index.cshtml" />
     <Content Include="Views\Player\YourTrophies.cshtml" />
-    <Content Include="Views\Shared\Navs\_PlayerSideBar.cshtml" />
-    <Content Include="Views\Shared\Layouts\_LayoutPlayer.cshtml" />
+    <Content Include="Views\Shared\_PlayerSideBar.cshtml" />
+    <Content Include="Views\Shared\_LayoutPlayer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Client Scripts\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\Shared\Layouts\" />
+    <Folder Include="Views\Shared\Navs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

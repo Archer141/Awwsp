@@ -169,13 +169,18 @@ namespace Awwsp.Controllers
 
             foreach (var item in academyRepository.GetChildrenAll().Where(x=>x.IsActive==true).ToList())
             {
-                item.Trophies.Add(trophy);
-                trophy.Children.Add(item);
+                if (item.Trophies.Where(x=>x.TrophyID==trophy.TrophyID).Count()!=0&& trophy.Children.Where(x => x.ChildID == item.ChildID).Count() != 0) 
+                {
+                    item.Trophies.Add(trophy); 
+                    trophy.Children.Add(item); 
+                } else
+                {
+                    TempData["Error"] = "Trophy is already assigned";
+                    return RedirectToAction("Index");
+                }
             }
             db.SaveChanges();
 
-            var trophy2 = academyRepository.GetTrophyById(trophyId);
-            
             return RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
