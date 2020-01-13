@@ -19,7 +19,7 @@ namespace Awwsp.Models
         public int MinAge { get; set; }
         [Required(ErrorMessage = "Min age is required")]
         [Range(4, 18, ErrorMessage = "Max age must be grater than 3 and lower than 17")]
-        [LessThan("MinAge", DependentPropertyDisplayName="Min age", ErrorMessage ="Field min age must be lower than max age")]
+        [GreaterThan("MinAge", DependentPropertyDisplayName="Min age", ErrorMessage ="Field min age must be lower than max age")]
         public int MaxAge { get; set; }
         public ICollection<Child> Children { get; set; }
     }

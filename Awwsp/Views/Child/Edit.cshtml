@@ -23,7 +23,7 @@
 
 
 
-                            @using (Html.BeginForm("Create", "Child", FormMethod.Post, new { @class = "text-center border rgba-white-light border-light p-5", role = "form" }))
+                            @using (Html.BeginForm("Edit", "Child", FormMethod.Post, new { @class = "text-center border rgba-white-light border-light p-5", role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
 
@@ -34,12 +34,10 @@
                                     <div class="col">
                                         @Html.EditorFor(model => model.ChildFirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
                                         @Html.ValidationMessageFor(model => model.ChildFirstName, "", new { @class = "white-text" })
-
                                     </div>
                                     <div class="col">
                                         @Html.EditorFor(model => model.ChildLastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
                                         @Html.ValidationMessageFor(model => model.ChildLastName, "", new { @class = "white-text" })
-
                                     </div>
                                 </div>
 
@@ -58,7 +56,7 @@
 
 
 
-                               <div class="flex-center"> <button class="btn btn-info my-4 " type="submit">Register</button>
+                               <div class="flex-center"> <button class="btn btn-info my-4 " type="submit">Edit</button>
                                 @Html.ActionLink("Back to List", "Index",null,new { @class="btn btn-info my-4 "})</div>
                             }
 

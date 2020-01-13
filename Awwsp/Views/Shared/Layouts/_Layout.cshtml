@@ -16,7 +16,7 @@
     <link href="~/Content/MDB-Free_4.11.0/css/addons/datatables.min.css" rel="stylesheet">
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column  h-100">
 
     @*<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
 
@@ -79,7 +79,7 @@
 
     <header>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg bg-info navbar-dark sticky-top scrolling-navbar">
+        <nav class="navbar navbar-expand-lg dusty-grass-gradient navbar-light sticky-top scrolling-navbar">
             <div class="container">
                 <a class="navbar-brand" href="/Home/Index">
                     <strong>AWWSP</strong>
@@ -95,23 +95,29 @@
                         <li class="nav-item ">
                             @Html.ActionLink("Callendar", "Index", "Photo", null, new { @class = "nav-link" })
                         </li>
-
                         <li class="nav-item ">
-                            @Html.ActionLink("Parent", "Index", "Parent", null, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item ">
-                            @Html.ActionLink("Coach", "Index", "Coach", null, new { @class = "nav-link " })
-                        </li>
-                        <li class="nav-item ">
-                            @Html.ActionLink("Player", "Index", "Player", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
                         </li>
 
                         <li class="nav-item ">
                             @Html.ActionLink("Gallery", "Index", "Photo", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item ">
-                            @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
+
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item font-weight-bold ">
+                                @Html.ActionLink("Parent", "Index", "Parent", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item  font-weight-bold">
+                                @Html.ActionLink("Coach", "Index", "Coach", null, new { @class = "nav-link " })
+                            </li>
+                            <li class="nav-item  font-weight-bold">
+                                @Html.ActionLink("Player", "Index", "Player", null, new { @class = "nav-link" })
+                            </li>
+                        }
+
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -120,7 +126,7 @@
     </header>
 
     <main>
-        <div>
+        <div >
             @RenderBody()
         </div>
     </main>

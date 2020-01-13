@@ -6,20 +6,20 @@
 
      <section class="jumbotron text-center">
             <div class="container">
-                <h1>Aktualności</h1>
+                <h1>News</h1>
                 <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis erat ut efficitur bibendum. In tristique mi quis vehicula condimentum. Pellentesque sed ligula diam. In velit tellus, pretium nec ligula in, sagittis mollis ex. Integer aliquet sodales erat, placerat laoreet dui tristique eget. </p>
                 @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
-                {@Html.ActionLink("Dodaj newsa", "Create", null, new { @class = "btn btn-dark m-2" })}
+                {@Html.ActionLink("Add news", "Create", null, new { @class = "btn btn-dark m-2" })}
             </div>
         </section>
         <div class="py-5 bg-light">
             <div class="container">
-                <div class="row">
+                <div class="card-columns">
 
                     @foreach (var item in Model)
                     {
 
-                        <div class="col"><div class="card shadow my-2"  >
+                        <div class="card shadow my-2"  >
                             @{
                                 if (item.Photo != null)
                                 {
@@ -56,16 +56,12 @@
                                             @Html.ActionLink("Edit", "Edit", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-dark mr-1" })
                                         }
 
-                                        @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
-                                        {
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-danger ml-1", })
-                                        }
                                     </div>
                                     <small class="text-muted text-center">@item.Date</small>
                                 </div>
                             </div>
 
-                        </div></div>
+                        </div>
                     }
                 </div>
             </div>

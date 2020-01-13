@@ -173,7 +173,7 @@ namespace Awwsp.Controllers
                 {
                     //Roles.RemoveUserFromRole(changeRoleVm.Email, changeRoleVm.PreviousRoleName);
 
-                    return RedirectToAction("AllCoach");
+                    return RedirectToAction("AllUsers");
                 }
                 //Roles.AddUserToRole(changeRoleVm.Email, changeRoleVm.RoleName);
                 ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");

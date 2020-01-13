@@ -102,7 +102,6 @@ namespace Awwsp.ViewModels
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
         [Required(ErrorMessage = "Password is required")]
-        [StringLength(100, ErrorMessage = "Min. 6 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Podaj hasło")]
         public string Password { get; set; }
