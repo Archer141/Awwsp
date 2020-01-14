@@ -291,6 +291,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AgeGroupController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ChildController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -344,7 +345,12 @@
     <Compile Include="Migrations\202001102030072_displayname.Designer.cs">
       <DependentUpon>202001102030072_displayname.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001140836527_event.cs" />
+    <Compile Include="Migrations\202001140836527_event.Designer.cs">
+      <DependentUpon>202001140836527_event.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="ViewModels\AcceptApplicationVM.cs" />
     <Compile Include="ViewModels\AccountVMs.cs" />
@@ -441,6 +447,100 @@
     <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\LICENSE.txt" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales-all.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales-all.min.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\af.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ar-dz.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ar-kw.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ar-ly.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ar-ma.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ar-sa.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ar-tn.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ar.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\bg.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\bs.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ca.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\cs.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\da.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\de.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\el.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\en-au.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\en-gb.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\en-nz.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\es-us.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\es.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\et.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\eu.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\fa.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\fi.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\fr-ca.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\fr-ch.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\fr.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\gl.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\he.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\hi.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\hr.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\hu.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\id.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\is.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\it.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ja.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ka.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\kk.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ko.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\lb.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\lt.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\lv.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\mk.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ms.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\nb.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\nl.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\nn.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\pl.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\pt-br.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\pt.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ro.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\ru.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\sk.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\sl.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\sq.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\sr-cyrl.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\sr.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\sv.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\th.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\tr.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\uk.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\vi.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\zh-cn.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\locales\zh-tw.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\main.css" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\main.esm.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\main.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\main.min.css" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\main.min.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\daygrid\LICENSE.txt" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\daygrid\main.css" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\daygrid\main.esm.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\daygrid\main.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\daygrid\main.min.css" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\daygrid\main.min.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\interaction\LICENSE.txt" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\interaction\main.esm.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\interaction\main.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\interaction\main.min.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\list\LICENSE.txt" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\list\main.css" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\list\main.esm.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\list\main.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\list\main.min.css" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\list\main.min.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\timegrid\LICENSE.txt" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\timegrid\main.css" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\timegrid\main.esm.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\timegrid\main.js" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\timegrid\main.min.css" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\timegrid\main.min.js" />
     <Content Include="Content\Images\action-athletes-ball-blur-274422.jpg" />
     <Content Include="Content\Images\action-athletes-ball-blur-274422copa.jpg" />
     <Content Include="Content\Images\action-ball-field-game-274506.jpg" />
@@ -628,6 +728,16 @@
     <Content Include="Content\css\.DS_Store" />
     <Content Include="Content\css\bootstrap\.DS_Store" />
     <Content Include="Content\css\bootstrap\mixins\.DS_Store" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\package.json" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\core\README.md" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\daygrid\package.json" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\daygrid\README.md" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\timegrid\package.json" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\timegrid\README.md" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\list\package.json" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\list\README.md" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\interaction\package.json" />
+    <Content Include="Content\fullcalendar-4.3.1\packages\interaction\README.md" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\dist\js\adminlte.js" />
     <Content Include="Scripts\dist\js\adminlte.min.js" />
@@ -874,6 +984,7 @@
     <Content Include="Views\Player\YourTrophies.cshtml" />
     <Content Include="Views\Shared\_PlayerSideBar.cshtml" />
     <Content Include="Views\Shared\_LayoutPlayer.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -886,6 +997,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Content\fullcalendar-4.3.1\packages\core\main.d.ts" />
+    <TypeScriptCompile Include="Content\fullcalendar-4.3.1\packages\daygrid\main.d.ts" />
+    <TypeScriptCompile Include="Content\fullcalendar-4.3.1\packages\interaction\main.d.ts" />
+    <TypeScriptCompile Include="Content\fullcalendar-4.3.1\packages\list\main.d.ts" />
+    <TypeScriptCompile Include="Content\fullcalendar-4.3.1\packages\timegrid\main.d.ts" />
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -918,6 +1034,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001102030072_displayname.resx">
       <DependentUpon>202001102030072_displayname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001140836527_event.resx">
+      <DependentUpon>202001140836527_event.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

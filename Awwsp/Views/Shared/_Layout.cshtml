@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/style.css" type="text/css">
     <!-- MDBootstrap Datatables  -->
     <link href="~/Content/MDB-Free_4.11.0/css/addons/datatables.min.css" rel="stylesheet">
+
+  
+ 
 </head>
 
 <body class="d-flex flex-column  h-100">
@@ -126,7 +129,7 @@
     </header>
 
     <main>
-        <div >
+        <div>
             @RenderBody()
         </div>
     </main>
@@ -148,7 +151,9 @@
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/mdb.min.js"></script>
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="~/Content/MDB-Free_4.11.0/js/addons/datatables.min.js"></script>
-
+    @* Calendar *@
+    
+   
     @RenderSection("scripts", required: false)
 
 </body>

@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Callendar";
+}
+<head>
+    @* Calendar *@
+    <link href='~/Content/fullcalendar-4.3.1/packages/core/main.css' rel='stylesheet' />
+    <link href='~/Content/fullcalendar-4.3.1/packages/daygrid/main.css' rel='stylesheet' />
+    <link href='~/Content/fullcalendar-4.3.1/packages/timegrid/main.css' rel='stylesheet' />
+    <link href='~/Content/fullcalendar-4.3.1/packages/list/main.css' rel='stylesheet' />
+
+</head>
+
+<div class="container py-4" id="calendar">
+
+</div>
+
+
+<script src='~/Content/fullcalendar-4.3.1/packages/interaction/main.js'></script>
+<script src='~/Content/fullcalendar-4.3.1/packages/core/main.js'></script>
+<script src='~/Content/fullcalendar-4.3.1/packages/daygrid/main.js'></script>
+
+<script>
+
+    $(function () {
+        GetEventCalendar();
+    });
+
+    function GetEventCalendar() {
+
+        var events = [];
+
+        events.push({
+            'id': 1,
+            'title': 'test tytul',
+            'start':'2020-01-20 00:00:00',
+            'end': '2020-01-21 00:00:00',
+            'allDay':true,
+            'color': '#FFFF00',
+            'textColor':'#000000'
+        });
+        events.push({
+            'id': 2,
+            'title': 'test tytul',
+            'start':'2020-01-24 00:00:00',
+            'end': '2020-01-24 23:59:00',
+            'allDay':true,
+            'color': '#FFFF00',
+            'textColor':'#000000'
+        });
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ['dayGrid'],
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            header: {
+                left: 'prevYear,prev,next,nextYear today',
+                center: 'title',
+                right: 'dayGdirMonth,dayGridWeek,dayGridDay'
+            },
+            navLinks: true,
+            eventLimit: true,
+            eventClick: function (eventObj) {
+            },
+            events:events
+        });
+        calendar.render();
+    }
+
+</script>
+
+@*<script>
+
+    $(document).ready(function () {
+        var events = [];
+        $.ajax({
+            type: "GET",
+            url: "/Calendar/GetEvents",
+            succes: function (data) {
+                $.each(data, function (i, v) {
+                    events.push({
+                        title: v.Subject,
+                        description: v.Description,
+                        start: moment(v.Statr),
+                        end: v.End != null ? moment(v.End) : null,
+                        allDay: v.IsFullDay
+                    });
+
+                })
+                GenerateCalendar(events);
+            },
+            error: function (error) {
+                alert('failed');
+            }
+        })
+        function GenerateCalendar(events) {
+            $('#calendar').fullCalendar('destroy');
+            $('#calendar').fullCalendar({
+                contentHeight: 400,
+                defaultDate: new Date(),
+                timeFormat: 'h(:mm)a',
+                header: {
+                    left: 'prev,next, today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay,agenda'
+                },
+                eventLimit: true,
+                eventColor: '#378006',
+                events: events
+            })
+        }
+
+
+    });
+</script>*@
