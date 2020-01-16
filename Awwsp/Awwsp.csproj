@@ -345,9 +345,9 @@
     <Compile Include="Migrations\202001102030072_displayname.Designer.cs">
       <DependentUpon>202001102030072_displayname.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001140836527_event.cs" />
-    <Compile Include="Migrations\202001140836527_event.Designer.cs">
-      <DependentUpon>202001140836527_event.cs</DependentUpon>
+    <Compile Include="Migrations\202001151746081_event.cs" />
+    <Compile Include="Migrations\202001151746081_event.Designer.cs">
+      <DependentUpon>202001151746081_event.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Event.cs" />
@@ -361,6 +361,7 @@
     <Compile Include="ViewModels\ChangeRoleVM.cs" />
     <Compile Include="ViewModels\ChildLoginVM.cs" />
     <Compile Include="ViewModels\ChildCreateVM.cs" />
+    <Compile Include="ViewModels\EventVM.cs" />
     <Compile Include="ViewModels\HomeVM.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\News.cs" />
@@ -370,6 +371,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\NotificationShowVM.cs" />
     <Compile Include="ViewModels\PlayersVM.cs" />
+    <Compile Include="ViewModels\ResponseVM.cs" />
     <Compile Include="ViewModels\TrophyCreateVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1035,8 +1037,8 @@
     <EmbeddedResource Include="Migrations\202001102030072_displayname.resx">
       <DependentUpon>202001102030072_displayname.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001140836527_event.resx">
-      <DependentUpon>202001140836527_event.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001151746081_event.resx">
+      <DependentUpon>202001151746081_event.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

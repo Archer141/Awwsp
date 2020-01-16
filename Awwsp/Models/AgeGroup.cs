@@ -9,7 +9,7 @@ namespace Awwsp.Models
 {
     public class AgeGroup
     {
-        public int AgeGroupID { get; set; }
+        public int AgeGroupId { get; set; }
         [Required(ErrorMessage ="Name is requuired")]
         [Display(Name="Team")]
         public string Name { get; set; }
@@ -22,5 +22,7 @@ namespace Awwsp.Models
         [GreaterThan("MinAge", DependentPropertyDisplayName="Min age", ErrorMessage ="Field min age must be lower than max age")]
         public int MaxAge { get; set; }
         public ICollection<Child> Children { get; set; }
+        public ICollection<Event> Events { get; set; }
+
     }
 }
