@@ -19,10 +19,65 @@ namespace Awwsp.Controllers
         {
             repository = new AcademyRepository(context);
         }
+        
         // GET: Callendar
         public ActionResult Index()
         {
             return View();
+        }
+        
+        public ActionResult Create()
+        {
+            ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Event eventT)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.AddEvent(eventT);
+            }
+            else
+            {
+                ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
+
+                return View(eventT);
+            }
+
+            return View("Index");
+        }
+
+
+        public ActionResult Edit(int? id)
+        {
+            if (id!=null)
+            {
+            ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
+                return View(repository.GetEventById(id));
+            }
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult Edit(Event eventT)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.UpdateEvent(eventT);
+            }
+            else
+            {
+            ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
+                return View(eventT);
+            }
+            return View("Index");
+        }
+
+        public ActionResult EventList()
+        {
+            return View(repository.GetEvents());
         }
 
         public ActionResult GetEvents()

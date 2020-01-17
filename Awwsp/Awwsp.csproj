@@ -987,6 +987,9 @@
     <Content Include="Views\Shared\_PlayerSideBar.cshtml" />
     <Content Include="Views\Shared\_LayoutPlayer.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Calendar\EventList.cshtml" />
+    <Content Include="Views\Calendar\Create.cshtml" />
+    <Content Include="Views\Calendar\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

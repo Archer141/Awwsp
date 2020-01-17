@@ -141,12 +141,12 @@ namespace Awwsp.Data
 
         public IList<Trophy> GetTrophies()
         {
-            return dbContext.Trophies.Include("Photo").Include("Children").ToListAsync().Result;
+            return dbContext.Trophies.Include("Photo").Include("Children").ToList();
         }
 
         public IList<Event> GetEvents()
         {
-            return dbContext.Events.Include("AgeGroups").ToListAsync().Result;
+            return dbContext.Events.Include("AgeGroup").ToList();
         }
 
 
