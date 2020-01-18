@@ -18,6 +18,7 @@ namespace Awwsp.Data
         IList<Photo> GetPhotos();
         IList<Trophy> GetTrophies();
         IList<Notification>  GetNotifications();
+        IList<Event>  GetEvents();
 
         Child GetChildById(int? id);
         News GetNewsByID(int? id);
@@ -25,6 +26,7 @@ namespace Awwsp.Data
         Trophy GetTrophyById(int? id);
         AgeGroup GetAgeGropuById(int? id);
         Notification GetNotificationById(int? id);
+        Event GetEventById(int? id);
 
         void AddChild(Child child);
         void AddNews(News news);
@@ -32,6 +34,7 @@ namespace Awwsp.Data
         void AddTrophy(Trophy trophy);
         void AddAgeGroup(AgeGroup ageGroup);
         void AddNotification(Notification notification);
+        void AddEvent(Event @event);
 
         void DeleteChild(int? id);
         void DeleteNews(int? id);
@@ -39,6 +42,7 @@ namespace Awwsp.Data
         void DeleteTrophy(int? id);
         void DeleteAgeGroup(int? id);
         void DeleteNotification(int? id);
+        void DeleteEvent(int? id);
 
         void UpdateChild(Child child);
         void UpdateNews(News news);
@@ -46,6 +50,7 @@ namespace Awwsp.Data
         void UpdateTrophy(Trophy trophy);
         void UpdateAgeGroup(AgeGroup ageGroup);
         void UpdateNotification(Notification notification);
+        void UpdateEvent(Event @event);
 
         string PasswordHash(string value);
     }

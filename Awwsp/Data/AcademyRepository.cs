@@ -58,13 +58,17 @@ namespace Awwsp.Data
             dbContext.Trophies.Add(trophy);
             dbContext.SaveChanges();
         }
-
+        public void AddEvent(Event @event)
+        {
+            dbContext.Events.Add(@event);
+            dbContext.SaveChanges();
+        }
 
 
 
         public AgeGroup GetAgeGropuById(int? id)
         {
-            return dbContext.AgeGroups.Include("Children").Where(x=>x.AgeGroupID==id).FirstOrDefault();
+            return dbContext.AgeGroups.Include("Children").Where(x=>x.AgeGroupId==id).FirstOrDefault();
         }
 
         public Child GetChildById(int? id)
@@ -85,6 +89,23 @@ namespace Awwsp.Data
         public Trophy GetTrophyById(int? id)
         {
             return dbContext.Trophies.Include(x=>x.Photo).Where(z=>z.TrophyID==id).FirstOrDefault();
+        }
+
+        public Event GetEventById(int? id)
+        {
+            return dbContext.Events.Include("AgeGRoup").Where(x=>x.Id==id).FirstOrDefaultAsync().Result;
+        } 
+        public List<Event> GetEventFor(int? id)
+        {
+            if (id!=null)
+            {
+                return dbContext.Events.Include("AgeGroup").Where(x => x.AgeGroupID == id).ToListAsync().Result;
+
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public IList<AgeGroup> GetAgeGroups()
@@ -108,7 +129,6 @@ namespace Awwsp.Data
             return list;
         }
 
-
         public IList<News> GetNews()
         {
             return dbContext.News.Include("Photo").ToListAsync().Result;
@@ -121,8 +141,15 @@ namespace Awwsp.Data
 
         public IList<Trophy> GetTrophies()
         {
-            return dbContext.Trophies.Include("Photo").Include("Children").ToListAsync().Result;
+            return dbContext.Trophies.Include("Photo").Include("Children").ToList();
         }
+
+        public IList<Event> GetEvents()
+        {
+            return dbContext.Events.Include("AgeGroup").ToList();
+        }
+
+
 
         public void DeleteAgeGroup(int? id)
         {
@@ -177,6 +204,11 @@ namespace Awwsp.Data
             dbContext.Trophies.Remove(GetTrophyById(id));
             dbContext.SaveChanges();
         }
+         public void DeleteEvent(int? id)
+        {
+            dbContext.Events.Remove(GetEventById(id));
+            dbContext.SaveChanges();
+        }
 
 
 
@@ -185,7 +217,7 @@ namespace Awwsp.Data
 
         public void UpdateAgeGroup(AgeGroup ageGroup)
         {
-            var aG = GetAgeGropuById(ageGroup.AgeGroupID);
+            var aG = GetAgeGropuById(ageGroup.AgeGroupId);
             aG.MaxAge = ageGroup.MaxAge;
             aG.MinAge = ageGroup.MinAge;
             aG.Name = ageGroup.Name;
@@ -206,8 +238,6 @@ namespace Awwsp.Data
 
         public void UpdatePhoto(Photo photo, HttpPostedFileBase image)
         {
-         
-
             var photoModify = GetPhotoById(photo.PhotoID);
             photoModify.Name = photo.Name;
             photoModify.Date = DateTime.Now;
@@ -229,6 +259,45 @@ namespace Awwsp.Data
             trophyModify.Date = DateTime.Now;
             trophyModify.PhotoID = trophy.PhotoID;
             trophyModify.Name = trophy.Name;
+            dbContext.SaveChanges();
+        }
+        public void UpdateEvent(Event @event)
+        {
+            var eventToModify = GetEventById(@event.Id);
+            eventToModify = @event;
+            dbContext.SaveChanges();
+        }
+
+
+        public IList<Notification> GetNotifications()
+        {
+            return dbContext.Notifications.Include("AgeGroup").ToList();
+        }
+
+        public Notification GetNotificationById(int? id)
+        {
+            return GetNotifications().Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public void AddNotification(Notification notification)
+        {
+            dbContext.Notifications.Add(notification);
+            dbContext.SaveChanges();
+        }
+
+        public void DeleteNotification(int? id)
+        {
+            var notifiTodelete = GetNotificationById(id);
+            dbContext.Notifications.Remove(notifiTodelete);
+            dbContext.SaveChanges();
+        }
+
+        public void UpdateNotification(Notification notification)
+        {
+            var notifyForUpdate = GetNotificationById(notification.Id);
+            notifyForUpdate.AgeGroupId = notification.AgeGroupId;
+            notifyForUpdate.Title = notification.Title;
+            notifyForUpdate.Text = notification.Text;
             dbContext.SaveChanges();
         }
 
@@ -279,39 +348,7 @@ namespace Awwsp.Data
             // GC.SuppressFinalize(this);
         }
 
-        public IList<Notification> GetNotifications()
-        {
-           return dbContext.Notifications.Include("AgeGroup").ToList();
-        }
-
-        public Notification GetNotificationById(int? id)
-        {
-            return GetNotifications().Where(x=>x.Id==id).FirstOrDefault();
-        }
-
-        public void AddNotification(Notification notification)
-        {
-            dbContext.Notifications.Add(notification);
-            dbContext.SaveChanges();
-        }
-
-        public void DeleteNotification(int? id)
-        {
-            var notifiTodelete = GetNotificationById(id);
-            dbContext.Notifications.Remove(notifiTodelete);
-            dbContext.SaveChanges();
-
-        }
-
-        public void UpdateNotification(Notification notification)
-        {
-            var notifyForUpdate = GetNotificationById(notification.Id);
-            notifyForUpdate.AgeGroupId = notification.AgeGroupId;
-            notifyForUpdate.Title = notification.Title;
-            notifyForUpdate.Text = notification.Text;
-            dbContext.SaveChanges();
-
-        }
+      
 
 
         #endregion

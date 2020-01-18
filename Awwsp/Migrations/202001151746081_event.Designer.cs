@@ -13,7 +13,7 @@ namespace Awwsp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202001140836527_event"; }
+            get { return "202001151746081_event"; }
         }
         
         string IMigrationMetadata.Source

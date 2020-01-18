@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,12 +8,31 @@ namespace Awwsp.Models
 {
     public class Event
     {
-        public int EventId { get; set; }
-        public string Subject { get; set; }
-        public string Description { get; set; }
+
+        [Display(Name = "Id")]
+        public int Id { get; set; }
+
+        [Display(Name = "Title")]
+        public string Title { get; set; }
+
+        [Display(Name = "Start")]
+            [DataType(DataType.Date)]
         public DateTime Start { get; set; }
+
+        [Display(Name = "End")]
+            [DataType(DataType.Date)]
         public DateTime End { get; set; }
-        public string ThemeColor { get; set; }
-        public bool IsFullDay { get; set; }
+
+        [Display(Name = "Color")]
+        public string Color { get; set; }
+
+        [Display(Name = "Text color")]
+        public string TextColor { get; set; }
+
+        [Display(Name = "All day")]
+        public bool AllDay { get; set; }
+
+        public int AgeGroupID { get; set; }
+        public AgeGroup AgeGroup { get; set; }
     }
 }

@@ -11,8 +11,9 @@
 
 </head>
 
-<div class="container py-4" id="calendar">
 
+<div class="container py-4" id="calendar">
+    
 </div>
 
 
@@ -28,89 +29,57 @@
 
     function GetEventCalendar() {
 
-        var events = [];
+        $.get('Calendar/GetEvents')
+            .done(function (data) {
+                var IsSuccesfull = data.IsSuccesfull;
 
-        events.push({
-            'id': 1,
-            'title': 'test tytul',
-            'start':'2020-01-20 00:00:00',
-            'end': '2020-01-21 00:00:00',
-            'allDay':true,
-            'color': '#FFFF00',
-            'textColor':'#000000'
-        });
-        events.push({
-            'id': 2,
-            'title': 'test tytul',
-            'start':'2020-01-24 00:00:00',
-            'end': '2020-01-24 23:59:00',
-            'allDay':true,
-            'color': '#FFFF00',
-            'textColor':'#000000'
-        });
-        var calendarEl = document.getElementById('calendar');
+                    var events = [];
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: ['dayGrid'],
-            editable: true,
-            eventLimit: true, // allow "more" link when too many events
-            header: {
-                left: 'prevYear,prev,next,nextYear today',
-                center: 'title',
-                right: 'dayGdirMonth,dayGridWeek,dayGridDay'
-            },
-            navLinks: true,
-            eventLimit: true,
-            eventClick: function (eventObj) {
-            },
-            events:events
-        });
-        calendar.render();
+                    $.each(data.Data, function (idx, elemTask) {
+                           events.push({
+                        'id': elemTask.Id,
+                        'title': elemTask.Title,
+                        'start': elemTask.Start,
+                        'end': elemTask.End,
+                        'allDay': elemTask.AllDay,
+                        'color': elemTask.Color,
+                        'textColor': elemTask.TextColor
+                    });
+                    });
+                  
+
+                 
+                    var calendarEl = document.getElementById('calendar');
+
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        plugins: ['dayGrid'],
+                        editable: true,
+                        eventLimit: true, // allow "more" link when too many events
+                        header: {
+                            left: 'prevYear,prev,next,nextYear today',
+                            center: 'title',
+                            right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                        },
+                        navLinks: true,
+                        eventLimit: true,
+                        eventClick: function (eventObj) {
+                        },
+                        events: events
+                    });
+                    calendar.render();
+            });
     }
 
+
+    function displayValidationErrors(errors) {
+        var $ul = $('<ul>');
+        $ul.empty();
+        $.each(errors, function (idx,errorMessage) {
+            $ul.append('<li>'+errorMessage+'</li>')
+        })
+
+        $('#errors').html($ul);
+        $('#divErrors').show();
+    }
 </script>
 
-@*<script>
-
-    $(document).ready(function () {
-        var events = [];
-        $.ajax({
-            type: "GET",
-            url: "/Calendar/GetEvents",
-            succes: function (data) {
-                $.each(data, function (i, v) {
-                    events.push({
-                        title: v.Subject,
-                        description: v.Description,
-                        start: moment(v.Statr),
-                        end: v.End != null ? moment(v.End) : null,
-                        allDay: v.IsFullDay
-                    });
-
-                })
-                GenerateCalendar(events);
-            },
-            error: function (error) {
-                alert('failed');
-            }
-        })
-        function GenerateCalendar(events) {
-            $('#calendar').fullCalendar('destroy');
-            $('#calendar').fullCalendar({
-                contentHeight: 400,
-                defaultDate: new Date(),
-                timeFormat: 'h(:mm)a',
-                header: {
-                    left: 'prev,next, today',
-                    center: 'title',
-                    right: 'month,basicWeek,basicDay,agenda'
-                },
-                eventLimit: true,
-                eventColor: '#378006',
-                events: events
-            })
-        }
-
-
-    });
-</script>*@

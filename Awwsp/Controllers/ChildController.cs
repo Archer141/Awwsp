@@ -74,7 +74,7 @@ namespace Awwsp.Controllers
                     return View(child);
                 }
                 var AgeGroups = repository.GetAgeGroups();
-                var ageGroupId = AgeGroups.Where(x => x.MinAge <= age && x.MaxAge > age).FirstOrDefault().AgeGroupID;
+                var ageGroupId = AgeGroups.Where(x => x.MinAge <= age && x.MaxAge > age).FirstOrDefault().AgeGroupId;
                 repository.AddChild(new Child
                 {
                     ChildID = child.ChildID,
