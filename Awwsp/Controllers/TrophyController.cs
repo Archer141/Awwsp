@@ -46,7 +46,7 @@ namespace Awwsp.Controllers
         // GET: Trophies/Create
         public ActionResult Create()
         {
-            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos().Where(x=>x.IsTrophy==true).ToList(), "PhotoID", "Name");
+            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
             return View();
         }
 
@@ -150,7 +150,7 @@ namespace Awwsp.Controllers
         [Route("Assign")]
         public ActionResult AssignConfirmed(int? trophyId, int? ageGroupId)
         {
-            if (trophyId==null||ageGroupId==null)
+            if (trophyId == null || ageGroupId == null)
             {
                 return HttpNotFound();
             }
@@ -165,19 +165,29 @@ namespace Awwsp.Controllers
         public ActionResult AssignConfirmedd(int trophyId, int ageGroupId)
         {
             var trophy = academyRepository.GetTrophyById(trophyId);
-            var  ageGroup = academyRepository.GetAgeGropuById(ageGroupId);
+            var ageGroup = academyRepository.GetAgeGropuById(ageGroupId);
 
-            foreach (var item in academyRepository.GetChildrenAll().Where(x=>x.IsActive==true).ToList())
+            foreach (var item in academyRepository.GetChildrenAll().Where(x => x.IsActive == true).ToList())
             {
-                if (item.Trophies.Where(x=>x.TrophyID==trophy.TrophyID).Count()!=0&& trophy.Children.Where(x => x.ChildID == item.ChildID).Count() != 0) 
+                if (item.Trophies.Count() != 0 && trophy.Children.Count() != 0)
                 {
-                    item.Trophies.Add(trophy); 
-                    trophy.Children.Add(item); 
-                } else
-                {
-                    TempData["Error"] = "Trophy is already assigned";
-                    return RedirectToAction("Index");
+                    if (item.Trophies.Where(x => x.TrophyID == trophy.TrophyID).Count() != 0 && trophy.Children.Where(x => x.ChildID == item.ChildID).Count() != 0)
+                    {
+                        item.Trophies.Add(trophy);
+                        trophy.Children.Add(item);
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Trophy is already assigned";
+                        return RedirectToAction("Index");
+                    }
                 }
+                else
+                {
+                    item.Trophies.Add(trophy);
+                    trophy.Children.Add(item);
+                }
+
             }
             db.SaveChanges();
 
