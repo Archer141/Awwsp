@@ -1,0 +1,65 @@
+﻿
+
+@model IEnumerable<Awwsp.Models.Trophy>
+
+@{
+    ViewBag.Title = "YourTrophies";
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+
+@{
+    ViewBag.Title = "YourTrophies";
+}
+
+
+<div class="py-5 winter-neva-gradient color-block d-flex min-vh-100 flex-column container-fluid ">
+    <div class="container  ">
+        <h1 class="text-center h1 black-text">
+            Your Trophies
+        </h1>
+        <hr />
+        <div class="row  ">
+            @if (Model.Count() == 0)
+            {
+                <div class="text-center">
+                    <div class="d-flex d-block"> <p class="h4 text-center ">Unfortunately you don't have any trophies. </p></div>
+                    <div class=" d-flex d-block">
+                        <p class="card-title text-center   h5">
+                            Train with <span class="h5 ">commitment with the team </span>and you will definitely win new trophies &#128578
+                        </p>
+                    </div>
+                </div>
+            }
+            @foreach (var item in Model)
+            {
+                <div class="col my-2">
+                    <div class="card shadow ">
+
+                        <div class="card-header flex-center ">
+                            <p class="card-title h4">@item.Name</p>
+
+                        </div>
+                        <div class="card-body mb-2">
+
+
+                            @if (item.Photo != null)
+                            {
+                                var base64 = Convert.ToBase64String(item.Photo.Image);
+                                var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                                <div class="view overlay">
+                                    <img onclick="setID()" src="@imgSrc" style="height:250px; width: 100%; display: block; object-fit:cover" />
+                                    <a href="/Trophy/Details/@item.TrophyID">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                            }
+
+                        </div>
+              
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

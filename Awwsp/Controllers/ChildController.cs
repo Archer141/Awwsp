@@ -65,8 +65,8 @@ namespace Awwsp.Controllers
             if (ModelState.IsValid)
             {
                 var data = DateTime.Now - child.DateOfBirth;
-                var age = data.TotalDays / 360;
-                if (age > 18 || age < 3)
+                var age = data.TotalDays / 365;
+                if (age >= 18 || age <= 3)
                 {
                     ViewBag.AgeGroupID = new SelectList(db.AgeGroups, "AgeGroupID", "Name", child.AgeGroupID);
                //     ModelState.AddModelError("DateOfBirth", "Wiek dziecka jest nie odpowiedni do zapisu w akadami");

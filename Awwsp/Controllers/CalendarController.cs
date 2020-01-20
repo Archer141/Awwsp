@@ -19,13 +19,13 @@ namespace Awwsp.Controllers
         {
             repository = new AcademyRepository(context);
         }
-        
+
         // GET: Callendar
         public ActionResult Index()
         {
             return View();
         }
-        
+
         public ActionResult Create()
         {
             ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
@@ -33,17 +33,53 @@ namespace Awwsp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Event eventT)
+        public ActionResult Create(EventCreateVM eventT)
         {
+           
             if (ModelState.IsValid)
             {
-                repository.AddEvent(eventT);
-                return View("Index");
+                Event @event;
+
+                @event = new Event()
+                {
+                    Id = eventT.Id,
+                    Title = eventT.Title,
+                    Start = eventT.Start,
+                    End = eventT.End,
+                    AllDay = eventT.AllDay,
+                    AgeGroupID = eventT.AgeGroupID,
+                };
+
+                if (eventT.RepetedThroughtWeeks != null)
+                {
+                   
+
+                    for (int i = 0; i <= eventT.RepetedThroughtWeeks; i++)
+                    {
+                        @event = new Event()
+                        {
+                            Id = eventT.Id,
+                            Title = eventT.Title,
+                            Start = eventT.Start.AddDays(i*7),
+                            End = eventT.End.AddDays(i*7),
+                            AllDay = eventT.AllDay,
+                            AgeGroupID = eventT.AgeGroupID,
+                        };
+                        repository.AddEvent(@event);
+                      
+                    }
+                }
+                else
+                {
+                    repository.AddEvent(@event);
+                }
+
+
+                return RedirectToAction("EventList");
             }
             else
             {
                 ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
-
                 return View(eventT);
             }
 
@@ -52,10 +88,27 @@ namespace Awwsp.Controllers
 
         public ActionResult Edit(int? id)
         {
-            if (id!=null)
+            if (id != null)
             {
-            ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
-                return View(repository.GetEventById(id));
+              var eventT = repository.GetEventById(id);
+                if (eventT!=null)
+                {
+
+             
+              EventCreateVM  @event = new EventCreateVM()
+                {
+                    Id = eventT.Id,
+                    Title = eventT.Title,
+                    Start = eventT.Start,
+                    End = eventT.End,
+                    AllDay = eventT.AllDay,
+                    AgeGroupID = eventT.AgeGroupID,
+                };
+                ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
+                return View(@event);
+                }
+                return View();
+
             }
             return View();
 
@@ -69,7 +122,7 @@ namespace Awwsp.Controllers
             }
             else
             {
-            ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
+                ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
                 return View(eventT);
             }
             return View("Index");
@@ -86,7 +139,7 @@ namespace Awwsp.Controllers
             {
                 List<Event> events = new List<Event>();
                 var userId = User.Identity.GetUserId();
-                if (userId != "")
+                if (userId != null)
                 {
                     var children = context.Users.Where(x => x.Id == userId).Select(c => c.Children).FirstOrDefault();
 
@@ -119,15 +172,16 @@ namespace Awwsp.Controllers
                 {
                     Data = listEventVm,
                     IsSuccesful = true
-                },JsonRequestBehavior.AllowGet);
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return Json(new ResponseVM { 
-                    IsSuccesfull = false, 
-                    Errors = new List<string> { ex.Message } 
+                return Json(new ResponseVM
+                {
+                    IsSuccesfull = false,
+                    Errors = new List<string> { ex.Message }
                 }, JsonRequestBehavior.AllowGet);
-                
+
             }
 
         }

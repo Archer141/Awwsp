@@ -13,6 +13,7 @@ using Awwsp.ViewModels;
 
 namespace Awwsp.Controllers
 {
+    [Authorize]
     public class TrophyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -43,6 +44,7 @@ namespace Awwsp.Controllers
             return View(trophy);
         }
 
+        [Authorize(Roles ="Admin,Coach,HeadCoach")]
         // GET: Trophies/Create
         public ActionResult Create()
         {
@@ -54,6 +56,7 @@ namespace Awwsp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles ="Admin,Coach,HeadCoach")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TrophyID,Name,PhotoID")] Trophy trophy, HttpPostedFileBase image1)
         {
@@ -75,6 +78,7 @@ namespace Awwsp.Controllers
         }
 
         // GET: Trophies/Edit/5
+        [Authorize(Roles ="Admin,Coach,HeadCoach")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,6 +99,7 @@ namespace Awwsp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles ="Admin,Coach,HeadCoach")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TrophyID,Name,PhotoID")] Trophy trophy, HttpPostedFileBase image1)
         {
@@ -114,6 +119,7 @@ namespace Awwsp.Controllers
         }
 
         // GET: Trophies/Delete/5
+        [Authorize(Roles ="Admin,Coach,HeadCoach")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -129,6 +135,7 @@ namespace Awwsp.Controllers
         }
 
         // POST: Trophies/Delete/5
+        [Authorize(Roles ="Admin,Coach,HeadCoach")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -138,6 +145,7 @@ namespace Awwsp.Controllers
         }
 
 
+        [Authorize(Roles ="Admin,Coach,HeadCoach")]
         public ActionResult Assign(int id)
         {
             Trophy trophy = academyRepository.GetTrophyById(id);
@@ -147,6 +155,7 @@ namespace Awwsp.Controllers
 
 
 
+        [Authorize(Roles ="Admin,Coach,HeadCoach")]
         [Route("Assign")]
         public ActionResult AssignConfirmed(int? trophyId, int? ageGroupId)
         {
@@ -161,6 +170,7 @@ namespace Awwsp.Controllers
             });
         }
         [HttpPost, ActionName("AssignConfirmed")]
+        [Authorize(Roles ="Admin,Coach,HeadCoach")]
         [ValidateAntiForgeryToken]
         public ActionResult AssignConfirmedd(int trophyId, int ageGroupId)
         {

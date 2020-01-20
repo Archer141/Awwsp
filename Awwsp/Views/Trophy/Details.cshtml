@@ -22,7 +22,7 @@
                                 @Html.AntiForgeryToken()
 
                                 <p class="h4 mb-4 white-text">
-                                   Trophy
+                                    Trophy
                                 </p>
 
                                 <div id="square" class="card">
@@ -50,11 +50,11 @@
                                         }
                                     </div>
                                     <div class="card-footer">
-
-                                        @Html.ActionLink("Edit", "Edit", new { id = Model.TrophyID }, new { @class = "btn btn-info" })
-
-                                        @Html.ActionLink("Delete", "Delete", new { id = Model.TrophyID }, new { @class = "btn btn-danger" })
-
+                                        @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach") || User.IsInRole("HeadCoach"))
+                                        {
+                                            @Html.ActionLink("Edit", "Edit", new { id = Model.TrophyID }, new { @class = "btn btn-info" })
+                                            @Html.ActionLink("Delete", "Delete", new { id = Model.TrophyID }, new { @class = "btn btn-danger" })
+                                        }
                                     </div>
                                 </div>
 

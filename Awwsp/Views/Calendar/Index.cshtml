@@ -28,7 +28,7 @@
 
     function GetEventCalendar() {
 
-        $.get('Calendar/GetEvents')
+        $.get('/Calendar/GetEvents')
             .done(function (data) {
                 var IsSuccesfull = data.IsSuccesfull;
 

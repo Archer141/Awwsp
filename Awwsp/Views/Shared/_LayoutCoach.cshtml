@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     @* MDB Bootstrap *@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" type="text/css">
     <link rel="stylesheet" href="~/Content/MDB-Free_4.11.0/css/bootstrap.min.css" type="text/css">
@@ -53,7 +56,7 @@
         <footer class="main-footer">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
-               
+
             </div>
             <!-- Default to the left -->
             <strong>Copyright &copy; 2018-@DateTime.Now.Year Adrian Piaścik AWWSP .</strong> All rights reserved.
@@ -61,9 +64,11 @@
     </div>
     <!-- ./wrapper -->
 
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
     <script src="~/Content/MDB-Free_4.11.0/js/addons/datatables.min.js"></script>
- 
+
 </body>
 </html>
 

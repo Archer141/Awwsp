@@ -33,29 +33,37 @@
                                 <div class="form-row mb-4">
                                     <div class="col">
                                         @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "white-text" })
-                                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
                                     </div>
                                     <div class="col">
                                         @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "white-text" })
+                                    </div>
+                                </div>
+                                <div class="form-row mb-4">
+                                    <div class="col">
+                                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
+                                    </div>
+                                    <div class="col">
                                         @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
                                     </div>
                                 </div>
+
+
 
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "white-text" })
                                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Password" } })
 
 
-                        <div class="white-text">
-                            @if (Model != null)
-                            {
-                                @Html.ValidationSummary();
-                                @Model.Error
-                            }
+                                <div class="white-text">
+                                    @if (Model != null)
+                                    {
+                                        @Html.ValidationSummary();
+                                        @Model.Error
+                                    }
 
-                        </div>
-   
+                                </div>
 
-                                   <button class="btn btn-info my-4 btn-block" type="submit">Log in</button>
+
+                                <button class="btn btn-info my-4 btn-block" type="submit">Log in</button>
                             }
                         </div>
                     </div>

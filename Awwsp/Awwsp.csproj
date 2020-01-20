@@ -361,6 +361,7 @@
     <Compile Include="ViewModels\ChangeRoleVM.cs" />
     <Compile Include="ViewModels\ChildLoginVM.cs" />
     <Compile Include="ViewModels\ChildCreateVM.cs" />
+    <Compile Include="ViewModels\EventCreateVM.cs" />
     <Compile Include="ViewModels\EventVM.cs" />
     <Compile Include="ViewModels\HomeVM.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
@@ -553,6 +554,7 @@
     <Content Include="Content\Images\evening-field-football-field-goal-399187.jpg" />
     <Content Include="Content\Images\field-stadium-soccer-argentina-61143.jpg" />
     <Content Include="Content\Images\Food\abundance-berries-blueberries-close-up-1153655.jpg" />
+    <Content Include="Content\Images\Food\broccoli-vegetable-food-healthy-47347.jpeg" />
     <Content Include="Content\Images\Food\brown-white-and-orange-round-food-on-table-top-41967.jpg" />
     <Content Include="Content\Images\Food\close-up-photo-of-green-leafed-plants-1213859.jpg" />
     <Content Include="Content\Images\Food\closes-up-photo-of-macaroni-1437267.jpg" />
@@ -568,6 +570,13 @@
     <Content Include="Content\Images\sign-pen-business-document-48148.jpg" />
     <Content Include="Content\Images\sports-field-2935982.jpg" />
     <Content Include="Content\Images\top-view-photo-of-soccer-field-2291006.jpg" />
+    <Content Include="Content\Images\Training\1.jpg" />
+    <Content Include="Content\Images\Training\1539743162.jpg" />
+    <Content Include="Content\Images\Training\EOPp0POWoAEfmuB.png" />
+    <Content Include="Content\Images\Training\exercise.jpg" />
+    <Content Include="Content\Images\Training\FreeVector-Vector-Arrows-Background.jpg" />
+    <Content Include="Content\Images\Training\maxresdefault.jpg" />
+    <Content Include="Content\Images\Training\pexels-photo-262524.jpeg" />
     <Content Include="Content\Images\white-and-black-soccer-ball-on-side-of-green-grass-field-47343.jpg" />
     <Content Include="Content\ImageView.css" />
     <Content Include="Content\Login.css" />
@@ -994,6 +1003,8 @@
     <Content Include="Views\Calendar\EventList.cshtml" />
     <Content Include="Views\Calendar\Create.cshtml" />
     <Content Include="Views\Calendar\Edit.cshtml" />
+    <Content Include="Views\Parent\YourTrophies.cshtml" />
+    <Content Include="Views\Player\Training.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

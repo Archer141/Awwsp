@@ -149,8 +149,6 @@ namespace Awwsp.Data
             return dbContext.Events.Include("AgeGroup").ToList();
         }
 
-
-
         public void DeleteAgeGroup(int? id)
         {
             var children = dbContext.Children.Where(x => x.AgeGroupID == id);

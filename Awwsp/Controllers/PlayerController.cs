@@ -26,6 +26,10 @@ namespace Awwsp.Controllers
         {
             return View();
         }
+        public ActionResult Training()
+        {
+            return View();
+        }
         public ActionResult YourTrophies()
         {
             List<Trophy> list;

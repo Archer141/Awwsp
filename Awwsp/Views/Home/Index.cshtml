@@ -33,7 +33,15 @@
             <div class="carousel-item active">
                 <img class="d-block  h-100 w-100" src="~/Content/Images/action-ball-field-game-274506.jpg" />
                 <div class="mask rgba-black-light card-img-overlay text-white d-flex justify-content-center align-items-end">
-                    <p class="display-4 text-decoration-none"><a class=" " href="Account/Register">Register now</a> and join to our academy!</p>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <p class="display-4"><a class="  font-weight-bolder light-green-text hoverable" href="/Account/Register">Register now</a> and join to our academy!</p>
+                    }
+                    else
+                    {
+                        <p class="display-4">Welcome in the academy!</p>
+                    }
+
                 </div>
             </div>
             <div class="carousel-item">
@@ -118,8 +126,11 @@
                         </p>
                         @*  <p class="font-weight-normal">by <a><strong>@item.</strong></a>, @item.Date</p>*@
 
+                    <div class="d-inline-block d-flex">
                         <a href="/News/Details/@item.NewsID" class="btn btn-success">Read more</a>
 
+                        <p class="ml-auto">@item.Date.ToString("yyyy-MM-dd HH:mm")</p>
+                    </div>
                     </div>
                     <!-- Grid column -->
 

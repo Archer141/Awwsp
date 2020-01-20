@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Awwsp.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Awwsp.Models
+namespace Awwsp.ViewModels
 {
-    public class Event
+    public class EventCreateVM
     {
 
         [Display(Name = "Id")]
@@ -23,15 +24,11 @@ namespace Awwsp.Models
         [DataType(DataType.Date)]
         public DateTime End { get; set; }
 
-        [Display(Name = "Color")]
-        public string Color { get; set; }
-
-        [Display(Name = "Text color")]
-        public string TextColor { get; set; }
-
-        [Display(Name = "All day")]
+        [Display(Name = "All day?")]
         public bool AllDay { get; set; }
-
+        [Display(Name = "Repeated throught")]
+        [Range(1, 52, ErrorMessage = "Max value is 52, min 1")]
+        public int? RepetedThroughtWeeks { get; set; }
         public int AgeGroupID { get; set; }
         public AgeGroup AgeGroup { get; set; }
     }
