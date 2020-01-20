@@ -32,7 +32,7 @@
                                 <p>
                                     @Html.ValidationSummary(true, "", new { @class = "text-white" })
                                 </p>
-                                @Html.HiddenFor(model=>model.AgeGroupID)
+                                @Html.HiddenFor(model=>model.AgeGroupId)
                                 <div class="form-row mb-4">
                                     <div class="col">
                                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "white-text" })

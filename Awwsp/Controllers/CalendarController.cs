@@ -38,6 +38,7 @@ namespace Awwsp.Controllers
             if (ModelState.IsValid)
             {
                 repository.AddEvent(eventT);
+                return View("Index");
             }
             else
             {
@@ -46,7 +47,6 @@ namespace Awwsp.Controllers
                 return View(eventT);
             }
 
-            return View("Index");
         }
 
 

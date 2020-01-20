@@ -375,6 +375,8 @@
     <Compile Include="ViewModels\TrophyCreateVM.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\Contact.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap\mixins\_border-radius.css" />
@@ -725,6 +727,8 @@
     <Content Include="Content\dist\css\alt\adminlte.pages.min.css.map" />
     <Content Include="Content\dist\css\alt\adminlte.plugins.css.map" />
     <Content Include="Content\dist\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\dist\js\adminlte.js.map" />
     <Content Include="Scripts\dist\js\adminlte.min.js.map" />
     <Content Include="Content\css\.DS_Store" />
