@@ -21,7 +21,7 @@
             <p class="h2">Players in academy</p>
             <hr />
         </div>
-        @foreach (var item in Model.AgeGroups)
+        @foreach (var item in Model.AgeGroups.OrderBy(x=>x.MinAge))
         {
             <div class="my-2">
                 <div class="d-flex d-inline-block">

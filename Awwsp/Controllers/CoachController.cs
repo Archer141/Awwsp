@@ -275,6 +275,24 @@ namespace Awwsp.Controllers
         
         }
 
+        public ActionResult AssignToTeams()
+        {
+            foreach (var item in repository.GetChildrenAll())
+            {
+                var data = DateTime.Now - item.DateOfBirth;
+                var age = data.TotalDays / 365;
+
+                var AgeGroups = repository.GetAgeGroups();
+                item.AgeGroupID = AgeGroups.Where(x => x.MinAge <= age && x.MaxAge > age).FirstOrDefault().AgeGroupId;
+
+                repository.UpdateChild(item);
+            }
+
+            return RedirectToAction("Players");
+        }
+
+
+
         private IList<SelectListItem> GetPlayersToRegister()
         {
             var list = new List<SelectListItem>();
@@ -284,7 +302,7 @@ namespace Awwsp.Controllers
             }
             return list;
         }
-
+        
 
         private void AddErrors(IdentityResult result)
         {

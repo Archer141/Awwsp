@@ -61,11 +61,17 @@ namespace Awwsp.Controllers
                     else//lub jeśli zalogowane jest dziecko znajdujemy tylko jedno powiadomienie dla zawodnika
                     {
                         //Zalogowane dziecko
-                        var childLoged = academyRepository.GetChildrenAll().Where(x => x.FullName == User.Identity.Name).FirstOrDefault();
+                        var childLoged = academyRepository.GetChildrenAll().Where(x => x.FullName.ToLower() == User.Identity.Name.ToLower()).FirstOrDefault();
                         var notifiChild = academyRepository.GetNotifications().Where(x => x.AgeGroupId == childLoged.AgeGroupID&&x.ChildId==null).LastOrDefault();
                         var notifiChild2 = academyRepository.GetNotifications().Where(x => x.ChildId == childLoged.ChildID).LastOrDefault();
-                        yourNotifications.Add(notifiChild);
-                        yourNotifications.Add(notifiChild2);
+                        if (notifiChild != null)
+                        {
+                            yourNotifications.Add(notifiChild);
+                        }
+                        if (notifiChild2 != null)
+                        {
+                            yourNotifications.Add(notifiChild2);
+                        }
                     }
                 }
             }

@@ -34,12 +34,12 @@
                                 <p class="h4 mb-4 white-text">Parent or Coach Sign In</p>
                                 <div class="form-row mb-4">
                                     <div class="col">
-                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "red-text" })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "white-text" })
                                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
                                     </div>
                                 </div>
 
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "red-text" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "white-text" })
                                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mb-4", @placeholder = "Password" } })
 
 

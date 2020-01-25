@@ -2,58 +2,56 @@
 @{
     ViewBag.Title = "Contact";
 }
-<head>
-    <link rel="stylesheet" href="~/Content/Contact.css" />
-</head>
-<div class="container d-flex justify-content-center">
-    <div>
-        <h1>Contact</h1>
+
+
+<section class="jumbotron   ">
+    <div class="container">
+        <h1 class="text-center">Contact</h1>
+        <div class="row">
+            <div class="col-md-4 offset-md-3">
+                <p class="lead ">Adress: </p>
+            </div> 
+            <div class="col-md-4">
+                <p class="lead text-muted">Wiejska 18, Bialystok 13-354</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-3 ">
+                <p class="lead  ">Phone Number :</p>
+
+            </div>
+            <div class="col-md-4">
+                <p class="lead  text-muted"> 730 818 124</p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-3 ">
+                <p class="lead  ">Account number</p>
+
+            </div>
+            <div class="col-md-4">
+                <p class="lead  text-muted">4556 8521 8943 5138</p>
+
+            </div>
+        </div>
+        
+
     </div>
-</div>
-<div class="d-flex  flex-column container">
-    <div class="bg-info row flex-fill fill d-flex justify-content-center">
-        <div class="col bg-light">
-            <div class="">
-                <div class="d-flex d-inline">
-                    A
-                </div>
-                <div class="d-flex d-inline">
-                    <address>
-                        One Microsoft Way<br />
-                        Redmond, WA 98052-6399<br />
-                        <abbr title="Phone">P:</abbr>
-                        425.555.0100
-                    </address>
+</section>
 
-                    <address>
-                        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-                        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-                    </address>
-                </div>
-            </div>
-        </div>
-        <div class="col bg-dark">
-            <div class="form-row mb-4">
-                <div class="col">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
-                </div>
-            </div>
-            <div class="form-row mb-4">
-                <div class="col">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
-                </div>
-            </div>
-            <div class="form-row mb-4">
-                <div class="col">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
-                </div>
-            </div>
+<div class="py-5 bg-team bg-teal d-flex align-content-center" style="min-height:50%">
+    <div style="min-height:400px"></div>
+   </div>
 
-        </div>
+<script>
+    function myMap() {
+        var mapProp = {
+            center: new google.maps.LatLng(51.508742, -0.120850),
+            zoom: 5,
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    }
+</script>
 
-</div>
-</div>
-<div class="fa-map-marker text-center min-vh-100">
-    Tu będzie mapa
-</div>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>

@@ -9,11 +9,11 @@
 
 <section class="jumbotron text-center ">
     <div class="container">
-        <h1>Galeria</h1>
+        <h1>Gallery</h1>
         <p class="lead text-muted">This is photo gallery with photos from our trainings </p>
         @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach") || User.IsInRole("Coach"))
         {
-            @Html.ActionLink("Dodaj nowe zdjęcie", "Create", null, new { @class = "btn btn-dark m-2" })
+            @Html.ActionLink("Add new photo", "Create", null, new { @class = "btn btn-dark m-2" })
         }
    
     </div>

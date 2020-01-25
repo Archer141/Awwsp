@@ -20,6 +20,7 @@ namespace Awwsp.Models
 
         [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Date)]
+        [Display(Name ="Date of birth")]
         public DateTime DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Password is required")]

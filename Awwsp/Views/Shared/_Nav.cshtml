@@ -21,7 +21,7 @@
                 @Html.ActionLink("News", "Index", "News", null, new { @class = "nav-link" })
             </li>
             <li class="nav-item ">
-            <a href="/Calendar" class="nav-link">Calendar</a>
+                <a href="/Calendar" class="nav-link">Calendar</a>
             </li>
             <li class="nav-item ">
                 @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
@@ -36,26 +36,31 @@
 
             @if (User.Identity.IsAuthenticated)
             {
-                if (User.IsInRole("Admin") || User.IsInRole("Coach") || User.IsInRole("HeadCoach") || User.IsInRole("Parent"))
+                if (User.IsInRole("Admin") || User.IsInRole("Coach") || User.IsInRole("HeadCoach"))
+                {
+
+                    <li class="nav-item  font-weight-bold">
+                        @Html.ActionLink("Coach", "Index", "Coach", null, new { @class = "nav-link " })
+                    </li>
+                }
+                else
+                {
+                    if (User.IsInRole("Parent"))
+                    {
+                    <li class="nav-item  font-weight-bold">
+                        @Html.ActionLink("Player", "Index", "Player", null, new { @class = "nav-link" })
+                    </li>}
+                }
+                if (User.IsInRole("Parent"))
                 {
                     <li class="nav-item font-weight-bold ">
                         @Html.ActionLink("Parent", "Index", "Parent", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item  font-weight-bold">
-                        @Html.ActionLink("Coach", "Index", "Coach", null, new { @class = "nav-link " })
-                    </li>
-                    <li class="nav-item  font-weight-bold">
-                        @Html.ActionLink("Player", "Index", "Player", null, new { @class = "nav-link" })
-                    </li>
 
-                }
-                else
-                {
                     <li class="nav-item  font-weight-bold">
                         @Html.ActionLink("Player", "Index", "Player", null, new { @class = "nav-link" })
                     </li>
                 }
-
 
             }
 
