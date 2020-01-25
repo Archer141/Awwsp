@@ -349,6 +349,10 @@
     <Compile Include="Migrations\202001151746081_event.Designer.cs">
       <DependentUpon>202001151746081_event.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001221735577_eventChildID.cs" />
+    <Compile Include="Migrations\202001221735577_eventChildID.Designer.cs">
+      <DependentUpon>202001221735577_eventChildID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Notification.cs" />
@@ -566,6 +570,7 @@
     <Content Include="Content\Images\LogoMakr_8LKNHe.png" />
     <Content Include="Content\Images\LogoMakr_9J2xaU.png" />
     <Content Include="Content\Images\notfound.png" />
+    <Content Include="Content\Images\pexels-photo-164686.jpeg" />
     <Content Include="Content\Images\photo-of-a-person-standing-on-football-field-2413089.jpg" />
     <Content Include="Content\Images\sign-pen-business-document-48148.jpg" />
     <Content Include="Content\Images\sports-field-2935982.jpg" />
@@ -1057,6 +1062,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001151746081_event.resx">
       <DependentUpon>202001151746081_event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001221735577_eventChildID.resx">
+      <DependentUpon>202001221735577_eventChildID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

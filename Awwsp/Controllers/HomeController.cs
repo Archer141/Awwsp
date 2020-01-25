@@ -44,10 +44,15 @@ namespace Awwsp.Controllers
                         {
                             foreach (var item in yourChildren)
                             {
-                                var notifi = academyRepository.GetNotifications().Where(x => x.AgeGroupId == item.AgeGroupID).LastOrDefault();
+                                var notifi = academyRepository.GetNotifications().Where(x => x.AgeGroupId == item.AgeGroupID&&x.ChildId==null).LastOrDefault();
+                                var notifi2 = academyRepository.GetNotifications().Where(x => x.ChildId == item.ChildID).LastOrDefault();
                                 if (notifi != null)
                                 {
                                     yourNotifications.Add(notifi);
+                                }
+                                if (notifi2!=null)
+                                {
+                                    yourNotifications.Add(notifi2);
                                 }
                             }
                         }
@@ -57,11 +62,12 @@ namespace Awwsp.Controllers
                     {
                         //Zalogowane dziecko
                         var childLoged = academyRepository.GetChildrenAll().Where(x => x.FullName == User.Identity.Name).FirstOrDefault();
-                        var notifiChild = academyRepository.GetNotifications().Where(x => x.AgeGroupId == childLoged.AgeGroupID).LastOrDefault();
+                        var notifiChild = academyRepository.GetNotifications().Where(x => x.AgeGroupId == childLoged.AgeGroupID&&x.ChildId==null).LastOrDefault();
+                        var notifiChild2 = academyRepository.GetNotifications().Where(x => x.ChildId == childLoged.ChildID).LastOrDefault();
                         yourNotifications.Add(notifiChild);
+                        yourNotifications.Add(notifiChild2);
                     }
                 }
-               
             }
 
             var news = academyRepository.GetNews().Reverse().Take(3).ToList();
@@ -82,7 +88,7 @@ namespace Awwsp.Controllers
             }
             //usunięcie powtórzeń z listy powiadomień
             yourNotifications = yourNotifications.Distinct().ToList();
-            HomeVM homeVm = new HomeVM { NotificationsTop3 = yourNotifications, NewsTop3 = news };
+            HomeVM homeVm = new HomeVM { Notifications = yourNotifications, NewsTop3 = news };
 
             return View(homeVm);
         }

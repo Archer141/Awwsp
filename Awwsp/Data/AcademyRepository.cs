@@ -269,7 +269,7 @@ namespace Awwsp.Data
 
         public IList<Notification> GetNotifications()
         {
-            return dbContext.Notifications.Include("AgeGroup").ToList();
+            return dbContext.Notifications.Include("AgeGroup").Include("Child").ToList();
         }
 
         public Notification GetNotificationById(int? id)

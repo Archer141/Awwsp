@@ -45,10 +45,19 @@ namespace Awwsp.Controllers
         }
         [Authorize(Roles = "Admin,HeadCoach,Coach")]
         // GET: notifications/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.AgeGroupId = new SelectList(db.AgeGroups, "AgeGroupID", "Name");
-            return View();
+            if (id!=null)
+            {
+                ViewBag.AgeGroupId = new SelectList(db.AgeGroups, "AgeGroupID", "Name");
+                return View(new Notification { ChildId = id });
+            }
+            else
+            {
+                ViewBag.AgeGroupId = new SelectList(db.AgeGroups, "AgeGroupID", "Name");
+                return View();
+            }
+           
         }
 
         // POST: notifications/Create
@@ -57,7 +66,7 @@ namespace Awwsp.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin,HeadCoach,Coach")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Text,AgeGroupId")] Notification notification)
+        public ActionResult Create([Bind(Include = "Title,Text,AgeGroupId,ChildId")] Notification notification)
         {
             if (ModelState.IsValid)
             {

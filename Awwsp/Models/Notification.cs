@@ -19,6 +19,12 @@ namespace Awwsp.Models
         [Required]
         [Display(Name = "Team for")]
         public int AgeGroupId { get; set; }
+     
+        [Display(Name = "User")]
+        public int? ChildId { get; set; } 
+
+        [Display(Name = "User")]
+        public Child Child { get; set; }
       
         [Display(Name = "Team for")]
         public AgeGroup AgeGroup { get; set; }

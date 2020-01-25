@@ -9,6 +9,6 @@ namespace Awwsp.ViewModels
     public class HomeVM
     {
         public IEnumerable<News> NewsTop3 { get; set; }
-        public IEnumerable<Notification> NotificationsTop3 { get; set; }
+        public IEnumerable<Notification> Notifications { get; set; }
     }
 }

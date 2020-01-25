@@ -53,9 +53,10 @@
                         </td>
                        
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ChildID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.ChildID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ChildID })
+                            <div class="btn-group-sm flex-center ">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ChildID }, new { @class = "btn btn-dark m-1" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ChildID }, new { @class = "btn btn-danger m-1" })
+                                </div>
                         </td>
                     </tr>
                 }

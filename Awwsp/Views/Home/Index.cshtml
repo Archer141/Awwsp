@@ -6,15 +6,27 @@
 <div class="container pb-2 ">
     <div class="pt-3">
 
-        @foreach (var item in Model.NotificationsTop3)
+        @foreach (var item in Model.Notifications)
         {
+            if (item.ChildId != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show d-flex flex-fill" role="alert">
+                    <strong class="black-text font-weight-bold">@item.Child.FullName:&nbsp;</strong><strong>@item.Title &nbsp;</strong> @item.Text
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info alert-dismissible fade show d-flex flex-fill" role="alert">
+                    <strong class="black-text font-weight-bold">Grupa @item.AgeGroup.Name : &nbsp;</strong><strong>@item.Title &nbsp;</strong> @item.Text
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
 
-            <div class="alert alert-danger alert-dismissible fade show d-flex flex-fill" role="alert">
-                <strong class="black-text font-weight-bold">Grupa @item.AgeGroup.Name : &nbsp;</strong><strong>@item.Title &nbsp;</strong> @item.Text
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
         }
 
     </div>

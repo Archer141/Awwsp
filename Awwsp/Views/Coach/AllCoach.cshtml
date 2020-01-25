@@ -2,11 +2,11 @@
 
 @{
     ViewBag.Title = "AllUsers";
-    Layout = "~/Views/Shared/Layouts/_LayoutCoach.cshtml";
+    Layout = "~/Views/Shared/_LayoutCoach.cshtml";
 }
 <div class="container-fluid">
     <div class="mt-2">
-        <p class="h2">Coaches in academy</p>
+        <p class="h2 text-center">Coaches in academy</p>
         <hr />
     </div>
     <div class="table-responsive-xl table-responsive-sm">
@@ -53,7 +53,6 @@
                         <td>
                             <div class=" btn-group-sm flex-center">
                                 @Html.ActionLink("Change role", "ChangeRole", new { id = item.Id }, new { @class = "btn btn-warning m-1 " })
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info m-1" })
                                 @if (item.UserName != User.Identity.Name)
                                 {
                                     @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger m-1" })

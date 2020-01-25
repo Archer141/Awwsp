@@ -3,24 +3,90 @@
     ViewBag.Title = "AcceptRegistration";
 }
 
-<h2>AcceptRegistration</h2>
 
-<div class="container">
-    @using (Html.BeginForm("AcceptRegistration", "Coach"))
-    {
-        foreach (var item in Model.PlayersToRegister)
-        {
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"
-                           name="SelectedPlayers"
-                           value="@item.Value"
-                           @if (Model.SelectedPlayers.Contains(item.Value)) { <text> checked </text>  } /> @item.Text
-                    </label>
-                </div>
-            }
-            <div class="form-group text-center">
-                <input type="submit" class="btn btn-primary" value="Submit" />
+
+
+<div class="d-flex min-vh-100 flex-column container-fluid">
+    <div class="row bg-light flex-fill fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        <div class="d-none d-sm-block  col-sm-6 col-md-6 bg-list portlet-container portlet-dropzone p-0">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center mask flex-center rgba-black-light ">
+
             </div>
-        }
+        </div>
+        <div class="col-sm-6 col-md-6 bg-info portlet-container portlet-dropzone bg-transparent p-0">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <div class="view flex-center">
+                <div class="container-fluid full-bg-image d-flex align-items-center justify-content-center flex-center mask  rgba-black-light ">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12 ">
+
+
+                            @using (Html.BeginForm("AcceptRegistration", "Coach", FormMethod.Post, new { @class = " rgba-white-slight white-text text-center border border-slight p-5", role = "form" }))
+                            {
+                                <div class="mt-2">
+                                    <p class="h2 text-center">Players awaiting for admisson </p>
+                              
+                                </div>
+
+                                <div class="table-responsive-xl table-responsive-sm">
+                                    <table id="tab" class="table white-text   table-sm" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Full name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.PlayersToRegister)
+                                            {
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <div class="custom-control custom-checkbox">
+
+                                                            <input id="@item.Value"
+                                                                   class="custom-control-input" type="checkbox"
+                                                                   name="SelectedPlayers"
+                                                                   value="@item.Value"
+                                                                   @if (Model.SelectedPlayers.Contains(item.Value)) { <text> checked </text> } />
+                                                            <label class="custom-control-label" for="@item.Value">
+                                                                @item.Text
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                               
+
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                      
+                                    <button type="submit" class="btn btn-block btn-dark">Submit</button>
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+<script>
+        $(document).ready(function () {
+            $('#tab').DataTable(
+                {
+                    "bFilter": false,
+                    "bLengthChange": false,
+                }
+            );
+            $('.dataTables_length').addClass('bs-select');
+        });
+</script>
+
