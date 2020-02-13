@@ -14,20 +14,15 @@ using System.Security.Claims;
 namespace Awwsp.Controllers
 {
     [Authorize]
-    public class NewsController : Controller
+    public class NewsController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private AcademyRepository academyRepository;
-        public NewsController()
-        {
-            academyRepository = new AcademyRepository(db);
-        }
+        
         // GET: News
         [AllowAnonymous]
         public ActionResult Index()
         {
 
-            return View(academyRepository.GetNews().Reverse());
+            return View(repository.GetNews().Reverse());
         }
 
         // GET: News/Details/5
@@ -39,7 +34,7 @@ namespace Awwsp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // News news = await db.News.FindAsync(id);
-            News news = academyRepository.GetNewsByID(id);
+            News news = repository.GetNewsByID(id);
             if (news == null)
             {
                 return HttpNotFound();
@@ -51,7 +46,7 @@ namespace Awwsp.Controllers
         [Authorize(Roles ="Admin,HeadCoach,Coach")]
         public ActionResult Create()
         {
-            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos(), "PhotoID", "Name");
+            ViewBag.PhotoID = new SelectList(repository.GetPhotos(), "PhotoID", "Name");
             return View();
         }
 
@@ -65,11 +60,11 @@ namespace Awwsp.Controllers
             {
                 news.AuthorId = GetUserID();
                 news.Date = DateTime.Now;
-                academyRepository.AddNews(news);
+                repository.AddNews(news);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos(), "PhotoID", "Name", news.PhotoID);
+            ViewBag.PhotoID = new SelectList(repository.GetPhotos(), "PhotoID", "Name", news.PhotoID);
             return View(news);
         }
 
@@ -81,12 +76,12 @@ namespace Awwsp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = academyRepository.GetNewsByID(id);
+            News news = repository.GetNewsByID(id);
             if (news == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos(), "PhotoID", "Name", news.PhotoID);
+            ViewBag.PhotoID = new SelectList(repository.GetPhotos(), "PhotoID", "Name", news.PhotoID);
             return View(news);
         }
 
@@ -102,7 +97,7 @@ namespace Awwsp.Controllers
             {
                 news.AuthorId = GetUserID();
                 news.Date = DateTime.Now;
-                academyRepository.UpdateNews(news);
+                repository.UpdateNews(news);
                 return RedirectToAction("Index");
             }
             ViewBag.PhotoID = new SelectList(db.Photos, "PhotoID", "Name", news.PhotoID);
@@ -117,7 +112,7 @@ namespace Awwsp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = academyRepository.GetNewsByID(id);
+            News news = repository.GetNewsByID(id);
             if (news == null)
             {
                 return HttpNotFound();
@@ -131,7 +126,7 @@ namespace Awwsp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            academyRepository.DeleteNews(id);
+            repository.DeleteNews(id);
             return RedirectToAction("Index");
         }
         public string GetUserID()

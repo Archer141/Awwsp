@@ -10,14 +10,9 @@ using System.Web.Mvc;
 namespace Awwsp.Controllers
 {
     [Authorize]
-    public class PhotoController : Controller
+    public class PhotoController : BaseController
     {
-        AcademyRepository repository;
-        ApplicationDbContext dbContext = new ApplicationDbContext();
-        public PhotoController()
-        {
-            repository = new AcademyRepository(dbContext);
-        }
+       
         // GET: Photo
         public ActionResult Index()
         {

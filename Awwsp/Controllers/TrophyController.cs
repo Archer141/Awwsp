@@ -14,19 +14,14 @@ using Awwsp.ViewModels;
 namespace Awwsp.Controllers
 {
     [Authorize]
-    public class TrophyController : Controller
+    public class TrophyController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private AcademyRepository academyRepository;
-        public TrophyController()
-        {
-            academyRepository = new AcademyRepository(db);
-        }
+        
 
         // GET: Trophies
         public ActionResult Index()
         {
-            return View(academyRepository.GetTrophies());
+            return View(repository.GetTrophies());
         }
 
         // GET: Trophies/Details/5
@@ -36,7 +31,7 @@ namespace Awwsp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trophy trophy = academyRepository.GetTrophyById(id);
+            Trophy trophy = repository.GetTrophyById(id);
             if (trophy == null)
             {
                 return HttpNotFound();
@@ -48,7 +43,7 @@ namespace Awwsp.Controllers
         // GET: Trophies/Create
         public ActionResult Create()
         {
-            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
+            ViewBag.PhotoID = new SelectList(repository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
             return View();
         }
 
@@ -64,15 +59,15 @@ namespace Awwsp.Controllers
             {
                 if (image1 != null)
                 {
-                    academyRepository.AddPhoto(new Photo { Date = DateTime.Now, Name = trophy.Name, IsTrophy = true }, image1);
-                    trophy.PhotoID = academyRepository.GetPhotos().Last().PhotoID;
+                    repository.AddPhoto(new Photo { Date = DateTime.Now, Name = trophy.Name, IsTrophy = true }, image1);
+                    trophy.PhotoID = repository.GetPhotos().Last().PhotoID;
                 }
 
                 trophy.Date = DateTime.Now;
-                academyRepository.AddTrophy(trophy);
+                repository.AddTrophy(trophy);
                 return RedirectToAction("Index");
             }
-            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
+            ViewBag.PhotoID = new SelectList(repository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
 
             return View(trophy);
         }
@@ -85,12 +80,12 @@ namespace Awwsp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trophy trophy = academyRepository.GetTrophyById(id);
+            Trophy trophy = repository.GetTrophyById(id);
             if (trophy == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
+            ViewBag.PhotoID = new SelectList(repository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
 
             return View(trophy);
         }
@@ -107,13 +102,13 @@ namespace Awwsp.Controllers
             {
                 if (image1 != null)
                 {
-                    academyRepository.AddPhoto(new Photo { Date = DateTime.Now, Name = trophy.Name, IsTrophy = true }, image1);
-                    trophy.PhotoID = academyRepository.GetPhotos().Last().PhotoID;
+                    repository.AddPhoto(new Photo { Date = DateTime.Now, Name = trophy.Name, IsTrophy = true }, image1);
+                    trophy.PhotoID = repository.GetPhotos().Last().PhotoID;
                 }
-                academyRepository.UpdateTrophy(trophy);
+                repository.UpdateTrophy(trophy);
                 return RedirectToAction("Index");
             }
-            ViewBag.PhotoID = new SelectList(academyRepository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
+            ViewBag.PhotoID = new SelectList(repository.GetPhotos().Where(x => x.IsTrophy == true).ToList(), "PhotoID", "Name");
 
             return View(trophy);
         }
@@ -126,7 +121,7 @@ namespace Awwsp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trophy trophy = academyRepository.GetTrophyById(id);
+            Trophy trophy = repository.GetTrophyById(id);
             if (trophy == null)
             {
                 return HttpNotFound();
@@ -140,7 +135,7 @@ namespace Awwsp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            academyRepository.DeleteTrophy(id);
+            repository.DeleteTrophy(id);
             return RedirectToAction("Index");
         }
 
@@ -148,9 +143,9 @@ namespace Awwsp.Controllers
         [Authorize(Roles ="Admin,Coach,HeadCoach")]
         public ActionResult Assign(int id)
         {
-            Trophy trophy = academyRepository.GetTrophyById(id);
+            Trophy trophy = repository.GetTrophyById(id);
 
-            return View(new AssignVm { AgeGroups = academyRepository.GetAgeGroups().ToList(), Trophy = trophy });
+            return View(new AssignVm { AgeGroups = repository.GetAgeGroups().ToList(), Trophy = trophy });
         }
 
 
@@ -165,8 +160,8 @@ namespace Awwsp.Controllers
             }
             return View(new AssignConfirmVM
             {
-                Trophy = academyRepository.GetTrophyById(trophyId),
-                AgeGroup = academyRepository.GetAgeGropuById(ageGroupId)
+                Trophy = repository.GetTrophyById(trophyId),
+                AgeGroup = repository.GetAgeGropuById(ageGroupId)
             });
         }
         [HttpPost, ActionName("AssignConfirmed")]
@@ -174,10 +169,10 @@ namespace Awwsp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AssignConfirmedd(int trophyId, int ageGroupId)
         {
-            var trophy = academyRepository.GetTrophyById(trophyId);
-            var ageGroup = academyRepository.GetAgeGropuById(ageGroupId);
+            var trophy = repository.GetTrophyById(trophyId);
+            var ageGroup = repository.GetAgeGropuById(ageGroupId);
 
-            foreach (var item in academyRepository.GetChildrenAll().Where(x => x.IsActive == true).ToList())
+            foreach (var item in repository.GetChildrenAll().Where(x => x.IsActive == true).ToList())
             {
                 if (item.Trophies.Count() != 0 && trophy.Children.Count() != 0)
                 {

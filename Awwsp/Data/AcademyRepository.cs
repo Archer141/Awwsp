@@ -310,6 +310,24 @@ namespace Awwsp.Data
             }
         }
 
+        public bool SetPercived(List<Notification> notifications)
+        {
+            try
+            {
+                foreach (var item in notifications)
+                {
+                    item.Perceived = true;
+                    UpdateNotification(item);
+                }
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+           
+        }
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
@@ -346,7 +364,8 @@ namespace Awwsp.Data
             // GC.SuppressFinalize(this);
         }
 
-      
+  
+
 
 
         #endregion

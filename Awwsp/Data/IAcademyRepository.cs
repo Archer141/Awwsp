@@ -52,6 +52,7 @@ namespace Awwsp.Data
         void UpdateNotification(Notification notification);
         void UpdateEvent(Event @event);
 
+        bool SetPercived(List<Notification> notifications);
         string PasswordHash(string value);
     }
 }

@@ -15,19 +15,12 @@ using System.Web.Security;
 namespace Awwsp.Controllers
 {
     [Authorize(Roles = "Admin,HeadCoach,Coach")]
-    public class CoachController : Controller
+    public class CoachController : BaseController
     {
 
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
-        private ApplicationDbContext dbContext = new ApplicationDbContext();
-        private AcademyRepository repository;
-        private ApplicationDbContext context = new ApplicationDbContext();
-
-        public CoachController()
-        {
-            repository = new AcademyRepository(context);
-        }
+       
         public ApplicationUserManager UserManager
         {
             get
@@ -83,7 +76,7 @@ namespace Awwsp.Controllers
                 roleList.Add(new SelectListItem { Text = item.Name, Value = item.Name });
             }
 
-            ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name");
+            ViewBag.Roles = new SelectList(db.Roles, "Id", "Name");
             return View();
         }
 
@@ -123,7 +116,7 @@ namespace Awwsp.Controllers
                     }
                     else
                     {
-                        ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name", model.RoleName);
+                        ViewBag.Roles = new SelectList(db.Roles, "Id", "Name", model.RoleName);
                     }
                     AddErrors(result);
 
@@ -162,7 +155,7 @@ namespace Awwsp.Controllers
                     roleList.Add(new SelectListItem { Text = item.Name, Value = item.Name });
                 }
 
-                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
+                ViewBag.Roles = new SelectList(db.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
 
                 ChangeRoleVM changeRoleVM = new ChangeRoleVM
                 {
@@ -195,14 +188,14 @@ namespace Awwsp.Controllers
                     return RedirectToAction("AllCoach");
                 }
                 //Roles.AddUserToRole(changeRoleVm.Email, changeRoleVm.RoleName);
-                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
+                ViewBag.Roles = new SelectList(db.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
                 AddErrors(status);
                 AddErrors(status2);
                 return View(changeRoleVm);
             }
             else
             {
-                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
+                ViewBag.Roles = new SelectList(db.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
                 return View(changeRoleVm);
 
             }

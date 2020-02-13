@@ -10,15 +10,10 @@ using System.Web.Mvc;
 
 namespace Awwsp.Controllers
 {
-    public class CalendarController : Controller
+    public class CalendarController : BaseController
     {
 
-        AcademyRepository repository;
-        ApplicationDbContext context = new ApplicationDbContext();
-        public CalendarController()
-        {
-            repository = new AcademyRepository(context);
-        }
+        
 
         // GET: Callendar
         public ActionResult Index()
@@ -28,7 +23,7 @@ namespace Awwsp.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
+            ViewBag.AgeGroupID = new SelectList(db.AgeGroups, "AgeGroupID", "Name");
             return View();
         }
 
@@ -79,7 +74,7 @@ namespace Awwsp.Controllers
             }
             else
             {
-                ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
+                ViewBag.AgeGroupID = new SelectList(db.AgeGroups, "AgeGroupID", "Name");
                 return View(eventT);
             }
 
@@ -104,7 +99,7 @@ namespace Awwsp.Controllers
                     AllDay = eventT.AllDay,
                     AgeGroupID = eventT.AgeGroupID,
                 };
-                ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
+                ViewBag.AgeGroupID = new SelectList(db.AgeGroups, "AgeGroupID", "Name");
                 return View(@event);
                 }
                 return View();
@@ -122,7 +117,7 @@ namespace Awwsp.Controllers
             }
             else
             {
-                ViewBag.AgeGroupID = new SelectList(context.AgeGroups, "AgeGroupID", "Name");
+                ViewBag.AgeGroupID = new SelectList(db.AgeGroups, "AgeGroupID", "Name");
                 return View(eventT);
             }
             return View("Index");
@@ -141,7 +136,7 @@ namespace Awwsp.Controllers
                 var userId = User.Identity.GetUserId();
                 if (userId != null)
                 {
-                    var children = context.Users.Where(x => x.Id == userId).Select(c => c.Children).FirstOrDefault();
+                    var children = db.Users.Where(x => x.Id == userId).Select(c => c.Children).FirstOrDefault();
 
                     foreach (var item in children)
                     {

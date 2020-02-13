@@ -12,24 +12,16 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace Awwsp.Controllers
 {
-    public class HomeController : DefaultController
+    public class HomeController : BaseController
     {
 
-        private AcademyRepository academyRepository;
-        private ApplicationDbContext dbContext;
-
-        public HomeController()
-        {
-            dbContext = new ApplicationDbContext();
-            academyRepository = new AcademyRepository(dbContext);
-        }
         public ActionResult Index()
         {
             List<Notification> yourNotifications = new List<Notification>();
             
             if (User.Identity.IsAuthenticated)
             {
-                if (academyRepository.GetChildrenAll().Where(x=>x.UserID==User.Identity.GetUserId())!=null)
+                if (repository.GetChildrenAll().Where(x=>x.UserID==User.Identity.GetUserId())!=null)
                 {
                     
 
@@ -39,13 +31,13 @@ namespace Awwsp.Controllers
                     if (GetUserID() != "")
                     {
                         //Dzieci zalogowanego użytkownika
-                     var yourChildren = academyRepository.GetChildrenAll().Where(x => x.UserID == GetUserID()).ToList();
+                     var yourChildren = repository.GetChildrenAll().Where(x => x.UserID == GetUserID()).ToList();
                         if (yourChildren.Count != 0)
                         {
                             foreach (var item in yourChildren)
                             {
-                                var notifi = academyRepository.GetNotifications().Where(x => x.AgeGroupId == item.AgeGroupID&&x.ChildId==null).LastOrDefault();
-                                var notifi2 = academyRepository.GetNotifications().Where(x => x.ChildId == item.ChildID).LastOrDefault();
+                                var notifi = repository.GetNotifications().Where(x => x.AgeGroupId == item.AgeGroupID&&x.ChildId==null).LastOrDefault();
+                                var notifi2 = repository.GetNotifications().Where(x => x.ChildId == item.ChildID).LastOrDefault();
                                 if (notifi != null)
                                 {
                                     yourNotifications.Add(notifi);
@@ -61,9 +53,9 @@ namespace Awwsp.Controllers
                     else//lub jeśli zalogowane jest dziecko znajdujemy tylko jedno powiadomienie dla zawodnika
                     {
                         //Zalogowane dziecko
-                        var childLoged = academyRepository.GetChildrenAll().Where(x => x.FullName.ToLower() == User.Identity.Name.ToLower()).FirstOrDefault();
-                        var notifiChild = academyRepository.GetNotifications().Where(x => x.AgeGroupId == childLoged.AgeGroupID&&x.ChildId==null).LastOrDefault();
-                        var notifiChild2 = academyRepository.GetNotifications().Where(x => x.ChildId == childLoged.ChildID).LastOrDefault();
+                        var childLoged = repository.GetChildrenAll().Where(x => x.FullName.ToLower() == User.Identity.Name.ToLower()).FirstOrDefault();
+                        var notifiChild = repository.GetNotifications().Where(x => x.AgeGroupId == childLoged.AgeGroupID&&x.ChildId==null).LastOrDefault();
+                        var notifiChild2 = repository.GetNotifications().Where(x => x.ChildId == childLoged.ChildID).LastOrDefault();
                         if (notifiChild != null)
                         {
                             yourNotifications.Add(notifiChild);
@@ -76,7 +68,7 @@ namespace Awwsp.Controllers
                 }
             }
 
-            var news = academyRepository.GetNews().Reverse().Take(3).ToList();
+            var news = repository.GetNews().Reverse().Take(3).ToList();
 
             foreach (var item in news)
             {
@@ -94,6 +86,9 @@ namespace Awwsp.Controllers
             }
             //usunięcie powtórzeń z listy powiadomień
             yourNotifications = yourNotifications.Distinct().ToList();
+
+            var a = repository.SetPercived(yourNotifications);
+
             HomeVM homeVm = new HomeVM { Notifications = yourNotifications, NewsTop3 = news };
 
             return View(homeVm);

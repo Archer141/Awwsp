@@ -16,15 +16,9 @@ using System.Web.Security;
 namespace Awwsp.Controllers
 {
     [Authorize]
-    public class ChildController : Controller
+    public class ChildController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private static AcademyRepository repository;
-
-        public ChildController()
-        {
-            repository = new AcademyRepository(db);
-        }
+       
         // GET: Children partial view index
         public ActionResult Index()
         {

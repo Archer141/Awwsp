@@ -10,16 +10,10 @@ using System.Web.Mvc;
 namespace Awwsp.Controllers
 {
     [Authorize]
-    public class PlayerController : Controller
+    public class PlayerController : BaseController
     {
 
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private static AcademyRepository repository;
-
-        public PlayerController()
-        {
-            repository = new AcademyRepository(db);
-        }
+       
 
         // GET: Player
         public ActionResult Index()

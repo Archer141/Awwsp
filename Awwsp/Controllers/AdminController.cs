@@ -13,11 +13,10 @@ using System.Web.Mvc;
 namespace Awwsp.Controllers
 {
     [Authorize(Roles ="Admin")]
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
-        private ApplicationDbContext dbContext = new ApplicationDbContext();
 
 
         public ApplicationUserManager UserManager
@@ -144,7 +143,7 @@ namespace Awwsp.Controllers
                     roleList.Add(new SelectListItem { Text = item.Name, Value = item.Name });
                 }
 
-                ViewBag.Roles = new SelectList(dbContext.Roles, "Id", "Name");
+                ViewBag.Roles = new SelectList(db.Roles, "Id", "Name");
 
                 ChangeRoleVM changeRoleVM = new ChangeRoleVM
                 {
@@ -176,13 +175,13 @@ namespace Awwsp.Controllers
                     return RedirectToAction("AllUsers");
                 }
                 //Roles.AddUserToRole(changeRoleVm.Email, changeRoleVm.RoleName);
-                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
+                ViewBag.Roles = new SelectList(db.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
 
                 return View(changeRoleVm);
             }
             else
             {
-                ViewBag.Roles = new SelectList(dbContext.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
+                ViewBag.Roles = new SelectList(db.Roles.Where(x => x.Name != "Admin"), "Id", "Name");
 
                 return View(changeRoleVm);
 

@@ -291,10 +291,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AgeGroupController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ChildController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -1014,6 +1014,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Client Scripts\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Shared\Layouts\" />
     <Folder Include="Views\Shared\Navs\" />

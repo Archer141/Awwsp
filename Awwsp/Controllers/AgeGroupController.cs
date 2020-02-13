@@ -11,14 +11,9 @@ using System.Web.Mvc;
 namespace Awwsp.Controllers
 {
     [Authorize(Roles ="Admin,HeadCoach")]
-    public class AgeGroupController : Controller
+    public class AgeGroupController : BaseController
     {
-        static AcademyRepository repository;
-        static ApplicationDbContext dbContext = new ApplicationDbContext();
-        public AgeGroupController()
-        {
-            repository = new AcademyRepository(dbContext);
-        }
+        
         // GET: AgeGropu
         public ActionResult Index()
         {

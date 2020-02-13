@@ -13,19 +13,13 @@ using Awwsp.Data;
 namespace Awwsp.Controllers
 {
     [Authorize]
-    public class NotificationController : Controller
+    public class NotificationController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private AcademyRepository academyRepository;
-
-        public NotificationController()
-        {
-            academyRepository = new AcademyRepository(db);
-        }
+       
         // GET: notifications
         public ActionResult Index()
         {
-            var notifications = academyRepository.GetNotifications();
+            var notifications = repository.GetNotifications();
             return View(notifications);
         }
 
@@ -36,7 +30,7 @@ namespace Awwsp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Notification notification = academyRepository.GetNotificationById(id);
+            Notification notification = repository.GetNotificationById(id);
             if (notification == null)
             {
                 return HttpNotFound();
@@ -70,7 +64,7 @@ namespace Awwsp.Controllers
         {
             if (ModelState.IsValid)
             {
-                academyRepository.AddNotification(notification);
+                repository.AddNotification(notification);
                 return RedirectToAction("Index");
             }
 
@@ -85,7 +79,7 @@ namespace Awwsp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Notification notification = academyRepository.GetNotificationById(id);
+            Notification notification = repository.GetNotificationById(id);
             if (notification == null)
             {
                 return HttpNotFound();
@@ -104,7 +98,7 @@ namespace Awwsp.Controllers
         {
             if (ModelState.IsValid)
             {
-                academyRepository.UpdateNotification(notification);
+                repository.UpdateNotification(notification);
                 return RedirectToAction("Index");
             }
             ViewBag.AgeGroupId = new SelectList(db.AgeGroups, "AgeGroupID", "Name", notification.AgeGroupId);
@@ -119,7 +113,7 @@ namespace Awwsp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Notification notification = academyRepository.GetNotificationById(id);
+            Notification notification = repository.GetNotificationById(id);
             if (notification == null)
             {
                 return HttpNotFound();
@@ -133,7 +127,7 @@ namespace Awwsp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            academyRepository.DeleteNotification(id);
+            repository.DeleteNotification(id);
             return RedirectToAction("Index");
         }
 

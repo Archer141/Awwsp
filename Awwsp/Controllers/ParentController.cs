@@ -10,15 +10,9 @@ using System.Web.Mvc;
 namespace Awwsp.Controllers
 {
     [Authorize(Roles = "Admin,Parent,Coach,HeadCoach")]
-    public class ParentController : Controller
+    public class ParentController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private static AcademyRepository repository;
-
-        public ParentController()
-        {
-            repository = new AcademyRepository(db);
-        }
+        
         public ActionResult Index()
         {
             return View();
