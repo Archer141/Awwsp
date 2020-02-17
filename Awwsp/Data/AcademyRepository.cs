@@ -88,7 +88,7 @@ namespace Awwsp.Data
 
         public Trophy GetTrophyById(int? id)
         {
-            return dbContext.Trophies.Include(x=>x.Photo).Where(z=>z.TrophyID==id).FirstOrDefault();
+            return dbContext.Trophies.Include(x=>x.Photo).Include(x=>x.Children).Where(z=>z.TrophyID==id).FirstOrDefault();
         }
 
         public Event GetEventById(int? id)
@@ -116,7 +116,7 @@ namespace Awwsp.Data
 
         public IList<Child> GetChildrenAll()
         {
-            return dbContext.Children.Include("AgeGroup").ToListAsync().Result;
+            return dbContext.Children.Include("AgeGroup").Include(x=>x.Trophies).ToListAsync().Result;
         }
         /// <summary>
         /// Get parent children
@@ -169,10 +169,25 @@ namespace Awwsp.Data
             dbContext.SaveChanges();
         }
 
-        public void DeleteChild(int? id)
+        public void DeleteChild(Child child)
         {
-            dbContext.Children.Remove(GetChildById(id));
-            dbContext.SaveChangesAsync();
+            try
+            {
+                var notifi = dbContext.Notifications.Where(x => x.ChildId == child.ChildID).ToList();
+                foreach (var item in notifi)
+                {
+                    dbContext.Notifications.Remove(item);
+                }
+
+                dbContext.Children.Remove(child);
+                dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+          
         }
 
         public void DeleteNews(int? id)

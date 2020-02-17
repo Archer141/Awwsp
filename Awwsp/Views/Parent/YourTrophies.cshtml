@@ -15,7 +15,7 @@
 <div class="py-5 winter-neva-gradient color-block d-flex min-vh-100 flex-column container-fluid ">
     <div class="container  ">
         <h1 class="text-center h1 black-text">
-            Your Trophies
+            Trophies
         </h1>
         <hr />
         <div class="row  ">
@@ -23,11 +23,7 @@
             {
                 <div class="text-center">
                     <div class="d-flex d-block"> <p class="h4 text-center ">Unfortunately you don't have any trophies. </p></div>
-                    <div class=" d-flex d-block">
-                        <p class="card-title text-center   h5">
-                            Train with <span class="h5 ">commitment with the team </span>and you will definitely win new trophies &#128578
-                        </p>
-                    </div>
+                    
                 </div>
             }
             @foreach (var item in Model)
@@ -48,9 +44,9 @@
                                 var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
                                 <div class="view overlay">
                                     <img onclick="setID()" src="@imgSrc" style="height:250px; width: 100%; display: block; object-fit:cover" />
-                                    <a href="/Trophy/Details/@item.TrophyID">
+                                   
                                         <div class="mask rgba-white-slight"></div>
-                                    </a>
+                                  
                                 </div>
                             }
 

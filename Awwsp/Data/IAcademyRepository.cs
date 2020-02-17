@@ -36,7 +36,7 @@ namespace Awwsp.Data
         void AddNotification(Notification notification);
         void AddEvent(Event @event);
 
-        void DeleteChild(int? id);
+        void DeleteChild(Child child);
         void DeleteNews(int? id);
         void DeletePhoto(int? id);
         void DeleteTrophy(int? id);

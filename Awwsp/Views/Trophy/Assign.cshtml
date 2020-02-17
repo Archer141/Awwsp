@@ -4,9 +4,9 @@
     ViewBag.Title = "Assign";
 }
 
-<div class="container-fluid">
+<div class="container">
     <div class="mt-2">
-        <p class="h2">Assign trophy @Model.Trophy.Name</p>
+        <p class="h2 text-center">Assign trophy @Model.Trophy.Name</p>
         <hr />
     </div>
     <div class="table-responsive-xl table-responsive-sm">
@@ -29,27 +29,17 @@
                         </td>
                         <td>
                             <div class="btn-group-sm  flex-center">
-                                @if (item.Children != null)
+
+                                @if (item.Children == null||item.Children.Count() == 0)
                                 {
-                                    if (Model.Trophy.Children.Contains(item.Children.FirstOrDefault()))
-                                    {
+                                    @Html.ActionLink("Assign", "AssignConfirmed", new { trophyId = Model.Trophy.TrophyID, ageGroupId = item.AgeGroupId }, new { @class = "btn disabled btn-warning m-1" })
 
-                                        @Html.ActionLink("Assign", "AssignConfirmed", new { trophyId = Model.Trophy.TrophyID, ageGroupId = item.AgeGroupID }, new { @class = "btn disabled btn-warning m-1" })
-
-                                    }
-                                    else
-                                    {
-
-                                        @Html.ActionLink("Assign", "AssignConfirmed", new { trophyId = Model.Trophy.TrophyID, ageGroupId = item.AgeGroupID }, new { @class = "btn btn-warning m-1" })
-
-                                    }
                                 }
                                 else
-                                {
+                                { @Html.ActionLink("Assign", "AssignConfirmed", new { trophyId = Model.Trophy.TrophyID, ageGroupId = item.AgeGroupId }, new { @class = "btn  btn-warning m-1" })
 
-                                    @Html.ActionLink("Assign", "AssignConfirmed", new { trophyId = Model.Trophy.TrophyID, ageGroupId = item.AgeGroupID }, new { @class = "btn btn-warning m-1" })
+                            }
 
-                                }
                             </div>
                         </td>
                     </tr>

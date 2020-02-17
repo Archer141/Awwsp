@@ -140,7 +140,7 @@ namespace Awwsp.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Child child = repository.GetChildById(id);
-            repository.DeleteChild(id);
+            repository.DeleteChild(child);
             return RedirectToAction("Index");
         }
 

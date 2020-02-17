@@ -109,7 +109,7 @@ namespace Awwsp.Controllers
                         // Send an email with this link
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        await UserManager.SendEmailAsync(user.Id, "Welcome coach, Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                         return RedirectToAction("Index", "Coach");
 
@@ -128,6 +128,10 @@ namespace Awwsp.Controllers
                     if (result.Succeeded)
                     {
                         await UserManager.AddToRoleAsync(user.Id, "Coach");
+                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        await UserManager.SendEmailAsync(user.Id, "Welcome coach, Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
                         return RedirectToAction("Index", "Coach");
                     }
                     AddErrors(result);
@@ -262,7 +266,6 @@ namespace Awwsp.Controllers
         }
 
         public ActionResult Players() {
-
 
             return View(new PlayersVM() { AgeGroups = repository.GetAgeGroups().ToList()});
         

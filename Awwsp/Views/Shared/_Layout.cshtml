@@ -52,18 +52,27 @@
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            if (User.IsInRole("Admin") || User.IsInRole("Coach") || User.IsInRole("HeadCoach") || User.IsInRole("Parent"))
+                            if (User.IsInRole("Admin") || User.IsInRole("Coach") || User.IsInRole("HeadCoach"))
+                            {
+                                <li class="nav-item  font-weight-bold">
+                                    @Html.ActionLink("Coach", "Index", "Coach", null, new { @class = "nav-link " })
+                                </li>
+                                <li class="nav-item font-weight-bold ">
+                                    @Html.ActionLink("Parent", "Index", "Parent", null, new { @class = "nav-link" })
+                                </li>
+
+                                <li class="nav-item  font-weight-bold">
+                                    @Html.ActionLink("Player", "Index", "Player", null, new { @class = "nav-link" })
+                                </li>
+                            }
+                            else if (User.IsInRole("Parent"))
                             {
                                 <li class="nav-item font-weight-bold ">
                                     @Html.ActionLink("Parent", "Index", "Parent", null, new { @class = "nav-link" })
                                 </li>
                                 <li class="nav-item  font-weight-bold">
-                                    @Html.ActionLink("Coach", "Index", "Coach", null, new { @class = "nav-link " })
-                                </li>
-                                <li class="nav-item  font-weight-bold">
                                     @Html.ActionLink("Player", "Index", "Player", null, new { @class = "nav-link" })
                                 </li>
-
                             }
                             else
                             {
@@ -71,8 +80,6 @@
                                     @Html.ActionLink("Player", "Index", "Player", null, new { @class = "nav-link" })
                                 </li>
                             }
-
-
                         }
 
 
@@ -93,7 +100,7 @@
 
     <footer class="footer mt-auto py-3">
         <div class="container">
-            Wszelkie prawa zastrzeżone &copy; @DateTime.Now.Year - Akademia piłkarska Adrian Piaśick
+            All rights reserved &copy; @DateTime.Now.Year - Football Academy Adrian Piaśick
         </div>
     </footer>
 

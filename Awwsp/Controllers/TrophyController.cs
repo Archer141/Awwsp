@@ -170,31 +170,21 @@ namespace Awwsp.Controllers
         public ActionResult AssignConfirmedd(int trophyId, int ageGroupId)
         {
             var trophy = repository.GetTrophyById(trophyId);
-            var ageGroup = repository.GetAgeGropuById(ageGroupId);
-
-            foreach (var item in repository.GetChildrenAll().Where(x => x.IsActive == true).ToList())
+            var agegroup = repository.GetAgeGropuById(trophyId);
+            int numberOfAssigns =0;
+            foreach (var player in repository.GetChildrenAll().Where(x => x.IsActive == true && x.AgeGroupID==ageGroupId).ToList())
             {
-                if (item.Trophies.Count() != 0 && trophy.Children.Count() != 0)
-                {
-                    if (item.Trophies.Where(x => x.TrophyID == trophy.TrophyID).Count() != 0 && trophy.Children.Where(x => x.ChildID == item.ChildID).Count() != 0)
+                
+                    if (player.Trophies.Where(x => x.TrophyID == trophy.TrophyID).Count() == 0)
                     {
-                        item.Trophies.Add(trophy);
-                        trophy.Children.Add(item);
+                        player.Trophies.Add(trophy);
+                    numberOfAssigns++;
                     }
-                    else
-                    {
-                        TempData["Error"] = "Trophy is already assigned";
-                        return RedirectToAction("Index");
-                    }
-                }
-                else
-                {
-                    item.Trophies.Add(trophy);
-                    trophy.Children.Add(item);
-                }
-
+                    
+               
+                db.SaveChanges();
             }
-            db.SaveChanges();
+            TempData["Error"] = "Trophy assigned to " + numberOfAssigns+" players in "+agegroup.Name+".";
 
             return RedirectToAction("Index");
         }

@@ -34,12 +34,13 @@
                                         {
                                             var base64 = Convert.ToBase64String(Model.Photo.Image);
                                             var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
-                                            <div class=" view overlay">
-                                                <img onclick="setID()" src="@imgSrc" class="card-img-top" style=" display: block; object-fit:cover" />
 
-                                                <div class="mask rgba-white-slight"></div>
+                                        <div class=" view overlay">
+                                            <img onclick="setID()" src="@imgSrc" class="card-img-top" style="max-height:390px ; object-fit:contain" />
 
-                                            </div>
+                                            <div class="mask rgba-white-slight"></div>
+
+                                        </div>
                                         }
                                         else
                                         {

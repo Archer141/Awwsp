@@ -29,7 +29,7 @@
                             @using (Html.BeginForm("Login", "Child", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "text-center border border-light p-5", role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
-                                <p class="h4 mb-4 white-text">Parent or Coach Sign In</p>
+                                <p class="h4 mb-4 white-text">Welcome player please sign in</p>
                                 <div class="form-row mb-4">
                                     <div class="col">
                                         @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "white-text" })
