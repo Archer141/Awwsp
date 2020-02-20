@@ -40,7 +40,7 @@ namespace Awwsp.Models
         public int? AgeGroupID { get; set; }
         public AgeGroup AgeGroup { get; set; }
         public string FullName { get; set; }
-  
-        
+        public bool IsSignOut { get; set; }
+
     }
 }

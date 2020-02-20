@@ -122,7 +122,14 @@ namespace Awwsp.Controllers
             }
             return View("Index");
         }
-
+        public ActionResult Delete(int? id)
+        {
+            if (id!=null)
+            {
+                repository.DeleteEvent(id);
+            }
+            return View("EventList");
+        }
         public ActionResult EventList()
         {
             return View(repository.GetEvents());
@@ -130,44 +137,64 @@ namespace Awwsp.Controllers
 
         public ActionResult GetEvents()
         {
-            try
+
+            List<Event> events = new List<Event>();
+
+            if (User.Identity.IsAuthenticated)
             {
-                List<Event> events = new List<Event>();
+
+
                 var userId = User.Identity.GetUserId();
-                if (userId != null)
+                if (User.IsInRole("Coach") || User.IsInRole("HeadCoach") || User.IsInRole("Admin"))
                 {
-                    var children = db.Users.Where(x => x.Id == userId).Select(c => c.Children).FirstOrDefault();
-
-                    foreach (var item in children)
-                    {
-                        events.AddRange(repository.GetEventFor(item.AgeGroupID));
-                    }
-
+                    events = repository.GetEvents();
                 }
                 else
                 {
-                    var name = User.Identity.Name;
-                    var ageGroupID = repository.GetAgeGroups().Where(x => x.Children.Where(a => a.FullName == name).FirstOrDefault().FullName == name).Select(c => c.AgeGroupId).FirstOrDefault();
-                    events = repository.GetEventFor(ageGroupID);
+                    if (userId != null)
+                    {
+                        var children = db.Users.Where(x => x.Id == userId).Select(c => c.Children).FirstOrDefault();
 
+                        foreach (var item in children)
+                        {
+                            events.AddRange(repository.GetEventFor(item.AgeGroupID));
+                        }
+                    }
+                    else
+                    {
+                        var name = User.Identity.Name;
+                        var x = repository.GetAgeGroups();
+                       var player = repository.GetChildrenAll().Where(x => x.FullName == name).FirstOrDefault();
+                        events = repository.GetEventFor(player.AgeGroup.AgeGroupId);
+
+                    }
                 }
+            }
 
-                var listEventVm = events.Select(x => new EventVM
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                    Start = x.Start.ToString("yyyy-MM-dd HH:mm:ss"),
-                    End = x.End.ToString("yyyy-MM-dd HH:mm:ss"),
-                    AllDay = x.AllDay,
-                    Color = x.Color,
-                    TextColor = x.TextColor,
-                }).ToList();
 
-                return Json(new
-                {
-                    Data = listEventVm,
-                    IsSuccesful = true
-                }, JsonRequestBehavior.AllowGet);
+
+
+
+
+            var listEventVm = events.Select(x => new EventVM
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Start = x.Start.ToString("yyyy-MM-dd HH:mm:ss"),
+                End = x.End.ToString("yyyy-MM-dd HH:mm:ss"),
+                AllDay = x.AllDay,
+                Color = x.Color,
+                TextColor = x.TextColor,
+            }).ToList();
+
+            return Json(new
+            {
+                Data = listEventVm,
+                IsSuccesful = true
+            }, JsonRequestBehavior.AllowGet);
+            try
+            {
+               
             }
             catch (Exception ex)
             {

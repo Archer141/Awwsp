@@ -170,7 +170,7 @@ namespace Awwsp.Controllers
         public ActionResult AssignConfirmedd(int trophyId, int ageGroupId)
         {
             var trophy = repository.GetTrophyById(trophyId);
-            var agegroup = repository.GetAgeGropuById(trophyId);
+            var agegroup = repository.GetAgeGropuById(ageGroupId);
             int numberOfAssigns =0;
             foreach (var player in repository.GetChildrenAll().Where(x => x.IsActive == true && x.AgeGroupID==ageGroupId).ToList())
             {
@@ -178,10 +178,9 @@ namespace Awwsp.Controllers
                     if (player.Trophies.Where(x => x.TrophyID == trophy.TrophyID).Count() == 0)
                     {
                         player.Trophies.Add(trophy);
-                    numberOfAssigns++;
+                        numberOfAssigns++;
                     }
                     
-               
                 db.SaveChanges();
             }
             TempData["Error"] = "Trophy assigned to " + numberOfAssigns+" players in "+agegroup.Name+".";

@@ -18,7 +18,7 @@ namespace Awwsp.Data
         IList<Photo> GetPhotos();
         IList<Trophy> GetTrophies();
         IList<Notification>  GetNotifications();
-        IList<Event>  GetEvents();
+        List<Event>  GetEvents();
 
         Child GetChildById(int? id);
         News GetNewsByID(int? id);
@@ -37,6 +37,7 @@ namespace Awwsp.Data
         void AddEvent(Event @event);
 
         void DeleteChild(Child child);
+        void SignOutChild(Child child);
         void DeleteNews(int? id);
         void DeletePhoto(int? id);
         void DeleteTrophy(int? id);

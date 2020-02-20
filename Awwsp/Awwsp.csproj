@@ -357,6 +357,10 @@
     <Compile Include="Migrations\202002161810557_requnews.Designer.cs">
       <DependentUpon>202002161810557_requnews.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002190954092_bool.cs" />
+    <Compile Include="Migrations\202002190954092_bool.Designer.cs">
+      <DependentUpon>202002190954092_bool.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Notification.cs" />
@@ -999,7 +1003,6 @@
     <Content Include="Scripts\js\.DS_Store" />
     <Content Include="Views\Shared\_ParentSideBar.cshtml" />
     <Content Include="Views\Parent\Food.cshtml" />
-    <Content Include="Views\Parent\Training.cshtml" />
     <Content Include="Views\Coach\AcceptRegistration.cshtml" />
     <Content Include="Views\Coach\Players.cshtml" />
     <Content Include="Views\Trophy\Assign.cshtml" />
@@ -1014,6 +1017,8 @@
     <Content Include="Views\Calendar\Edit.cshtml" />
     <Content Include="Views\Parent\YourTrophies.cshtml" />
     <Content Include="Views\Player\Training.cshtml" />
+    <Content Include="Views\Player\Food.cshtml" />
+    <Content Include="Views\Parent\Training.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1073,6 +1078,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002161810557_requnews.resx">
       <DependentUpon>202002161810557_requnews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002190954092_bool.resx">
+      <DependentUpon>202002190954092_bool.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

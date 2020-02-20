@@ -108,10 +108,24 @@ namespace Awwsp.Controllers
         [HttpPost]
 
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ChildID,ChildFirstName,ChildLastName,DateOfBirth,PasswordHash,IsActive,UserID,AgeGroupID")] Child child)
+        public ActionResult Edit([Bind(Include = "ChildFirstName,ChildLastName,DateOfBirth,PasswordHash,IsActive,UserId,FullName,AgeGroupId,ChildID,IsActive,IsSignOut")] Child child)
         {
             if (ModelState.IsValid)
             {
+                var data = DateTime.Now - child.DateOfBirth;
+                var age = data.TotalDays / 365;
+                if (age >= 18 || age <= 3)
+                {
+                    ViewBag.AgeGroupID = new SelectList(db.AgeGroups, "AgeGroupID", "Name", child.AgeGroupID);
+                    //     ModelState.AddModelError("DateOfBirth", "Wiek dziecka jest nie odpowiedni do zapisu w akadami");
+                    ModelState.AddModelError("DateOfBirth", "Unfortunately child age is not appropriate to register in academy");
+                    return View(child);
+                }
+                var AgeGroups = repository.GetAgeGroups();
+                var ageGroupId = AgeGroups.Where(x => x.MinAge <= age && x.MaxAge > age).FirstOrDefault().AgeGroupId;
+                child.AgeGroupID = ageGroupId;
+                child.FullName = child.ChildFirstName + " " + child.ChildLastName;
+                child.PasswordHash = repository.PasswordHash(child.PasswordHash);
                 repository.UpdateChild(child);
                 return RedirectToAction("Index");
             }
@@ -194,8 +208,15 @@ namespace Awwsp.Controllers
             return RedirectToAction("Index", "Home");
 
         }
-    
-      
+
+        [HttpPost]
+        public ActionResult SignOutAcademy(int id) {
+
+            Child child = repository.GetChildById(id);
+            repository.SignOutChild(child);
+            return RedirectToAction("Index"); 
+        }
+       
 
         public string GetUserID()
         {
@@ -211,13 +232,6 @@ namespace Awwsp.Controllers
             }
             return userIdValue;
         }
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+       
     }
 }

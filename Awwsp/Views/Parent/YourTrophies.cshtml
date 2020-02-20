@@ -1,6 +1,8 @@
 ﻿
 
 @model IEnumerable<Awwsp.Models.Trophy>
+@using Microsoft.AspNet.Identity
+
 
 @{
     ViewBag.Title = "YourTrophies";
@@ -23,7 +25,7 @@
             {
                 <div class="text-center">
                     <div class="d-flex d-block"> <p class="h4 text-center ">Unfortunately you don't have any trophies. </p></div>
-                    
+
                 </div>
             }
             @foreach (var item in Model)
@@ -44,14 +46,19 @@
                                 var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
                                 <div class="view overlay">
                                     <img onclick="setID()" src="@imgSrc" style="height:250px; width: 100%; display: block; object-fit:cover" />
-                                   
-                                        <div class="mask rgba-white-slight"></div>
-                                  
+
+                                    <div class="mask rgba-white-slight"></div>
+
                                 </div>
                             }
 
                         </div>
-              
+                        <div class="card-footer">
+                            @foreach (var item2 in item.Children.Where(x => x.UserID == User.Identity.GetUserId()))
+                            {
+                                <p>@item2.FullName</p>
+                            }
+                        </div>
                     </div>
                 </div>
             }

@@ -16,7 +16,7 @@ namespace Awwsp.Controllers
         // GET: Photo
         public ActionResult Index()
         {
-            return View(repository.GetPhotos());
+            return View(repository.GetPhotos().OrderByDescending(x=>x.Date));
         }
 
         // GET: Photo/Details/5

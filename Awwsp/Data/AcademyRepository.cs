@@ -144,7 +144,7 @@ namespace Awwsp.Data
             return dbContext.Trophies.Include("Photo").Include("Children").ToList();
         }
 
-        public IList<Event> GetEvents()
+        public List<Event> GetEvents()
         {
             return dbContext.Events.Include("AgeGroup").ToList();
         }
@@ -222,6 +222,12 @@ namespace Awwsp.Data
             dbContext.Events.Remove(GetEventById(id));
             dbContext.SaveChanges();
         }
+        public void SignOutChild(Child child)
+        {
+            var user = dbContext.Children.FindAsync(child).Result;
+            user.IsSignOut = true;
+            dbContext.SaveChanges();
+        }
 
 
 
@@ -239,7 +245,15 @@ namespace Awwsp.Data
 
         public void UpdateChild(Child child)
         {
-            dbContext.Entry(child).State = EntityState.Modified;
+           var player= GetChildById(child.ChildID);
+            player.AgeGroupID = child.AgeGroupID;
+            player.ChildFirstName = child.ChildFirstName;
+            player.ChildLastName = child.ChildLastName;
+            player.FullName = child.FullName;
+            player.UserID = child.UserID;
+            player.PasswordHash = child.PasswordHash;
+            player.IsSignOut = child.IsSignOut;
+            player.IsActive = child.IsActive;
             dbContext.SaveChanges();
         }
 
@@ -379,7 +393,8 @@ namespace Awwsp.Data
             // GC.SuppressFinalize(this);
         }
 
-  
+        
+
 
 
 
