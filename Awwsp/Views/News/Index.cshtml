@@ -4,66 +4,75 @@
     ViewBag.Title = "Index";
 }
 
-     <section class="jumbotron text-center">
-            <div class="container">
-                <h1>News</h1>
-                <p class="lead text-muted">Welcome to the news section where you can find the latest news from the world of the academy, our achievements, open training announcements and much more.</p>
-                @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
-                {@Html.ActionLink("Add news", "Create", null, new { @class = "btn btn-dark m-2" })}
-            </div>
-        </section>
-        <div class="py-5 bg-light">
-            <div class="container">
-                <div class="card-columns">
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1>News</h1>
+        <p class="lead text-muted">Welcome to the news section where you can find the latest news from the world of the academy, our achievements, open training announcements and much more.</p>
+        @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+        {@Html.ActionLink("Add news", "Create", null, new { @class = "btn btn-dark m-2" })}
+    </div>
+</section>
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
 
-                    @foreach (var item in Model)
-                    {
+            @foreach (var item in Model)
+            {
+            <div class="col-lg-4 my-2">
 
-                        <div class="card shadow my-2"  >
-                            @{
-                                if (item.Photo != null)
-                                {
-                                    var base64 = Convert.ToBase64String(item.Photo.Image);
-                                    var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
-                                    <div class=" view overlay">
-                                        <img onclick="setID()" src="@imgSrc" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
-                                        <a href="/News/Details/@item.NewsID">
-                                            <div class="mask rgba-white-slight"></div>
-                                        </a>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class=" view overlay">
-                                        <img onclick="setID()" src="~/Content/Images/notfound.png" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
-                                        <a href="/News/Details/@item.NewsID">
-                                            <div class="mask rgba-white-slight"></div>
-                                        </a>
-                                    </div>
-                                }
-                            }
-                            <div class="card-body">
-                                <p class="card-title h4">@item.Title</p>
-                                <p class="card-text" style="white-space: pre-line">@item.Text</p>
-                            </div>
+                <div class="card">
+                    <div class="card-header flex-center ">
+                        <p class="card-title h4">@item.Title</p>
 
-                            <div class="card-footer d-flex justify-content-center">
-                             
-                                <div>
-                                    <div class="btn-group ">
-                                        @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
-                                        {
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-dark mr-1" })
-                                        }
+                    </div>
 
-                                    </div>
-                                    <small class="text-muted text-center">@item.Date</small>
+                    <div class="card-body">
+
+                        @{
+                            if (item.Photo != null)
+                            {
+                                var base64 = Convert.ToBase64String(item.Photo.Image);
+                                var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                                <div class=" view overlay">
+                                    <img onclick="setID()" src="@imgSrc" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
+                                    <a href="/News/Details/@item.NewsID">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <div class=" view overlay">
+                                    <img onclick="setID()" src="~/Content/Images/notfound.png" class="card-img-top" style="height: 225px; width: 100%; display: block; object-fit:cover" />
+                                    <a href="/News/Details/@item.NewsID">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                            }
+                        }
 
+                        <p class="card-text" style="white-space: pre-line">@item.Text</p>
+
+
+                    </div>
+                    <div class="card-footer">
+
+                        <div class=" d-block ">
+                            <div class="d-flex justify-content-center btn-group">
+                                @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+                                {
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.NewsID }, new { @class = "btn btn-sm btn-outline-dark mr-1" })
+                                }
+                            </div>
+                        </div><div class="d-block">
+                            <small class=" text-muted text-center">@item.Date</small>
                         </div>
-                    }
+
+                    </div>
                 </div>
             </div>
+            }
         </div>
+    </div>
+</div>
 

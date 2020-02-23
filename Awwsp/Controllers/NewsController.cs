@@ -21,8 +21,22 @@ namespace Awwsp.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            var news = repository.GetNews().Reverse();
+            foreach (var item in news)
+            {
+                if (item.Text.Length > 300)
+                {
+                    item.Text = item.Text.Substring(0, 300);
+                    item.Text = item.Text + "...";
+                }
 
-            return View(repository.GetNews().Reverse());
+                if (item.Title.Length > 20)
+                {
+                    item.Title = item.Title.Substring(0, 20);
+                    item.Title = item.Title + "...";
+                }
+            }
+            return View(news);
         }
 
         // GET: News/Details/5

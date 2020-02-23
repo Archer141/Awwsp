@@ -388,6 +388,10 @@
     <Compile Include="ViewModels\TrophyCreateVM.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\AWWSP_DB.mdf" />
+    <Content Include="App_Data\AWWSP_DB_log.ldf">
+      <DependentUpon>AWWSP_DB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\Contact.css" />
@@ -1019,9 +1023,9 @@
     <Content Include="Views\Player\Training.cshtml" />
     <Content Include="Views\Player\Food.cshtml" />
     <Content Include="Views\Parent\Training.cshtml" />
+    <Content Include="Views\Shared\_NavIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Client Scripts\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Default\" />
