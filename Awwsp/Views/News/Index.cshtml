@@ -7,7 +7,7 @@
      <section class="jumbotron text-center">
             <div class="container">
                 <h1>News</h1>
-                <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis erat ut efficitur bibendum. In tristique mi quis vehicula condimentum. Pellentesque sed ligula diam. In velit tellus, pretium nec ligula in, sagittis mollis ex. Integer aliquet sodales erat, placerat laoreet dui tristique eget. </p>
+                <p class="lead text-muted">Welcome to the news section where you can find the latest news from the world of the academy, our achievements, open training announcements and much more.</p>
                 @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
                 {@Html.ActionLink("Add news", "Create", null, new { @class = "btn btn-dark m-2" })}
             </div>
@@ -44,7 +44,7 @@
                             }
                             <div class="card-body">
                                 <p class="card-title h4">@item.Title</p>
-                                <p class="card-text">@item.Text</p>
+                                <p class="card-text" style="white-space: pre-line">@item.Text</p>
                             </div>
 
                             <div class="card-footer d-flex justify-content-center">

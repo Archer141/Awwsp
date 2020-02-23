@@ -9,7 +9,6 @@
     <section class="jumbotron text-center pb-1">
         <div class="container">
             <h1>Aktualności</h1>
-            <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis erat ut efficitur bibendum. In tristique mi quis vehicula condimentum. Pellentesque sed ligula diam. In velit tellus, pretium nec ligula in, sagittis mollis ex. Integer aliquet sodales erat, placerat laoreet dui tristique eget. </p>
 
             <input type="submit" value="Save" class="btn btn-dark" />
             @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark" })
@@ -35,7 +34,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div>
-                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" ,@style="white-space: pre-line",} })
                         @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                     </div>
                 </div>

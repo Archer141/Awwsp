@@ -20,7 +20,7 @@ namespace Awwsp
     {
         public async Task SendAsync(IdentityMessage message)
         {
-            string key = "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";
+            string key = "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";
             var client = new SendGridClient(key);
             var from = new EmailAddress("ezio.141.96@gmail.com","Adrian Piascik");
             var subject = message.Subject;

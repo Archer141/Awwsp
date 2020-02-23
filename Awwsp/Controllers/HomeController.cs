@@ -23,10 +23,6 @@ namespace Awwsp.Controllers
             {
                 if (repository.GetChildrenAll().Where(x=>x.UserID==User.Identity.GetUserId())!=null)
                 {
-                    
-
-                    
-
                     //Znajdź powiadomiena dla każdego dziecka
                     if (GetUserID() != "")
                     {
