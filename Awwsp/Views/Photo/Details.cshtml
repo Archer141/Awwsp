@@ -5,31 +5,29 @@
 }
 
 
+        <section class="jumbotron text-center pt-2 pb-3">
+            <div class="container">
+                <h1>   @Model.Name</h1>
 
+                <div class="shadow">
+                    @{
 
-<section class="jumbotron text-center pt-2 pb-3">
-    <div class="container">
-        <h1>   @Model.Name</h1>
+                        var base64 = Convert.ToBase64String(Model.Image);
+                        var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                        <img src="@imgSrc" class="img-fluid" />
+                    }
+                </div>
 
-        <div class="shadow">
-            @{
+            </div>
+        </section>
+        <div class="container justify-content-center d-flex">
+            <div class="btn-group">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark m-1" })
+                @if (User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoID }, new { @class = "btn btn-dark m-1" })
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.PhotoID }, new { @class = "btn btn-danger m-1" })
+                }
 
-                var base64 = Convert.ToBase64String(Model.Image);
-                var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
-                <img src="@imgSrc" class="img-fluid" />
-            }
+            </div>
         </div>
-
-    </div>
-</section>
-<div class="container justify-content-center d-flex">
-    <div class="btn-group">
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark m-1" })
-        @if(User.IsInRole("Admin") || User.IsInRole("HeadCoach"))
-        {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoID }, new { @class = "btn btn-dark m-1" })
-        @Html.ActionLink("Delete", "Delete", new { id = Model.PhotoID }, new { @class = "btn btn-danger m-1" })
-        }
-
-    </div>
-</div>

@@ -19,17 +19,15 @@
     <base href="https://localhost:44304/" />
 </head>
 
-<body >
+<body class="h-100  d-flex flex-column"  >
 
-    <div >
+    <div>
 
         <!-- Navbar -->
         @{Html.RenderPartial("_NavIndex"); }
         <!-- /.navbar -->
-
-
         <!-- Content Wrapper. Contains page content -->
-        <div >
+        <div>
 
             <!-- Main content -->
             <div class="content p-0 ">
@@ -43,13 +41,10 @@
         </div>
 
         <!-- Main Footer -->
-        <footer class="main-footer ml-0">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-
+        <footer class="footer mt-auto py-3">
+            <div class="container">
+                All rights reserved &copy; @DateTime.Now.Year - Football Academy Adrian Piaśick
             </div>
-            <!-- Default to the left -->
-            <strong>Copyright &copy; 2018-@DateTime.Now.Year Adrian Piaścik AWWSP .</strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->
