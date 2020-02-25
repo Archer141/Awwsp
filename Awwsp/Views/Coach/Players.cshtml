@@ -42,7 +42,7 @@
                     </thead>
 
                     <tbody>
-                        @foreach (var item2 in item.Children)
+                        @foreach (var item2 in item.Children.Where(x=>x.IsSignOut==false&&x.IsActive==true))
                         {
                             <tr>
                                 <td>

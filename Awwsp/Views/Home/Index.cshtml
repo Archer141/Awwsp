@@ -81,14 +81,13 @@
     </div>
 
 
-
     <div class="card-deck pt-3">
 
         @foreach (var item in Model.NewsTop3)
         {
             <!-- News jumbotron -->
-        <div class="jumbotron text-center hoverable ">
-           
+            <div class="jumbotron text-center hoverable ">
+
                 <!-- Grid row -->
                 <div class="row">
 
@@ -96,31 +95,31 @@
                     <div class="col-md-4 offset-md-1 mx-3 my-3">
 
 
-                        @if (item.Photo.Image != null)
+                        @if (item.Photo != null)
                         {
                             var base64 = Convert.ToBase64String(item.Photo.Image);
                             var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
                             <!-- Featured image -->
-                          
-                                <div class="view overlay">
-                                    <img src="@imgSrc" style="height: 225px; width: 100%; display: block; object-fit:cover" class="img-fluid galery-image">
-                                    <a href="/News/Details/@item.NewsID">
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
-                                </div>
-                           
+
+                            <div class="view overlay">
+                                <img src="@imgSrc" style="height: 225px; width: 100%; display: block; object-fit:cover" class="img-fluid galery-image">
+                                <a href="/News/Details/@item.NewsID">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
                         }
                         else
                         {
-                           
-                                <!-- Featured image -->
-                                <div class="view overlay">
-                                    <img src="~/Content/Images/Food/walnuts-in-a-bowl-1823476.jpg" style="height: 225px; width: 100%; display: block; object-fit:cover" class="img-fluid">
-                                    <a>
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
-                                </div>
-                            
+
+                            <!-- Featured image -->
+                            <div class="view overlay">
+                                <img src="~/Content/Images/Food/walnuts-in-a-bowl-1823476.jpg" style="height: 225px; width: 100%; display: block; object-fit:cover" class="img-fluid">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
 
                         }
 
@@ -129,7 +128,7 @@
                     <!-- Grid column -->
                     <div class="col-md-7 text-md-left ml-3 mt-3">
 
-                     
+
 
                         <h4 class="h4 mb-4">@item.Title</h4>
 
@@ -138,18 +137,18 @@
                         </p>
                         @*  <p class="font-weight-normal">by <a><strong>@item.</strong></a>, @item.Date</p>*@
 
-                    <div class="d-inline-block d-flex">
-                        <a href="/News/Details/@item.NewsID" class="btn btn-success">Read more</a>
+                        <div class="d-inline-block d-flex">
+                            <a href="/News/Details/@item.NewsID" class="btn btn-success">Read more</a>
 
-                        <p class="ml-auto">@item.Date.ToString("yyyy-MM-dd HH:mm")</p>
-                    </div>
+                            <p class="ml-auto">@item.Date.ToString("yyyy-MM-dd HH:mm")</p>
+                        </div>
                     </div>
                     <!-- Grid column -->
 
                 </div>
                 <!-- Grid row -->
-            
-        </div>
+
+            </div>
             <!-- News jumbotron -->
 
             @*<div class="card black-text ">
@@ -164,6 +163,187 @@
             </div>*@
 
         }
+    <div class="jumbotron text-center hoverable ">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col  mx-3 my-3">
+
+
+
+
+
+                <!-- Featured image -->
+                <div class="view overlay">
+                    <img src="~/Content/Images/Training/maxresdefault.jpg" style="height: 300px; width: 100%; display: block; object-fit:cover" class="img-fluid">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+
+
+            </div>
+            <!-- Grid column -->
+
+
+        </div>
+        <div class="row">
+            <div class="col text-md-left ml-3 mt-3">
+
+
+
+                <h4 class="h4 mb-4">
+                    SIGN UP YOUR CHILD FOR TRAINING AT THE ACADEMY
+                </h4>
+
+                <p class="font-weight-normal" style="white-space: pre-line">
+                    Take the chance to enroll your child in one of the best football projects in Poland organized for girls and boys aged 3-18 and give him an unforgettable sports experience.
+                    Training at our academy:
+                    - You develop proper movement and eating habits.
+                    - You develop skills according to your individual abilities.
+                    - You relax mental tension, direct energy towards physical activity.
+                    - You learn about active leisure activities.
+                    - You develop awareness of the influence of sport on your health.
+                    - You build good relations with your peers.
+                    - You raise children through sport.
+                    - You teach Fair Play attitude.
+                    - You train in a friendly, family atmosphere.
+
+                </p>
+                @*  <p class="font-weight-normal">by <a><strong>@item.</strong></a>, @item.Date</p>*@
+
+
+            </div>
+        </div>
+        <!-- Grid row -->
+
+    </div>
+<div class="jumbotron text-center hoverable ">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col  mx-3 my-3">
+
+
+
+
+
+                <!-- Featured image -->
+                <div class="view overlay">
+                    <img src="~/Content/Images/Training/pexels-photo-262524.jpeg" style="height: 300px; width: 100%; display: block; object-fit:cover" class="img-fluid">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+
+
+            </div>
+            <!-- Grid column -->
+
+
+        </div>
+        <div class="row">
+            <div class="col text-md-left ml-3 mt-3">
+
+
+
+                <h4 class="h4 mb-4">
+                    BECOME A COACH IN OUR ACADEMY
+                </h4>
+
+                <p class="font-weight-normal" style="white-space: pre-line">
+                    Do you want to work for our academy? If you are a coach and you want to develop yourself - we invite you. We are looking for people to work with kids.
+                    - coach (children 6-14 years old)
+
+                    Required qualifications:
+                    - A completed coaching course.
+                    - Pedagogical education.
+                    - Ability to work in a group.
+                    - Availability.
+                    - Experience in working with kids.
+
+
+                    In exchange for commitment we offer:
+                    - Work in fixed hours and convenient locations.
+                    - Fixed salary adequate to the engagement.
+                    - Additional training sessions and materials supporting the coaching work.
+                    - Participation in football coaching conferences.
+
+
+                </p>
+                @*  <p class="font-weight-normal">by <a><strong>@item.</strong></a>, @item.Date</p>*@
+
+
+            </div>
+        </div>
+        <!-- Grid row -->
+
+    </div>
+        <div class="jumbotron text-center hoverable ">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col  mx-3 my-3">
+
+
+
+
+
+                <!-- Featured image -->
+                <div class="view overlay">
+                    <img src="~/Content/Images/high-angle-photography-of-soccer-field-2935979.jpg" style="height: 300px; width: 100%; display: block; object-fit:cover" class="img-fluid">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+
+
+            </div>
+            <!-- Grid column -->
+
+
+        </div>
+        <div class="row">
+            <div class="col text-md-left ml-3 mt-3">
+
+
+
+                <h4 class="h4 mb-4">
+                    FOOTBALL CAMPS
+                </h4>
+
+                <p class="font-weight-normal" style="white-space: pre-line">
+                    Football training in excellent locations under the supervision of coaches. Many additional attractions are waiting for your children during the winter camps. We invite girls and boys.
+                    We invite you to learn more about the proposal of football camps, which will take place  during the holidays of 2020
+
+                    All children are invited to the camps. Also those who have not had contact with football and our Club. The proposal is addressed to girls and boys.
+
+                    Football camps:
+                    - Football/sport activities for girls and boys
+                    - Up to two training sessions per day
+                    - Exceptional conditions for training on full-size pitches with artificial surface
+                    - Gift in the form of sports equipment for each participant.
+                    - Free breakfast, lunch, dinner, regeneration meal
+
+
+                </p>
+                @*  <p class="font-weight-normal">by <a><strong>@item.</strong></a>, @item.Date</p>*@
+
+
+            </div>
+        </div>
+        <!-- Grid row -->
+
+    </div>
 
     </div>
 </div>

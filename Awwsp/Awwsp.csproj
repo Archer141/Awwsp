@@ -309,57 +309,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201912221250307_init.cs" />
-    <Compile Include="Migrations\201912221250307_init.Designer.cs">
-      <DependentUpon>201912221250307_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912232029480_dates.cs" />
-    <Compile Include="Migrations\201912232029480_dates.Designer.cs">
-      <DependentUpon>201912232029480_dates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912291827096_istrphy.cs" />
-    <Compile Include="Migrations\201912291827096_istrphy.Designer.cs">
-      <DependentUpon>201912291827096_istrphy.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001041903551_notification.cs" />
-    <Compile Include="Migrations\202001041903551_notification.Designer.cs">
-      <DependentUpon>202001041903551_notification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001041921481_notf.cs" />
-    <Compile Include="Migrations\202001041921481_notf.Designer.cs">
-      <DependentUpon>202001041921481_notf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001041930532_notf1.cs" />
-    <Compile Include="Migrations\202001041930532_notf1.Designer.cs">
-      <DependentUpon>202001041930532_notf1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001051126590_newprop.cs" />
-    <Compile Include="Migrations\202001051126590_newprop.Designer.cs">
-      <DependentUpon>202001051126590_newprop.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001051930043_fulname.cs" />
-    <Compile Include="Migrations\202001051930043_fulname.Designer.cs">
-      <DependentUpon>202001051930043_fulname.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001102030072_displayname.cs" />
-    <Compile Include="Migrations\202001102030072_displayname.Designer.cs">
-      <DependentUpon>202001102030072_displayname.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001151746081_event.cs" />
-    <Compile Include="Migrations\202001151746081_event.Designer.cs">
-      <DependentUpon>202001151746081_event.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001221735577_eventChildID.cs" />
-    <Compile Include="Migrations\202001221735577_eventChildID.Designer.cs">
-      <DependentUpon>202001221735577_eventChildID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002161810557_requnews.cs" />
-    <Compile Include="Migrations\202002161810557_requnews.Designer.cs">
-      <DependentUpon>202002161810557_requnews.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002190954092_bool.cs" />
-    <Compile Include="Migrations\202002190954092_bool.Designer.cs">
-      <DependentUpon>202002190954092_bool.cs</DependentUpon>
+    <Compile Include="Migrations\202002251820516_init.cs" />
+    <Compile Include="Migrations\202002251820516_init.Designer.cs">
+      <DependentUpon>202002251820516_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Event.cs" />
@@ -388,10 +340,6 @@
     <Compile Include="ViewModels\TrophyCreateVM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\AWWSP_DB.mdf" />
-    <Content Include="App_Data\AWWSP_DB_log.ldf">
-      <DependentUpon>AWWSP_DB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\Contact.css" />
@@ -663,7 +611,6 @@
     <Content Include="Content\MDB-Free_4.11.0\src\js\vendor\free\jquery.easing.js" />
     <Content Include="Content\MDB-Free_4.11.0\src\js\vendor\free\velocity.js" />
     <Content Include="Content\MDB-Free_4.11.0\src\js\vendor\free\waves.js" />
-    <Content Include="Content\SideBar.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Content\MDB-Free_4.11.0\font\roboto\Roboto-Bold.eot" />
     <Content Include="Content\MDB-Free_4.11.0\font\roboto\Roboto-Bold.ttf" />
@@ -1026,6 +973,7 @@
     <Content Include="Views\Shared\_NavIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Client Scripts\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Default\" />
@@ -1047,44 +995,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912221250307_init.resx">
-      <DependentUpon>201912221250307_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912232029480_dates.resx">
-      <DependentUpon>201912232029480_dates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912291827096_istrphy.resx">
-      <DependentUpon>201912291827096_istrphy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001041903551_notification.resx">
-      <DependentUpon>202001041903551_notification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001041921481_notf.resx">
-      <DependentUpon>202001041921481_notf.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001041930532_notf1.resx">
-      <DependentUpon>202001041930532_notf1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001051126590_newprop.resx">
-      <DependentUpon>202001051126590_newprop.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001051930043_fulname.resx">
-      <DependentUpon>202001051930043_fulname.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001102030072_displayname.resx">
-      <DependentUpon>202001102030072_displayname.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001151746081_event.resx">
-      <DependentUpon>202001151746081_event.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001221735577_eventChildID.resx">
-      <DependentUpon>202001221735577_eventChildID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161810557_requnews.resx">
-      <DependentUpon>202002161810557_requnews.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002190954092_bool.resx">
-      <DependentUpon>202002190954092_bool.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002251820516_init.resx">
+      <DependentUpon>202002251820516_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

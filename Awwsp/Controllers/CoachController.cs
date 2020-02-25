@@ -258,6 +258,10 @@ namespace Awwsp.Controllers
                     var player = repository.GetChildById(int.Parse(item));
                     player.IsActive = true;
                     repository.UpdateChild(player);
+
+                    repository.AddNotification(new Notification { Title= "Congratulations!", Text= "You got into the academy",ChildId=player.ChildID,AgeGroupId=player.AgeGroupID.Value,Perceived=false });
+
+
                 }
                 return RedirectToAction("Players");
             };
@@ -273,7 +277,7 @@ namespace Awwsp.Controllers
 
         public ActionResult AssignToTeams()
         {
-            foreach (var item in repository.GetChildrenAll())
+            foreach (var item in repository.GetChildrenAll().Where(x =>x.IsSignOut == false))
             {
                 var data = DateTime.Now - item.DateOfBirth;
                 var age = data.TotalDays / 365;
@@ -292,7 +296,7 @@ namespace Awwsp.Controllers
         private IList<SelectListItem> GetPlayersToRegister()
         {
             var list = new List<SelectListItem>();
-            foreach (var item in repository.GetChildrenAll().Where(x=>x.IsActive==false))
+            foreach (var item in repository.GetChildrenAll().Where(x=>x.IsActive==false&&x.IsSignOut==false))
             {
                 list.Add(new SelectListItem { Text = item.FullName, Value = item.ChildID.ToString() });
             }

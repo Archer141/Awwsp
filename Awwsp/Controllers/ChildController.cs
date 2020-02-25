@@ -202,18 +202,18 @@ namespace Awwsp.Controllers
         }
 
 
-        public ActionResult SignOut()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+       
 
-        }
-
-        [HttpPost]
         public ActionResult SignOutAcademy(int id) {
 
             Child child = repository.GetChildById(id);
             repository.SignOutChild(child);
+            return RedirectToAction("Index"); 
+        } 
+        public ActionResult SignInAcademy(int id) {
+
+            Child child = repository.GetChildById(id);
+            repository.SignInChild(child);
             return RedirectToAction("Index"); 
         }
        

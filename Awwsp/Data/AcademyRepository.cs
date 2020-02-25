@@ -224,8 +224,15 @@ namespace Awwsp.Data
         }
         public void SignOutChild(Child child)
         {
-            var user = dbContext.Children.FindAsync(child).Result;
+            var user = GetChildById(child.ChildID);
             user.IsSignOut = true;
+            user.IsActive = false;
+            dbContext.SaveChanges();
+        }
+        public void SignInChild(Child child)
+        {
+            var user = GetChildById(child.ChildID);
+            user.IsSignOut = false;
             dbContext.SaveChanges();
         }
 

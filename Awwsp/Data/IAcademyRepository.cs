@@ -38,6 +38,7 @@ namespace Awwsp.Data
 
         void DeleteChild(Child child);
         void SignOutChild(Child child);
+        void SignInChild(Child child);
         void DeleteNews(int? id);
         void DeletePhoto(int? id);
         void DeleteTrophy(int? id);

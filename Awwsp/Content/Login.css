@@ -1,6 +1,6 @@
 ﻿.bg {
     /* The image used */
-    background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(11).jpg");
+    background-image: url("Images/Training/maxresdefault.jpg");
     /* Full height */
     width: 100%;
     /* Center and scale the image nicely */
@@ -30,7 +30,7 @@
 }
 .bg-register {
     /* The image used */
-    background-image: url("Images/sign-pen-business-document-48148.jpg");
+    background-image: url("https://images.pexels.com/photos/48148/document-agreement-documents-sign-48148.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
     /* Full height */
     width: 100%;
     /* Center and scale the image nicely */
